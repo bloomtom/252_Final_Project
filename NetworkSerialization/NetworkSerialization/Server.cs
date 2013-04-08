@@ -212,7 +212,7 @@ namespace EventDrivenNetworking
                 {
                     if (clientList.ContainsKey(client))
                     {
-                        clientList[client].SendData(message);
+                        clientList[client].SendDataPacket(ref message);
                     }
                     else
                     {
@@ -245,7 +245,7 @@ namespace EventDrivenNetworking
                     {
                         if (item.Value.Connected)
                         {
-                            item.Value.SendData(message);
+                            item.Value.SendDataPacket(ref message);
                         }
                     });
                 }

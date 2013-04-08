@@ -1,0 +1,5 @@
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Database Layer\TheNoise Database Layer\bin\Release\TheNoise Database Layer.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Database Layer\TheNoise Database Layer\bin\Release\TheNoise Database Layer.pdb
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Database Layer\TheNoise Database Layer\obj\Release\ResolveAssemblyReference.cache
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Database Layer\TheNoise Database Layer\obj\Release\TheNoise Database Layer.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Database Layer\TheNoise Database Layer\obj\Release\TheNoise Database Layer.pdb

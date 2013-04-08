@@ -50,10 +50,11 @@ namespace EventDrivenNetworking
                 set { }
             }
 
-            const int readSize = 2048; // Size of the read buffer
+            const int readSize = 4096; // Size of the read buffer
             byte[] readBuffer;
 
             int packetFilled; // The amount of data currently filled into packetBuffer.
+            byte packetType;
             byte[] packetBuffer; // Storage for an entire (up to 64k in length) object packet.
 
             private readonly IPEndPoint remoteEndPoint;
@@ -160,35 +161,26 @@ namespace EventDrivenNetworking
                     {
                         // Get the actual size of data read.
                         System.IO.Stream resultStream = (System.IO.Stream)ar.AsyncState;
-                        int bytesRead = resultStream.EndRead(ar);
+                        int streamLength = resultStream.EndRead(ar);
 
                         // This indicates the connection is being closed.
-                        if (bytesRead == 0)
+                        if (streamLength == 0)
                         {
                             Close();
                             return;
                         }
 
-                        if (packetBuffer == null) // Check to see if start of new packet.
+                        using (System.IO.MemoryStream incomingData = new System.IO.MemoryStream(readBuffer))
                         {
-                            if (bytesRead < 4) { return; } // Not enough data for a packet header. Wait for the next go.
+                            // Check to see if start of new packet.
+                            if (packetBuffer == null)
+                            {
+                                if (StartPacket(incomingData, streamLength) == false) { return; }
+                            }
 
-
+                            ReadPackets(incomingData, streamLength);
                         }
 
-                        //// Quick check to see if the buffer was filled completely.
-                        //else if (bytesRead != readSize)
-                        //{
-                        //    // Create a properly sized buffer and copy data to it.
-                        //    byte[] actualBuffer = new byte[bytesRead];
-                        //    Array.Copy(readBuffer, actualBuffer, bytesRead);
-                        //    dataReceived.Invoke(this, new IncomingMessageEventArgs(actualBuffer)); // Fire the data received event.
-                        //}
-                        //else
-                        //{
-                        //    // No need to copy data to a new buffer since the original was filled.
-                        //    dataReceived.Invoke(this, new IncomingMessageEventArgs(readBuffer)); // Fire the data received event.
-                        //}
                         ClientListen(); // Listen for more data.
                     }
                 }
@@ -196,6 +188,66 @@ namespace EventDrivenNetworking
                 {
                     // Tell anyone listening that something bad happened.
                     dataReceived.Invoke(this, new IncomingMessageEventArgs(ex));
+                }
+            }
+
+            private bool StartPacket(System.IO.Stream netStream, int streamLength)
+            {
+                if ((streamLength - netStream.Position) < 4) { return false; } // Not enough data for a packet header.
+
+                // Check header for validity
+                int Soh = netStream.ReadByte();
+                if (Soh != 1)
+                {
+                    // Invalid packet or synchronization error.
+                    // Sync to nearest correct header byte.
+                    while (Soh != -1 || Soh != 1) // -1 is end of stream
+                    {
+                        Soh = netStream.ReadByte();
+                    }
+
+                    dataReceived.Invoke(this, new IncomingMessageEventArgs(new FormatException("Header corruption detected.")));
+
+                    if (Soh != 1) { return false; } // End of stream reached without getting a header byte.
+                }
+
+                // Read rest of the header from the stream
+                byte[] packetHeader = new byte[3];
+                netStream.Read(packetHeader, 0, 3);
+
+                // Get packet type and packet size
+                packetType = packetHeader[0];
+                int packetSize = (packetHeader[1] << 8) + packetHeader[2]; // Merge the two length bytes into one.
+
+                // Create the packet buffer.
+                packetBuffer = new byte[packetSize];
+                return true;
+            }
+
+            private void ReadPackets(System.IO.Stream netStream, int streamLength)
+            {
+                // Check to see if the entire packet can be read at once.
+                if ((streamLength - netStream.Position) >= (packetBuffer.Length - packetFilled))
+                {
+                    // Read to the end of packet.
+                    Array.ConstrainedCopy(readBuffer, (int)netStream.Position, packetBuffer, packetFilled, (packetBuffer.Length - packetFilled));
+
+                    dataReceived.Invoke(this, new IncomingMessageEventArgs(packetBuffer));
+
+                    int packetLengthOffset = packetBuffer.Length;
+                    packetBuffer = null;
+
+                    // Start reading another packet if available.
+                    if (StartPacket(netStream, streamLength - packetLengthOffset))
+                    {
+                        ReadPackets(netStream, streamLength - packetLengthOffset);
+                    }
+                }
+                else
+                {
+                    // Read available into the packet buffer.
+                    Array.ConstrainedCopy(readBuffer, (int)netStream.Position, packetBuffer, packetFilled, (int)(streamLength - netStream.Position));
+                    packetFilled += (int)(streamLength - netStream.Position);
                 }
             }
 
@@ -231,20 +283,22 @@ namespace EventDrivenNetworking
             /// <exception cref="System.ArgumentNullException">The message parameter is null.</exception>
             /// <exception cref="System.ArgumentOutOfRangeException">The message parameter is greater than 65535 in length.</exception>
             /// <exception cref="System.IOException">There was a problem with the network stream.</exception>
-            public void SendDataPacket(ref byte[] data)
+            public void SendDataPacket(ref byte[] data, byte packetType)
             {
                 if (data.Length > 65535) { throw new ArgumentOutOfRangeException("data", "Parameter cannot be greater than 65535 in length."); }
                 ushort dataLen = (ushort)data.Length;
 
                 byte[] header = new byte[4];
                 header[0] = 1; // SOH
-                header[1] = 90; // Reserved packet type
+                header[1] = packetType;
                 header[2] = (byte)(dataLen >> 8); // Store the top byte
                 header[3] = (byte)(dataLen & 0x00FF); // Store the bottom byte
 
                 SendData(ref header);
                 SendData(ref data);
             }
+
+            public void SendDataPacket(ref byte[] data) { SendDataPacket(ref data, 90); }
 
             /// <summary>
             /// Polls the connection for close signals.
