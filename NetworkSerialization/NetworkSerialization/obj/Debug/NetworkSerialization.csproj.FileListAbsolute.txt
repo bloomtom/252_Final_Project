@@ -1,0 +1,5 @@
+C:\Users\l230\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\bin\Debug\NetworkSerialization.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\bin\Debug\NetworkSerialization.pdb
+C:\Users\l230\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\l230\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\NetworkSerialization.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\NetworkSerialization.pdb
