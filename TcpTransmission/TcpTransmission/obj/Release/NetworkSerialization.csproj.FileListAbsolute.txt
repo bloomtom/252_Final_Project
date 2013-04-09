@@ -1,0 +1,4 @@
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\bin\Release\NetworkSerialization.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\bin\Release\NetworkSerialization.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Release\NetworkSerialization.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Release\NetworkSerialization.pdb

@@ -1,0 +1,5 @@
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\bin\Debug\TcpTransmission.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\bin\Debug\TcpTransmission.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\TcpNetworking.csprojResolveAssemblyReference.cache
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\TcpTransmission.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\TcpTransmission.pdb

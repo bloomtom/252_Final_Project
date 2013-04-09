@@ -9,3 +9,5 @@ C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Debug\TheNoise Database Layer.pdb
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise Server.exe
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise Server.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise Server.exe
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise Server.pdb
