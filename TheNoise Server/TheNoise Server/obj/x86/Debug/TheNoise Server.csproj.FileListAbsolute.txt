@@ -22,3 +22,4 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Serve
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise_Server.Main.resources
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise_Server.Properties.Resources.resources
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise Server.csproj.GenerateResource.Cache
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Debug\TheNoise Database Layer.dll

@@ -5,45 +5,32 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Collections.ObjectModel;
 using System.Data;
+using TheNoise_SharedObjects;
+using TheNoise_SharedObjects.GlobalEnumerations;
 
 namespace TheNoise_DatabaseControl
 {
-    public enum UserAddResult
-    {
-        Success = 0,
-        AlreadyExists = 1,
-        UsernameTooLong = 2,
-        InvalidPassword = 3
-    }
+    //public struct User
+    //{
+    //    private string username;
+    //    public string Username
+    //    {
+    //        get { return username; }
+    //        set { }
+    //    }
+    //    private string password;
+    //    public string Password
+    //    {
+    //        get { return password; }
+    //        set { }
+    //    }
 
-    public enum UserValidationResult
-    {
-        Success = 0,
-        UserNotInDatabase = 1,
-        InvalidPassword = 2
-    }
-
-    public struct User
-    {
-        private string username;
-        public string Username
-        {
-            get { return username; }
-            set { }
-        }
-        private string password;
-        public string Password
-        {
-            get { return password; }
-            set { }
-        }
-
-        public User(string sentUsername, string sentPassword)
-        {
-            this.username = sentUsername;
-            this.password = sentPassword;
-        }
-    }
+    //    public User(string sentUsername, string sentPassword)
+    //    {
+    //        this.username = sentUsername;
+    //        this.password = sentPassword;
+    //    }
+    //}
 
     public class DataAccessLayer
     {
@@ -66,7 +53,7 @@ namespace TheNoise_DatabaseControl
             sqlStrBldr.IntegratedSecurity = false;
         }
 
-        public void readUsers(ObservableCollection<User> userList)
+        public void readUsers(ObservableCollection<LoginData> userList)
         {
             // DataSet object will store data tables
             DataSet dSetUsers = new DataSet();
@@ -78,7 +65,7 @@ namespace TheNoise_DatabaseControl
             SqlCommand dataCommand = new SqlCommand();
 
             // Data Provider DbDataReader object
-            SqlDataReader dataReader;
+            //SqlDataReader dataReader;
 
             // this example builds the connection string using a SqlConnectionStringBuilder object; 
             // easier and less prone to error than building the string yourself. 
@@ -93,21 +80,21 @@ namespace TheNoise_DatabaseControl
 
             foreach (DataRow row in dtUsers.Rows)
             {
-                userList.Add(new User(row[0].ToString(), row[1].ToString()));
+                userList.Add(new LoginData(row[0].ToString(), row[1].ToString()));
                 //userList.Add(new employee(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), DateTime.Parse(row[4].ToString()), bool.Parse(row[5].ToString())));
             }
         }
 
-        public UserAddResult addUser(User sentUser)
+        public UserAddResult addUser(LoginData sentUser)
         {
-            UserValidationResult result;
-
+            //GlobalEnumerations.UserValidationResult result;
+            TheNoise_SharedObjects.GlobalEnumerations.UserAuthenticationResult result;
             result = validateUser(sentUser);
 
             //If validateUser returns 1, user is not in database
-            if (result == UserValidationResult.UserNotInDatabase)
+            if (result == UserAuthenticationResult.InvalidUser)
             {
-                string SQLstring = "INSERT INTO users(username, password) VALUES(" + sentUser.Username + ", " + sentUser.Password + ")";
+                string SQLstring = "INSERT INTO users(username, password) VALUES(" + sentUser.username + ", " + sentUser.password + ")";
 
                 executeNonQuery(SQLstring);
 
@@ -122,38 +109,38 @@ namespace TheNoise_DatabaseControl
 
         }
 
-        public UserValidationResult validateUser(User sentUser)
+        public UserAuthenticationResult validateUser(LoginData sentUser)
         {
             //0: User is valid.
             //1: Username isn't in the database
             //2: Username is in the database, but the password is incorrect.
 
-            ObservableCollection<User> checkList;
+            ObservableCollection<LoginData> checkList;
 
-            checkList = new ObservableCollection<User>();
+            checkList = new ObservableCollection<LoginData>();
 
             readUsers(checkList);
 
-            foreach (User u in checkList)
+            foreach (LoginData u in checkList)
             {
-                if (u.Username == sentUser.Username)
+                if (u.username == sentUser.username)
                 {
-                    if (u.Password == sentUser.Password)
+                    if (u.password == sentUser.password)
                     {
                         //The validation has succeeded, the username and password are valid
-                        return UserValidationResult.Success;
+                        return UserAuthenticationResult.Success;
                     }
                     else
                     {
                         //The username and is valid, but the password is wrong.
-                        return UserValidationResult.InvalidPassword;
+                        return UserAuthenticationResult.InvalidPassword;
                     }
                 }
 
             }
 
             //The validation has failed, the user is not in the database
-            return UserValidationResult.UserNotInDatabase;
+            return UserAuthenticationResult.InvalidUser;
         }
 
         private bool executeNonQuery(string sql)

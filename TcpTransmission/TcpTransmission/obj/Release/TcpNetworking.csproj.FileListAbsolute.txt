@@ -4,8 +4,6 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSe
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Release\TcpTransmission.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\bin\Release\TcpTransmission.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\bin\Release\TcpTransmission.pdb
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\bin\Release\TcpTransmission.dll.CodeAnalysisLog.xml
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\bin\Release\TcpTransmission.dll.lastcodeanalysissucceeded
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\obj\Release\TcpNetworking.csprojResolveAssemblyReference.cache
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\obj\Release\TcpTransmission.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\obj\Release\TcpTransmission.pdb

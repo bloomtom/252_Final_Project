@@ -12,6 +12,7 @@
     <AssemblyName>TheNoise Database Layer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,12 @@
   <ItemGroup>
     <Compile Include="DataAcessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj">
+      <Project>{408b1450-a1e7-4edf-87e6-d3df53c8d071}</Project>
+      <Name>TheNoise_SharedObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

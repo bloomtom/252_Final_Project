@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TheNoise_DatabaseControl;
+using TheNoise_SharedObjects;
+using TheNoise_SharedObjects.GlobalEnumerations;
 
 namespace TheNoise_Server
 {
@@ -20,10 +22,10 @@ namespace TheNoise_Server
         private void button1_Click(object sender, EventArgs e)
         {
             DataAccessLayer dbInterface = new DataAccessLayer("", "");
-            User user = new User(usernameTextBox.Text, passwordTextBox.Text);
-            UserValidationResult result = dbInterface.validateUser(user);
+            LoginData user = new LoginData(usernameTextBox.Text, passwordTextBox.Text);
+            UserAuthenticationResult result = dbInterface.validateUser(user);
 
-            if (result == UserValidationResult.Success)
+            if (result == UserAuthenticationResult.Success)
             {
                 MessageBox.Show("Yay");
             }
@@ -32,7 +34,7 @@ namespace TheNoise_Server
         private void addButton_Click(object sender, EventArgs e)
         {
             DataAccessLayer dbInterface = new DataAccessLayer("", "");
-            User user = new User(usernameTextBox.Text, passwordTextBox.Text);
+            LoginData user = new LoginData(usernameTextBox.Text, passwordTextBox.Text);
             UserAddResult result = dbInterface.addUser(user);
 
             if (result == UserAddResult.Success)
@@ -44,13 +46,13 @@ namespace TheNoise_Server
         private void listButton_Click(object sender, EventArgs e)
         {
             DataAccessLayer dbInterface = new DataAccessLayer("", "");
-            var users = new System.Collections.ObjectModel.ObservableCollection<User>();
+            var users = new System.Collections.ObjectModel.ObservableCollection<LoginData>();
             dbInterface.readUsers(users);
 
             usersListView.Clear();
             foreach (var item in users)
             {
-                usersListView.Items.Add(item.Username);
+                usersListView.Items.Add(item.username);
             }
         }
     }

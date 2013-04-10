@@ -3,3 +3,8 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSe
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\TcpNetworking.csprojResolveAssemblyReference.cache
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\TcpTransmission.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\NetworkSerialization\NetworkSerialization\obj\Debug\TcpTransmission.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\bin\Debug\TcpTransmission.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\bin\Debug\TcpTransmission.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\obj\Debug\TcpNetworking.csprojResolveAssemblyReference.cache
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\obj\Debug\TcpTransmission.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TcpTransmission\TcpTransmission\obj\Debug\TcpTransmission.pdb

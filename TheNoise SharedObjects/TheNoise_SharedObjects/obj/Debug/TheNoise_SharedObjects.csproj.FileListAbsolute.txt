@@ -3,3 +3,8 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNois
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNoise_SharedObjects\bin\Debug\TheNoise_SharedObjects.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\bin\Debug\TheNoise_SharedObjects.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\bin\Debug\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.csprojResolveAssemblyReference.cache
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.pdb

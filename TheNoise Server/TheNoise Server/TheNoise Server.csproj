@@ -44,9 +44,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TheNoise Database Layer">
-      <HintPath>..\..\TheNoise Database Layer\TheNoise Database Layer\bin\Release\TheNoise Database Layer.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs">
@@ -83,6 +80,10 @@
     <ProjectReference Include="..\..\TcpTransmission\TcpTransmission\TcpNetworking.csproj">
       <Project>{78d1355a-b256-4bf1-93f5-6d98377ecb0f}</Project>
       <Name>TcpNetworking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TheNoise DatabaseLayer\TheNoise Database Layer\TheNoise Database Layer.csproj">
+      <Project>{702b3cde-c3f8-4f82-81ec-5d1fa75dbcfb}</Project>
+      <Name>TheNoise Database Layer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj">
       <Project>{408b1450-a1e7-4edf-87e6-d3df53c8d071}</Project>

@@ -1,0 +1,14 @@
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TheNoise Server.exe
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TheNoise Server.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TcpTransmission.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TheNoise Database Layer.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TheNoise_SharedObjects.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TcpTransmission.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TheNoise Database Layer.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Release\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Release\TheNoise Server.csprojResolveAssemblyReference.cache
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Release\TheNoise_Server.Main.resources
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Release\TheNoise_Server.Properties.Resources.resources
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Release\TheNoise Server.csproj.GenerateResource.Cache
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Release\TheNoise Server.exe
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Release\TheNoise Server.pdb

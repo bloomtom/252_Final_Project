@@ -2,3 +2,7 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNois
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNoise_SharedObjects\bin\Release\TheNoise_SharedObjects.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNoise_SharedObjects\obj\Release\TheNoise_SharedObjects.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise_SharedObjects\TheNoise_SharedObjects\obj\Release\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\bin\Release\TheNoise_SharedObjects.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\bin\Release\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Release\TheNoise_SharedObjects.dll
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Release\TheNoise_SharedObjects.pdb

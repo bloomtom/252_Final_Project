@@ -18,44 +18,57 @@ namespace TcpTransmission
     /// </remarks>
     public class IncomingMessageEventArgs : EventArgs
     {
+        private readonly Exception error;
         /// <summary>
         /// Contains exception details if any.
         /// </summary>
-        public readonly Exception Error;
+        public Exception Error
+        {
+            get { return error; }
+        } 
 
+        private readonly byte[] message;
         /// <summary>
         /// Data received from the remote machine.
         /// </summary>
-        public readonly byte[] Message;
+        public byte[] Message
+        {
+            get { return message; }
+        } 
 
+        private readonly byte packetType = 90;
         /// <summary>
         /// Type of packet indicated by the sender. Default 90
         /// </summary>
-        public readonly byte PacketType = 90;
+        public byte PacketType
+        {
+            get { return packetType; }
+        } 
+
 
         public IncomingMessageEventArgs(byte[] message)
         {
-            Message = message;
+            this.message = message;
         }
         public IncomingMessageEventArgs(byte[] message, byte packetType)
         {
-            Message = message;
-            PacketType = packetType;
+            this.message = message;
+            this.packetType = packetType;
         }
         public IncomingMessageEventArgs(Exception error)
         {
-            Error = error;
+            this.error = error;
         }
         public IncomingMessageEventArgs(byte[] message, Exception error)
         {
-            Message = message;
-            Error = error;
+            this.message = message;
+            this.error = error;
         }
-        private IncomingMessageEventArgs(byte[] message, byte type, Exception error)
+        private IncomingMessageEventArgs(byte[] message, byte packetType, Exception error)
         {
-            Message = message;
-            PacketType = type;
-            Error = error;
+            this.message = message;
+            this.packetType = packetType;
+            this.error = error;
         }
     }
 
