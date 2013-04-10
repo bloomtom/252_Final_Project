@@ -8,8 +8,8 @@
     <ProjectGuid>{9E6C988E-8F33-4C0D-8247-3D8E7283FB2E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheNoise_Client</RootNamespace>
-    <AssemblyName>TheNoise Client</AssemblyName>
+    <RootNamespace>Lab_7_Finial_Project</RootNamespace>
+    <AssemblyName>Lab 7 Finial Project</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -80,7 +80,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="register.resx">
       <DependentUpon>Register.cs</DependentUpon>

@@ -1,0 +1,31 @@
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Listen.resources
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.LogInSingUp.resources
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Properties.Resources.resources
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\GenerateResource.read.1.tlog
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\GenerateResource.write.1.tlog
+G:\Lab 7 Finial Project\Lab 7 Finial Project\bin\Debug\Lab 7 Finial Project.exe
+G:\Lab 7 Finial Project\Lab 7 Finial Project\bin\Debug\Lab 7 Finial Project.pdb
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab 7 Finial Project.exe
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab 7 Finial Project.pdb
+G:\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab 7 Finial Project.exe
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab 7 Finial Project.pdb
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Listen.resources
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.LogInSingUp.resources
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Properties.Resources.resources
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\GenerateResource.read.1.tlog
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\GenerateResource.write.1.tlog
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\bin\Debug\Lab 7 Finial Project.exe
+G:\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\bin\Debug\Lab 7 Finial Project.pdb
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab 7 Finial Project.exe
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab 7 Finial Project.pdb
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Listen.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.LogInSingUp.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Properties.Resources.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project\Lab 7 Finial Project\Lab 7 Finial Project\obj\x86\Debug\GenerateResource.write.1.tlog

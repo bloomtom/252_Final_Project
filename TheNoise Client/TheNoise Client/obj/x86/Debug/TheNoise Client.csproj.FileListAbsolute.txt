@@ -1,0 +1,26 @@
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.exe
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.pdb
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Listen.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.LogInSingUp.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Properties.Resources.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Walmart\Desktop\Lab07 - Client_Server Project - Copy\Lab 7 Finial Project\TheNoise Client\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.exe
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.pdb
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\Lab 7 Finial Project.exe
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\Lab 7 Finial Project.pdb
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise ServerAPI.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise ServerAPI.pdb
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.pdb
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.pdb
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Listen.resources
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.LogInSingUp.resources
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Properties.Resources.resources
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\GenerateResource.write.1.tlog
