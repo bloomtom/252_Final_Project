@@ -15,6 +15,7 @@ namespace TcpTransmission
 
     namespace Server
     {
+
         /// <summary>
         /// An event based multi-client TCP server.
         /// </summary>
@@ -29,12 +30,24 @@ namespace TcpTransmission
         {
             public delegate void DataReceivedEventHandler(object sender, IncomingMessageEventArgs e);
             public event DataReceivedEventHandler dataReceived = delegate { }; // Fired when data is received from a client.
+            protected virtual void OnDataReceived(IncomingMessageEventArgs e)
+            {
+                if (dataReceived != null) dataReceived(this, e);
+            }
 
             public delegate void ClientConnectEventHandler(object sender, IPEndPoint clientIP);
             public event ClientConnectEventHandler clientConnected = delegate { }; // Fired when a client connects.
+            protected virtual void OnClientConnect(IPEndPoint e)
+            {
+                if (clientConnected != null) clientConnected(this, e);
+            }
 
             public delegate void ClientDisconnectEventHandler(object sender, IPEndPoint clientIP);
             public event ClientDisconnectEventHandler clientDisconnected = delegate { }; // Fired when a client disconnects.
+            protected virtual void OnClientDisconnect(IPEndPoint e)
+            {
+                if (clientDisconnected != null) clientDisconnected(this, e);
+            }
 
             private volatile bool runServer = false; // When set to false, the server listen loop ends.
             public bool Running
@@ -59,7 +72,7 @@ namespace TcpTransmission
                 set { }
             }
 
-            private Dictionary<IPEndPoint, ClientConnection> clientList = new Dictionary<IPEndPoint, ClientConnection>();
+            protected Dictionary<IPEndPoint, ClientConnection> clientList = new Dictionary<IPEndPoint, ClientConnection>();
 
             ~ServerManager()
             {
@@ -73,7 +86,7 @@ namespace TcpTransmission
             }
 
             // Wrap the client events so the server owner can catch them.
-            private void client_dataReceived(object sender, IncomingMessageEventArgs e)
+            protected virtual void client_dataReceived(object sender, IncomingMessageEventArgs e)
             {
                 // Check to see if the client is still connected.
                 ClientConnection client = (ClientConnection)sender;
@@ -87,6 +100,7 @@ namespace TcpTransmission
                     if (e == null) { return; } // Don't give listeners of dataReceived a null IncomingMessageEventArgs.
                 }
 
+                //Testing(sender, e);
                 dataReceived.Invoke(sender, e);
             }
 
@@ -203,7 +217,7 @@ namespace TcpTransmission
             /// <exception cref="System.ArgumentNullException">The message or client parameter is null.</exception>
             /// <exception cref="System.InvalidArgumentException">The specified client does not exist.</exception>
             /// <exception cref="System.IOException">There was a problem with the network stream.</exception>
-            public void SendData(IPEndPoint client, byte[] message)
+            public virtual void SendData(IPEndPoint client, byte[] message)
             {
                 if (client == null) { throw new ArgumentNullException("client"); }
                 if (message == null) { throw new ArgumentNullException("message"); }
@@ -227,11 +241,11 @@ namespace TcpTransmission
             /// <param name="message">The message.</param>
             /// <exception cref="System.ArgumentNullException">The message parameter is null.</exception>
             /// <exception cref="System.IOException">There was a problem with the network stream.</exception>
-            public void Broadcast(byte[] message)
+            public virtual void Broadcast(byte[] message)
             {
                 Broadcast(message, 90);
             }
-            public void Broadcast(byte[] message, byte messageType)
+            public virtual void Broadcast(byte[] message, byte messageType)
             {
                 // Check this first, or every client will thow one.
                 if (message == null) { throw new ArgumentNullException("message"); }

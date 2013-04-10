@@ -14,7 +14,7 @@ namespace TcpTransmission
     namespace Client
     {
         /// <summary>
-        /// An event based interface for a TCP connection.
+        /// An event based interface for a TCP connection that supports indication of privilege through IsAuthenticated.
         /// </summary>
         /// <remarks>
         /// Implements IDisposable.
@@ -42,8 +42,11 @@ namespace TcpTransmission
             public event DataReceivedEventHandler dataReceived = delegate { };
 
             private TcpClient client; // The internal client.
-            NetworkStream tcpStream; // Access to the underlying stream of client.
+            NetworkStream tcpStream; // Access to the underlying stream of client. 
 
+            /// <summary>
+            /// Checks the Connected property of the underlying TcpClient
+            /// </summary>
             public bool Connected
             {
                 get { return client.Connected; }
