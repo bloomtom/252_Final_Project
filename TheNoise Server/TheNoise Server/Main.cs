@@ -18,42 +18,5 @@ namespace TheNoise_Server
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DataAccessLayer dbInterface = new DataAccessLayer("", "");
-            LoginData user = new LoginData(usernameTextBox.Text, passwordTextBox.Text);
-            UserAuthenticationResult result = dbInterface.validateUser(user);
-
-            if (result == UserAuthenticationResult.Success)
-            {
-                MessageBox.Show("Yay");
-            }
-        }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            DataAccessLayer dbInterface = new DataAccessLayer("", "");
-            LoginData user = new LoginData(usernameTextBox.Text, passwordTextBox.Text);
-            UserAddResult result = dbInterface.addUser(user);
-
-            if (result == UserAddResult.Success)
-            {
-                MessageBox.Show("Yay");
-            }
-        }
-
-        private void listButton_Click(object sender, EventArgs e)
-        {
-            DataAccessLayer dbInterface = new DataAccessLayer("", "");
-            var users = new System.Collections.ObjectModel.ObservableCollection<LoginData>();
-            dbInterface.readUsers(users);
-
-            usersListView.Clear();
-            foreach (var item in users)
-            {
-                usersListView.Items.Add(item.username);
-            }
-        }
     }
 }

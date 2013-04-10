@@ -40,11 +40,9 @@ namespace TheNoise_SharedObjects
         {
             // Login types
             Authenticate = 0,
-            UserAuthenticationResult = 1,
 
             // Registration types
             Register = 2,
-            UserAddResult = 3,
 
             // Audio streaming types
             RequestList = 4,

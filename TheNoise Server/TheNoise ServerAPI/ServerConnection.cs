@@ -116,7 +116,7 @@ namespace TheNoiseAPI
                 serializer.Serialize(new LoginData(username, password), out send);
 
                 // Make a request to the server to register the user. 
-                if (MakeBlockingRequest(ref send, PacketType.Register, PacketType.UserAddResult))
+                if (MakeBlockingRequest(ref send, PacketType.Register, PacketType.Register))
                 {
                     // Deserialize the response.
                     UserAddResult result = new UserAddResult();
@@ -140,7 +140,7 @@ namespace TheNoiseAPI
                 serializer.Serialize(new LoginData(username, password), out send);
 
                 // Make a request to the server to register the user. 
-                if (MakeBlockingRequest(ref send, PacketType.Authenticate, PacketType.UserAuthenticationResult))
+                if (MakeBlockingRequest(ref send, PacketType.Authenticate, PacketType.Authenticate))
                 {
                     // Deserialize the response.
                     UserAuthenticationResult result = new UserAuthenticationResult();
