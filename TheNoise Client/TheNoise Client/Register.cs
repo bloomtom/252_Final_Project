@@ -6,28 +6,92 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TheNoiseAPI;
+using TheNoise_SharedObjects.GlobalEnumerations;
+using System.Net;
 
 namespace Lab_7_Finial_Project
 {
     public partial class Register : Form
     {
-        public Register()
+        private IPAddress ip;
+        private int port;
+
+        private string username;
+        public string Username
         {
+            get { return username; }
+            set {}
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set {}
+        }
+
+        public Register(IPAddress ip, int port)// sign in ip address and port
+        {
+            this.ip = ip;//set register ip to passed ip
+            this.port = port;//set register port to passed port
             InitializeComponent();
+            this.DialogResult = System.Windows.Forms.DialogResult.None;
         }
 
         private void registerButton_Click(object sender, EventArgs e)
         {
-            // get a ok from server that username and password can be created
-            //if vailadated
-            MessageBox.Show(" Congraulations! You Are Now Register.");
-            this.DialogResult = DialogResult.OK;
+            //conect to server
+            ServerConnection serverConnection = new ServerConnection(ip, port);
+            //validate register
+            password = NewPasswordBox.Text;
+            username = newUserNameBox.Text;
 
-            //if not vailadated
-            //MessageBox.Show("Username not Avaiable. ");
-            //newCPWBox.Clear();
-            //newUserNameBox.Clear();
-            //NewPasswordBox.Clear();
+            if (password == newCPWBox.Text)
+            {
+                UserAddResult result = serverConnection.Register(username, password);
+
+                switch (result)// get a resuslt from server that username and password can be created
+                {
+                    case UserAddResult.UnknownResult:
+
+                        break;
+                    case UserAddResult.Success://if vailadated
+
+                        MessageBox.Show(" Congraulations! You Are Now Register.");
+                        this.DialogResult = DialogResult.OK;
+
+                        break;
+                    case UserAddResult.AlreadyExists://if user name is alredy in use
+                        MessageBox.Show("Username not Avaiable. ");
+                        newCPWBox.Clear();
+                        newUserNameBox.Clear();
+                        NewPasswordBox.Clear();
+
+                        break;
+                    case UserAddResult.InvalidPassword://if password is invalid password
+                        MessageBox.Show("Invalied Password. ");
+                        newCPWBox.Clear();
+                        newUserNameBox.Clear();
+                        NewPasswordBox.Clear();
+
+                        break;
+                    case UserAddResult.UsernameTooLong:// username to long
+                        MessageBox.Show("User Name Too Long. ");
+                        newCPWBox.Clear();
+                        newUserNameBox.Clear();
+                        NewPasswordBox.Clear();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("The Password Field and Confirm Password Field do not Match./nPlease Try Again");
+                NewPasswordBox.Clear();
+                newCPWBox.Clear();
+            }
         }
     }
 }

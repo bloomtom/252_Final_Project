@@ -7,47 +7,89 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TheNoiseAPI;
+using TheNoise_SharedObjects.GlobalEnumerations;
 using System.Net;
+
 
 namespace Lab_7_Finial_Project
 {
     public partial class LogInSingUp : Form
     {
+        private IPAddress ip;//declare signin ip
+        private int port;//declare signin port
 
-        public LogInSingUp()
+        private string username;
+        public string Username
         {
+            get { return username; }
+            set {}
+        }
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set {}
+        }
+
+        public LogInSingUp(IPAddress ip, int port)//ip address and port
+        {
+            this.ip = ip;//set sign ip to passed ip
+            this.port = port;//set log in port to passed port
             InitializeComponent();
+
         }
 
         // verify log in information
         private void logInButton_Click(object sender, EventArgs e)
         {
             //conect to server
+            ServerConnection serverConnection = new ServerConnection(ip, port);
 
             //valadate log in information
-            IPAddress ip = IPAddress.Parse("127.0.0.1");
-            ServerConnection serverConnection = new ServerConnection(ip, 8000);
+             username = userNameBox.Text;
+             password = passwordBox.Text;
 
-            string username = userNameBox.Text;
-            string password = passwordBox.Text;
+            UserAuthenticationResult result = serverConnection.Authenticate(username, password);
 
-            serverConnection.Authenticate(username, password);
-            
+            switch (result)
+            {
+                case UserAuthenticationResult.UnknownResult:
+                   
+                    break;            
+                case UserAuthenticationResult.Success://if log in info is valadated go to program
+                   
+                    this.DialogResult = DialogResult.OK;
+                    break;
+                case UserAuthenticationResult.InvalidUser://if username info not valadated
 
-            //if log in info is valadated go to program
-            this.DialogResult = DialogResult.OK;
+                    MessageBox.Show("User Name not Accepted");
+                    userNameBox.Clear();
+                    passwordBox.Clear();                  
+                    break;
+                case UserAuthenticationResult.InvalidPassword://if password info not valadated
 
-            //if log in info not valadated
-            //MessageBox.Show("Incorrect Log in");
-            //userNameBox.Clear();
-            //passwordBox.Clear();
+                    MessageBox.Show("Password not Accepted");
+                    userNameBox.Clear();
+                    passwordBox.Clear();
+                    break;
+                default:
+                    break;
+            }                   
         }
 
         private void registerButton_Click(object sender, EventArgs e)
         {
             //open register dialog box
-            Register singup = new Register();
-            singup.ShowDialog();
+            Register signup = new Register(ip,port);
+            signup.ShowDialog();
+
+            if (signup.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                username = signup.Username;
+                password = signup.Password;
+                this.Close();
+            }
         }
     }
 }
