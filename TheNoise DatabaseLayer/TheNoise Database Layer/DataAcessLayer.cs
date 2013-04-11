@@ -10,33 +10,11 @@ using TheNoise_SharedObjects.GlobalEnumerations;
 
 namespace TheNoise_DatabaseControl
 {
-    //public struct User
-    //{
-    //    private string username;
-    //    public string Username
-    //    {
-    //        get { return username; }
-    //        set { }
-    //    }
-    //    private string password;
-    //    public string Password
-    //    {
-    //        get { return password; }
-    //        set { }
-    //    }
-
-    //    public User(string sentUsername, string sentPassword)
-    //    {
-    //        this.username = sentUsername;
-    //        this.password = sentPassword;
-    //    }
-    //}
-
-    public class DataAccessLayer
+    public class DataAccessLayer : IDisposable
     {
         const string TABLE = "userFiles";
 
-        SqlConnectionStringBuilder sqlStrBldr = new SqlConnectionStringBuilder();
+        private SqlConnectionStringBuilder sqlStrBldr = new SqlConnectionStringBuilder();
 
         private DataAccessLayer(string databaseAddress, string databaseName, bool useIntegratedSecurity)
         {
@@ -55,33 +33,24 @@ namespace TheNoise_DatabaseControl
 
         public void readUsers(ObservableCollection<LoginData> userList)
         {
-            // DataSet object will store data tables
-            DataSet dSetUsers = new DataSet();
-
-            // Data Provider DbConnection object
-            SqlConnection dataConnection = new SqlConnection();
-
-            // Data Provider DbCommand object
-            SqlCommand dataCommand = new SqlCommand();
-
-            // Data Provider DbDataReader object
-            //SqlDataReader dataReader;
-
-            // this example builds the connection string using a SqlConnectionStringBuilder object; 
-            // easier and less prone to error than building the string yourself. 
-
-            SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM users", sqlStrBldr.ConnectionString);
-
-            dataAdaptor.Fill(dSetUsers, TABLE);
-
-            dataAdaptor.FillSchema(dSetUsers, SchemaType.Source);
-
-            DataTable dtUsers = dSetUsers.Tables[TABLE];
-
-            foreach (DataRow row in dtUsers.Rows)
+            // Create database objects.
+            using (DataSet dSetUsers = new DataSet())
+            using (SqlConnection dataConnection = new SqlConnection())
+            using (SqlCommand dataCommand = new SqlCommand())
+            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM users", sqlStrBldr.ConnectionString))
             {
-                userList.Add(new LoginData(row[0].ToString(), row[1].ToString()));
-                //userList.Add(new employee(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), DateTime.Parse(row[4].ToString()), bool.Parse(row[5].ToString())));
+
+                dataAdaptor.Fill(dSetUsers, TABLE);
+
+                dataAdaptor.FillSchema(dSetUsers, SchemaType.Source);
+
+                DataTable dtUsers = dSetUsers.Tables[TABLE]; // Retreive the users table.
+
+                foreach (DataRow row in dtUsers.Rows)
+                {
+                    // Cycle through and get every user
+                    userList.Add(new LoginData(row[0].ToString(), row[1].ToString()));
+                }
             }
         }
 
@@ -105,8 +74,6 @@ namespace TheNoise_DatabaseControl
             {
                 return UserAddResult.AlreadyExists;
             }
-            //
-
         }
 
         public UserAuthenticationResult validateUser(LoginData sentUser)
@@ -163,6 +130,26 @@ namespace TheNoise_DatabaseControl
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <exception cref="System.Net.Sockets.SocketException">An exception was generated while closing the TcpListener.</exception>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose all managed resources.
+                
+            }
+
+            // Dispose of unmanaged resources here if any.
         }
     }
 }

@@ -77,7 +77,7 @@ namespace TheNoiseAPI
         /// <returns>True if connected, else false.</returns>
         public bool Connected()
         {
-            return (client.Connected && client.PollConnection());
+            return (client.Connected);
         }
 
         // Makes a blocking request to the server. This returns a serialized object or null (timeout/disconnect).
@@ -88,7 +88,7 @@ namespace TheNoiseAPI
             client.SendDataPacket(ref send, (byte)packetType);
 
             // Wait until the request has been fulfilled.
-            int timeoutCounter = 100;
+            int timeoutCounter = 30;
             while (startedRequest)
             {
                 if ((timeoutCounter > 0) && client.Connected)
@@ -190,9 +190,16 @@ namespace TheNoiseAPI
             }
         }
 
-        public void OpenConnection()
+        public bool OpenConnection()
         {
-            client.Connect();
+            try
+            {
+                client.Connect();
+            }
+            catch (Exception)
+            {
+            }
+            return client.Connected;
         }
 
         public void CloseConnection()

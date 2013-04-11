@@ -43,18 +43,20 @@ namespace Lab_7_Finial_Project
         private void logInButton_Click(object sender, EventArgs e)
         {
             //conect to server
-            ServerConnection serverConnection = new ServerConnection(ip, port);
+            UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
+            using (ServerConnection serverConnection = new ServerConnection(ip, port))
+            {
+                //valadate log in information
+                username = userNameBox.Text;
+                password = passwordBox.Text;
 
-            //valadate log in information
-             username = userNameBox.Text;
-             password = passwordBox.Text;
-
-            UserAuthenticationResult result = serverConnection.Authenticate(username, password);
+                result = serverConnection.Authenticate(username, password);
+            }
 
             switch (result)
             {
                 case UserAuthenticationResult.UnknownResult:
-                   
+                    MessageBox.Show("I'm not sure what happened.");
                     break;            
                 case UserAuthenticationResult.Success://if log in info is valadated go to program
                    

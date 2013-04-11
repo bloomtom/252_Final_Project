@@ -107,7 +107,7 @@
             // 
             this.dropClientToolStripMenuItem.Enabled = false;
             this.dropClientToolStripMenuItem.Name = "dropClientToolStripMenuItem";
-            this.dropClientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dropClientToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.dropClientToolStripMenuItem.Text = "&Drop Client";
             this.dropClientToolStripMenuItem.Click += new System.EventHandler(this.dropClientToolStripMenuItem_Click);
             // 
@@ -154,7 +154,7 @@
             this.messagePanel.Margin = new System.Windows.Forms.Padding(0);
             this.messagePanel.Name = "messagePanel";
             this.messagePanel.Padding = new System.Windows.Forms.Padding(5);
-            this.messagePanel.Size = new System.Drawing.Size(316, 162);
+            this.messagePanel.Size = new System.Drawing.Size(316, 144);
             this.messagePanel.TabIndex = 5;
             // 
             // messagesRichTextBox
@@ -167,7 +167,7 @@
             this.messagesRichTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.messagesRichTextBox.Name = "messagesRichTextBox";
             this.messagesRichTextBox.ReadOnly = true;
-            this.messagesRichTextBox.Size = new System.Drawing.Size(306, 152);
+            this.messagesRichTextBox.Size = new System.Drawing.Size(306, 134);
             this.messagesRichTextBox.TabIndex = 0;
             this.messagesRichTextBox.Text = "";
             this.messagesRichTextBox.TextChanged += new System.EventHandler(this.messagesRichTextBox_TextChanged);
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 312);
+            this.ClientSize = new System.Drawing.Size(316, 294);
             this.Controls.Add(this.messagePanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connectedGroupBox);

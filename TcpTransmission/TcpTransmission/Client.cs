@@ -49,7 +49,7 @@ namespace TcpTransmission
             /// </summary>
             public bool Connected
             {
-                get { return client.Connected; }
+                get { return (client == null && client.Connected); }
                 set { }
             }
 

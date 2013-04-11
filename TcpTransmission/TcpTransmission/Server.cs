@@ -86,7 +86,7 @@ namespace TcpTransmission
             }
 
             // Wrap the client events so the server owner can catch them.
-            protected virtual void client_dataReceived(object sender, IncomingMessageEventArgs e)
+            private void client_dataReceived(object sender, IncomingMessageEventArgs e)
             {
                 // Check to see if the client is still connected.
                 ClientConnection client = (ClientConnection)sender;
@@ -101,6 +101,11 @@ namespace TcpTransmission
                 }
 
                 //Testing(sender, e);
+                DataReceivedHandle(client, e);
+            }
+
+            protected virtual void DataReceivedHandle(ClientConnection sender, IncomingMessageEventArgs e)
+            {
                 dataReceived.Invoke(sender, e);
             }
 
@@ -198,7 +203,7 @@ namespace TcpTransmission
             /// Closes the specified client connection.
             /// </summary>
             /// <param name="clientIP">The client IP to drop.</param>
-            public void DropClient(IPEndPoint clientIP)
+            public virtual void DropClient(IPEndPoint clientIP)
             {
                 lock (clientList)
                 {
@@ -290,5 +295,4 @@ namespace TcpTransmission
             }
         }
     }
-
 }

@@ -19,7 +19,7 @@ namespace Lab_7_Finial_Project
 
         private string username;
         private string password;
-  
+
         ServerConnection serverConnection;
 
         public Listen()
@@ -31,7 +31,7 @@ namespace Lab_7_Finial_Project
         {
 
             //load log in form
-            LogInSingUp login = new LogInSingUp(ip,port);
+            LogInSingUp login = new LogInSingUp(ip, port);
             login.ShowDialog();
 
             //closes the main form
@@ -45,14 +45,14 @@ namespace Lab_7_Finial_Project
 
                 if (serverConnection.Authenticate(username, password) == UserAuthenticationResult.Success)
                 {
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("Unable to connect. ");
                 }
 
-                
+
             }
             else
             {

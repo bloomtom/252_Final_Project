@@ -17,15 +17,18 @@ namespace TheNoise_Server
 {
     public partial class Main : Form
     {
-        private ServerManager server;
+        private TheNoiseServer server;
         private IPAddress serverIP = IPAddress.Parse("0.0.0.0"); // Default IP is loopback.
         private int serverPort = 9734;
+
+        private string databaseIP = "";
+        private string databaseName = "";
 
         public Main()
         {
             InitializeComponent();
 
-            server = new ServerManager(serverIP, serverPort);
+            server = new TheNoiseServer(serverIP, serverPort, databaseIP, databaseName);
 
             RefreshToolstrip();
         }
@@ -46,7 +49,7 @@ namespace TheNoise_Server
         private void StartServer()
         {
             // Create a new server
-            server = new ServerManager(serverIP, serverPort);
+            server = new TheNoiseServer(serverIP, serverPort, databaseIP, databaseName);
             // Set the events
             server.dataReceived += server_dataReceived;
             server.clientConnected += server_clientConnected;
