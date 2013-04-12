@@ -21,14 +21,14 @@ namespace Lab_7_Finial_Project
         public string Username
         {
             get { return username; }
-            set {}
+            set { }
         }
 
         private string password;
         public string Password
         {
             get { return password; }
-            set {}
+            set { }
         }
 
         public Register(IPAddress ip, int port)// sign in ip address and port
@@ -41,15 +41,24 @@ namespace Lab_7_Finial_Project
 
         private void registerButton_Click(object sender, EventArgs e)
         {
-            //conect to server
-            ServerConnection serverConnection = new ServerConnection(ip, port);
-            //validate register
             password = NewPasswordBox.Text;
             username = newUserNameBox.Text;
 
             if (password == newCPWBox.Text)
             {
-                UserAddResult result = serverConnection.Register(username, password);
+                UserAddResult result = UserAddResult.UnknownResult;
+                try
+                {
+                    using (ServerConnection serverConnection = new ServerConnection(ip, port))
+                    {
+                        serverConnection.OpenConnection();
+                        result = serverConnection.Register(username, password);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("There was a problem connecting to the server.");
+                }
 
                 switch (result)// get a resuslt from server that username and password can be created
                 {
@@ -58,7 +67,7 @@ namespace Lab_7_Finial_Project
                         break;
                     case UserAddResult.Success://if vailadated
 
-                        MessageBox.Show(" Congraulations! You Are Now Register.");
+                        MessageBox.Show(" Congraulations! You Are Now Registered.");
                         this.DialogResult = DialogResult.OK;
 
                         break;

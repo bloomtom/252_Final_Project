@@ -38,20 +38,28 @@ namespace Lab_7_Finial_Project
             if (login.DialogResult == DialogResult.OK)
             {
                 username = login.Username;
-                password = login.Username;
+                password = login.Password;
 
-                //conect to server
-                serverConnection = new ServerConnection(ip, port);
-
-                if (serverConnection.Authenticate(username, password) == UserAuthenticationResult.Success)
+                UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
+                try
                 {
-
+                    // Open connection to server and attempt to validate the user.
+                    using (ServerConnection serverConnection = new ServerConnection(ip, port))
+                    {
+                        //valadate log in information
+                        serverConnection.OpenConnection();
+                        result = serverConnection.Authenticate(username, password);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Unable to connect. ");
+                    MessageBox.Show("There was a problem connecting to the server.");
                 }
 
+                if (result != UserAuthenticationResult.Success)
+                {
+                    MessageBox.Show("Connection or validation error.");
+                }
 
             }
             else

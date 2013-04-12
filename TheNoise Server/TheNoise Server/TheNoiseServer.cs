@@ -84,10 +84,12 @@ namespace TheNoise_Server
                 case PacketType.Authenticate:
                     // Authenticate this client.
                     AuthenticateClient(sender.RemoteEndPoint, e.Message, out send);
+                    SendData(sender.RemoteEndPoint, send, (byte)PacketType.Authenticate);
                     break;
                 case PacketType.Register:
                     // Register new credentials.
                     RegisterNewUser(e.Message, out send);
+                    SendData(sender.RemoteEndPoint, send, (byte)PacketType.Register);
                     break;
                 default:
                     break;
@@ -106,7 +108,6 @@ namespace TheNoise_Server
                 LoginData credentials = (LoginData)serializer.Deserialize(message, typeof(LoginData));
 
                 UserAuthenticationResult result = databaseAccess.validateUser(credentials);
-                serializer.Serialize(result, out send);
 
                 if (result == UserAuthenticationResult.Success)
                 {
@@ -115,6 +116,9 @@ namespace TheNoise_Server
                     // 
                     clientAuthenticated.Invoke(this, new ClientAuthEventArgs(clientIPE, credentials.username));
                 }
+
+                // Generate response for client.
+                serializer.Serialize(result, out send);
             }
         }
 

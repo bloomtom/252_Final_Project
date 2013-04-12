@@ -49,7 +49,7 @@ namespace TcpTransmission
             /// </summary>
             public bool Connected
             {
-                get { return (client == null && client.Connected); }
+                get { return (client.Client != null && client.Connected); }
                 set { }
             }
 
@@ -222,8 +222,18 @@ namespace TcpTransmission
                 packetType = packetHeader[0];
                 int packetSize = (packetHeader[1] << 8) + packetHeader[2]; // Merge the two length bytes into one.
 
-                // Create the packet buffer.
-                packetBuffer = new byte[packetSize];
+                if (packetSize == 0)
+                {
+                    // Received a packet with no data payload. Fire event with packet type specified.
+                    dataReceived.Invoke(this, new IncomingMessageEventArgs(null, packetType));
+                    return false; // The caller doesn't need to know a packet was processed.
+                }
+                else
+                {
+                    // Create the packet buffer. The caller will proceed to read the data packet.
+                    packetBuffer = new byte[packetSize];
+                }
+
                 return true;
             }
 
@@ -267,7 +277,7 @@ namespace TcpTransmission
                 // Attempt to send the passed data over the tcp connection.
                 try
                 {
-                    if (!runClient) { return; } // Silently return if we are stopping.
+                    if (!runClient) { throw new InvalidOperationException("Cannot send data because the client connection is not open."); } // Silently return if we are stopping.
                     if (PollConnection()) // Check the connection before sending data across it.
                     {
                         tcpStream.Write(data, 0, data.Length); // Send data
@@ -290,17 +300,34 @@ namespace TcpTransmission
             /// <exception cref="System.IOException">There was a problem with the network stream.</exception>
             public void SendDataPacket(ref byte[] data, byte packetType)
             {
-                if (data.Length > 65535) { throw new ArgumentOutOfRangeException("data", "Parameter cannot be greater than 65535 in length."); }
-                ushort dataLen = (ushort)data.Length;
+                ushort dataLen = 0;
+                if (data != null)
+                {
+                    if (data.Length > 65535) { throw new ArgumentOutOfRangeException("data", "Parameter cannot be greater than 65535 in length."); }
+                    dataLen = (ushort)data.Length;
+                }
 
                 byte[] header = new byte[4];
                 header[0] = 1; // SOH
                 header[1] = packetType;
-                header[2] = (byte)(dataLen >> 8); // Store the top byte
-                header[3] = (byte)(dataLen & 0x00FF); // Store the bottom byte
 
-                SendData(ref header);
-                SendData(ref data);
+                if (dataLen != 0)
+                {
+                    // There is data to send. Store data length in header and send header+data.
+                    header[2] = (byte)(dataLen >> 8); // Store the top byte
+                    header[3] = (byte)(dataLen & 0x00FF); // Store the bottom byte
+
+                    SendData(ref header); // Send the header.
+                    SendData(ref data);
+                }
+                else
+                {
+                    // No data to send, only send header.
+                    header[2] = 0; // Store the top byte
+                    header[3] = 0; // Store the bottom byte
+
+                    SendData(ref header); // Send the header.
+                }
             }
 
             /// <summary>

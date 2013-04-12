@@ -222,7 +222,7 @@ namespace TcpTransmission
             /// <exception cref="System.ArgumentNullException">The message or client parameter is null.</exception>
             /// <exception cref="System.InvalidArgumentException">The specified client does not exist.</exception>
             /// <exception cref="System.IOException">There was a problem with the network stream.</exception>
-            public virtual void SendData(IPEndPoint client, byte[] message)
+            public virtual void SendData(IPEndPoint client, byte[] message, byte packetType)
             {
                 if (client == null) { throw new ArgumentNullException("client"); }
                 if (message == null) { throw new ArgumentNullException("message"); }
@@ -231,7 +231,7 @@ namespace TcpTransmission
                 {
                     if (clientList.ContainsKey(client))
                     {
-                        clientList[client].SendDataPacket(ref message);
+                        clientList[client].SendDataPacket(ref message, packetType);
                     }
                     else
                     {

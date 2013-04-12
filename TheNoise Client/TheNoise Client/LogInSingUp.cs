@@ -42,15 +42,24 @@ namespace Lab_7_Finial_Project
         // verify log in information
         private void logInButton_Click(object sender, EventArgs e)
         {
-            //conect to server
-            UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
-            using (ServerConnection serverConnection = new ServerConnection(ip, port))
-            {
-                //valadate log in information
-                username = userNameBox.Text;
-                password = passwordBox.Text;
+            username = userNameBox.Text;
+            password = passwordBox.Text;
 
-                result = serverConnection.Authenticate(username, password);
+            //connect to server
+            UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
+            try
+            {
+                // Open connection to server and attempt to validate the user.
+                using (ServerConnection serverConnection = new ServerConnection(ip, port))
+                {
+                    //valadate log in information
+                    serverConnection.OpenConnection();
+                    result = serverConnection.Authenticate(username, password);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("There was a problem connecting to the server.");
             }
 
             switch (result)

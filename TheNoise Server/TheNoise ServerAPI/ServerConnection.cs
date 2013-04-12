@@ -16,8 +16,11 @@ namespace TheNoiseAPI
     /// </summary>
     public class ServerConnection : IDisposable
     {
+        IPAddress ip;
+        int port;
+
         private ClientConnection client;
-        ObjectSerialization serializer;
+        ObjectSerialization serializer= new ObjectSerialization();
 
         public delegate void TrackListEventHandler(object sender, TrackList e);
         public event TrackListEventHandler AudioListReceived = delegate { }; // Fired when data is received from a client.
@@ -27,10 +30,8 @@ namespace TheNoiseAPI
 
         public ServerConnection(IPAddress ip, int port)
         {
-            client = new ClientConnection(ip, port);
-            client.dataReceived += client_dataReceived;
-
-            serializer = new ObjectSerialization();
+            this.ip = ip;
+            this.port = port;
         }
 
         volatile bool startedRequest = false;
@@ -194,6 +195,8 @@ namespace TheNoiseAPI
         {
             try
             {
+                client = new ClientConnection(ip, port);
+                client.dataReceived += client_dataReceived;
                 client.Connect();
             }
             catch (Exception)
