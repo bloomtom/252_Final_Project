@@ -12,3 +12,4 @@ C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNo
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.dll
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.csprojResolveAssemblyReference.cache

@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj">
+    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise CommunicationObjects.csproj">
       <Project>{408b1450-a1e7-4edf-87e6-d3df53c8d071}</Project>
-      <Name>TheNoise_SharedObjects</Name>
+      <Name>TheNoise CommunicationObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

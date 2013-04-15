@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace TcpTransmission
+namespace TheNoiseHLC
 {
-    public class ObjectSerialization
+    public static class ObjectSerialization
     {
         /// <summary>
         /// Serializes the specified object into an array of bytes.
         /// </summary>
         /// <param name="obj">The object to serialize</param>
         /// <param name="serialized">A byte array containing the serialized object.</param>
-        public void Serialize(object obj, out byte[] serialized) // Serializes an employee[] object into a string
+        public static void Serialize(object obj, out byte[] serialized) // Serializes an employee[] object into a string
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -31,7 +31,7 @@ namespace TcpTransmission
         /// <param name="serialized">The serialized object array</param>
         /// <param name="type">The type of object the serilized array represents</param>
         /// <returns>The uncasted deserialized object.</returns>
-        public object Deserialize(byte[] serialized, Type type)
+        public static object Deserialize(byte[] serialized, Type type)
         {
             using (MemoryStream ms = new MemoryStream(serialized))
             {

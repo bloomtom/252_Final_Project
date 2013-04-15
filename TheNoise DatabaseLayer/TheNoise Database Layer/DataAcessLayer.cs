@@ -5,8 +5,9 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Collections.ObjectModel;
 using System.Data;
-using TheNoise_SharedObjects;
-using TheNoise_SharedObjects.GlobalEnumerations;
+using TheNoiseHLC;
+using TheNoiseHLC.CommunicationObjects;
+using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 
 namespace TheNoise_DatabaseControl
 {
@@ -57,7 +58,7 @@ namespace TheNoise_DatabaseControl
         public UserAddResult addUser(LoginData sentUser)
         {
             //GlobalEnumerations.UserValidationResult result;
-            TheNoise_SharedObjects.GlobalEnumerations.UserAuthenticationResult result;
+            UserAuthenticationResult result;
             result = validateUser(sentUser);
 
             //If validateUser returns 1, user is not in database

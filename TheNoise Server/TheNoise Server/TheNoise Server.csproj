@@ -92,9 +92,9 @@
       <Project>{702b3cde-c3f8-4f82-81ec-5d1fa75dbcfb}</Project>
       <Name>TheNoise Database Layer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj">
+    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise CommunicationObjects.csproj">
       <Project>{408b1450-a1e7-4edf-87e6-d3df53c8d071}</Project>
-      <Name>TheNoise_SharedObjects</Name>
+      <Name>TheNoise CommunicationObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

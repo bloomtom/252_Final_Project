@@ -5,9 +5,10 @@ using System.Text;
 using System.Net;
 using TcpTransmission;
 using TcpTransmission.Client;
-using TheNoise_SharedObjects;
-using TheNoise_SharedObjects.GlobalEnumerations;
-using TheNoise_SharedObjects.AudioTrack;
+using TheNoiseHLC;
+using TheNoiseHLC.CommunicationObjects;
+using TheNoiseHLC.CommunicationObjects.AudioTrack;
+using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 
 namespace TheNoiseAPI
 {
@@ -20,7 +21,6 @@ namespace TheNoiseAPI
         int port;
 
         private ClientConnection client;
-        ObjectSerialization serializer= new ObjectSerialization();
 
         public delegate void TrackListEventHandler(object sender, TrackList e);
         public event TrackListEventHandler AudioListReceived = delegate { }; // Fired when data is received from a client.
@@ -59,8 +59,7 @@ namespace TheNoiseAPI
             {
                 case PacketType.RequestList:
                     // Deserialize the tracklist and pass it up.
-                    ObjectSerialization deserializer = new ObjectSerialization();
-                    AudioListReceived.Invoke(this, (TrackList)deserializer.Deserialize(e.Message, typeof(TrackList)));
+                    AudioListReceived.Invoke(this, (TrackList)ObjectSerialization.Deserialize(e.Message, typeof(TrackList)));
                     break;
                 case PacketType.AudioSegment:
                     // TODO: Implement audio streaming.
@@ -114,14 +113,14 @@ namespace TheNoiseAPI
             if (Connected())
             {
                 byte[] send;
-                serializer.Serialize(new LoginData(username, password), out send);
+                ObjectSerialization.Serialize(new LoginData(username, password), out send);
 
                 // Make a request to the server to register the user. 
                 if (MakeBlockingRequest(ref send, PacketType.Register, PacketType.Register))
                 {
                     // Deserialize the response.
                     UserAddResult result = new UserAddResult();
-                    return (UserAddResult)serializer.Deserialize(response, result.GetType());
+                    return (UserAddResult)ObjectSerialization.Deserialize(response, result.GetType());
                 }
             }
             return UserAddResult.UnknownResult; // Who knows what happened.
@@ -138,14 +137,14 @@ namespace TheNoiseAPI
             if (Connected())
             {
                 byte[] send;
-                serializer.Serialize(new LoginData(username, password), out send);
+                ObjectSerialization.Serialize(new LoginData(username, password), out send);
 
                 // Make a request to the server to register the user. 
                 if (MakeBlockingRequest(ref send, PacketType.Authenticate, PacketType.Authenticate))
                 {
                     // Deserialize the response.
                     UserAuthenticationResult result = new UserAuthenticationResult();
-                    return (UserAuthenticationResult)serializer.Deserialize(response, result.GetType());
+                    return (UserAuthenticationResult)ObjectSerialization.Deserialize(response, result.GetType());
                 }
             }
             return UserAuthenticationResult.UnknownResult; // Who knows what happened.
@@ -169,12 +168,12 @@ namespace TheNoiseAPI
         /// Requests that the server being streaming the specified track.
         /// </summary>
         /// <param name="track">The track to stream</param>
-        public void StartAudioStream(TheNoise_SharedObjects.AudioTrack.TrackStreamRequest track)
+        public void StartAudioStream(TrackStreamRequest track)
         {
             if (Connected())
             {
                 byte[] send;
-                serializer.Serialize(track, out send);
+                ObjectSerialization.Serialize(track, out send);
                 client.SendDataPacket(ref send, (byte)PacketType.StopAudioStream);
             }
         }

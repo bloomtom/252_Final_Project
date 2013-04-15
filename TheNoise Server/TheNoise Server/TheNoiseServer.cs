@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TheNoise_SharedObjects;
-using TheNoise_SharedObjects.GlobalEnumerations;
+using TheNoiseHLC;
+using TheNoiseHLC.CommunicationObjects;
+using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 using TcpTransmission;
 using TcpTransmission.Client;
 using System.Net;
@@ -101,11 +102,10 @@ namespace TheNoise_Server
 
         private void AuthenticateClient(IPEndPoint clientIPE, byte[] message, out byte[] send)
         {
-            ObjectSerialization serializer = new ObjectSerialization();
             // Create a database access object to validate this user against.
             using (TheNoise_DatabaseControl.DataAccessLayer databaseAccess = new TheNoise_DatabaseControl.DataAccessLayer(databaseAddress, databaseName))
             {
-                LoginData credentials = (LoginData)serializer.Deserialize(message, typeof(LoginData));
+                LoginData credentials = (LoginData)ObjectSerialization.Deserialize(message, typeof(LoginData));
 
                 UserAuthenticationResult result = databaseAccess.validateUser(credentials);
 
@@ -118,20 +118,19 @@ namespace TheNoise_Server
                 }
 
                 // Generate response for client.
-                serializer.Serialize(result, out send);
+                ObjectSerialization.Serialize(result, out send);
             }
         }
 
         private void RegisterNewUser(byte[] message, out byte[] send)
         {
-            ObjectSerialization serializer = new ObjectSerialization();
             // Create a database access object to register new user with database.
             using (TheNoise_DatabaseControl.DataAccessLayer databaseAccess = new TheNoise_DatabaseControl.DataAccessLayer(databaseAddress, databaseName))
             {
-                LoginData credentials = (LoginData)serializer.Deserialize(message, typeof(LoginData));
+                LoginData credentials = (LoginData)ObjectSerialization.Deserialize(message, typeof(LoginData));
 
                 UserAddResult result = databaseAccess.addUser(credentials);
-                serializer.Serialize(result, out send);
+                ObjectSerialization.Serialize(result, out send);
             }
         }
 

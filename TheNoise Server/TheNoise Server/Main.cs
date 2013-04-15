@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using TcpTransmission;
 using TcpTransmission.Server;
 using TheNoise_DatabaseControl;
-using TheNoise_SharedObjects;
-using TheNoise_SharedObjects.GlobalEnumerations;
+using TheNoiseHLC;
+using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 
 namespace TheNoise_Server
 {

@@ -4,21 +4,24 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace TheNoise_SharedObjects
+namespace TheNoiseHLC
 {
-    [KnownType(typeof(LoginData))]
-    [DataContract()] // A data contract makes this class available to the DataContractSerializer for serialization.
-    public class LoginData
+    namespace CommunicationObjects
     {
-        [DataMember()]
-        public string username;
-        [DataMember()]
-        public string password;
-
-        public LoginData(string username, string password)
+        [KnownType(typeof(LoginData))]
+        [DataContract()] // A data contract makes this class available to the DataContractSerializer for serialization.
+        public class LoginData
         {
-            this.username = username;
-            this.password = password;
+            [DataMember()]
+            public string username;
+            [DataMember()]
+            public string password;
+
+            public LoginData(string username, string password)
+            {
+                this.username = username;
+                this.password = password;
+            }
         }
     }
 }

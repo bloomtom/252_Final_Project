@@ -47,9 +47,9 @@
       <Project>{78d1355a-b256-4bf1-93f5-6d98377ecb0f}</Project>
       <Name>TcpNetworking</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj">
+    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise CommunicationObjects.csproj">
       <Project>{408b1450-a1e7-4edf-87e6-d3df53c8d071}</Project>
-      <Name>TheNoise_SharedObjects</Name>
+      <Name>TheNoise CommunicationObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

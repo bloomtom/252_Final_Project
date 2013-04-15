@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNoise ServerAPI", "TheNo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpNetworking", "..\TcpTransmission\TcpTransmission\TcpNetworking.csproj", "{78D1355A-B256-4BF1-93F5-6D98377ECB0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNoise_SharedObjects", "..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj", "{408B1450-A1E7-4EDF-87E6-D3DF53C8D071}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNoise CommunicationObjects", "..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise CommunicationObjects.csproj", "{408B1450-A1E7-4EDF-87E6-D3DF53C8D071}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNoise Database Layer", "..\TheNoise DatabaseLayer\TheNoise Database Layer\TheNoise Database Layer.csproj", "{702B3CDE-C3F8-4F82-81EC-5D1FA75DBCFB}"
 EndProject

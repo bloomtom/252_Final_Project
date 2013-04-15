@@ -4,99 +4,102 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace TheNoise_SharedObjects
+namespace TheNoiseHLC
 {
-    namespace AudioTrack
+    namespace CommunicationObjects
     {
-        [DataContract]
-        public enum TrackType
+        namespace AudioTrack
         {
-            [EnumMember]
-            Unspecified = 0,
-            [EnumMember]
-            GsmEncoding = 1,
-            [EnumMember]
-            Uncompressed = 2
-        }
-
-        [KnownType(typeof(Track))]
-        [DataContract]
-        public class Track
-        {
-            [DataMember]
-            private string trackName;
-            public string TrackName
+            [DataContract]
+            public enum TrackType
             {
-                get { return trackName; }
-                set {  }
+                [EnumMember]
+                Unspecified = 0,
+                [EnumMember]
+                GsmEncoding = 1,
+                [EnumMember]
+                Uncompressed = 2
             }
 
-            [DataMember]
-            private long trackLength;
-            public long TrackLength
+            [KnownType(typeof(Track))]
+            [DataContract]
+            public class Track
             {
-                get { return trackLength; }
-                set {  }
+                [DataMember]
+                private string trackName;
+                public string TrackName
+                {
+                    get { return trackName; }
+                    set { }
+                }
+
+                [DataMember]
+                private long trackLength;
+                public long TrackLength
+                {
+                    get { return trackLength; }
+                    set { }
+                }
+
+                [DataMember]
+                private TrackType type;
+                public TrackType Type
+                {
+                    get { return type; }
+                    set { }
+                }
+
+                public Track(string trackName, long trackLength, TrackType type)
+                {
+                    this.trackName = trackName;
+                    this.trackLength = trackLength;
+                    this.type = type;
+                }
             }
 
-            [DataMember]
-            private TrackType type;
-            public TrackType Type
+            [KnownType(typeof(TrackStreamRequest))]
+            [DataContract]
+            public class TrackStreamRequest
             {
-                get { return type; }
-                set {  }
+                [DataMember]
+                private string trackName;
+                public string TrackName
+                {
+                    get { return trackName; }
+                    set { }
+                }
+
+                [DataMember]
+                private long startPos;
+                public long StartPos
+                {
+                    get { return StartPos; }
+                    set { }
+                }
+
+                public TrackStreamRequest(string trackName, long startPos)
+                {
+                    this.trackName = trackName;
+                    this.startPos = startPos;
+                }
             }
 
-            public Track(string trackName, long trackLength, TrackType type)
+            [KnownType(typeof(TrackList))]
+            [DataContract]
+            public class TrackList : EventArgs
             {
-                this.trackName = trackName;
-                this.trackLength = trackLength;
-                this.type = type;
-            }
-        }
+                [DataMember()]
+                private Track[] tracks;
+                public Track[] Tracks
+                {
+                    get { return tracks; }
+                    set { }
+                }
 
-        [KnownType(typeof(TrackStreamRequest))]
-        [DataContract]
-        public class TrackStreamRequest
-        {
-            [DataMember]
-            private string trackName;
-            public string TrackName
-            {
-                get { return trackName; }
-                set { }
-            }
-
-            [DataMember]
-            private long startPos;
-            public long StartPos
-            {
-                get { return StartPos; }
-                set { }
-            }
-
-            public TrackStreamRequest(string trackName, long startPos)
-            {
-                this.trackName = trackName;
-                this.startPos = startPos;
-            }
-        }
-
-        [KnownType(typeof(TrackList))]
-        [DataContract]
-        public class TrackList : EventArgs
-        {
-            [DataMember()]
-            private Track[] tracks;
-            public Track[] Tracks
-            {
-                get { return tracks; }
-                set {  }
-            }
-
-            public TrackList(Track[] tracks)
-            {
-                this.tracks = tracks;
+                public TrackList(Track[] tracks)
+                {
+                    this.tracks = tracks;
+                }
             }
         }
     }
