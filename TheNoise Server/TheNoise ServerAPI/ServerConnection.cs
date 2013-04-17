@@ -25,7 +25,7 @@ namespace TheNoiseAPI
         public delegate void TrackListEventHandler(object sender, TrackList e);
         public event TrackListEventHandler AudioListReceived = delegate { }; // Fired when data is received from a client.
 
-        public delegate void DataReceivedEventHandler(object sender, IncomingMessageEventArgs e);
+        public delegate void DataReceivedEventHandler(object sender, byte[] e);
         public event DataReceivedEventHandler AudioPacketReceived = delegate { }; // Fired when data is received from a client.
 
         public ServerConnection(IPAddress ip, int port)
