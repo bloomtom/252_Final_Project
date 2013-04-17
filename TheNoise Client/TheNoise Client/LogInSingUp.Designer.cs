@@ -58,7 +58,6 @@
             this.registerButton.TabIndex = 6;
             this.registerButton.Text = "Click Here to Register";
             this.registerButton.UseVisualStyleBackColor = true;
-            this.registerButton.Visible = false;
             this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
             // 
             // memberLabel
@@ -69,7 +68,6 @@
             this.memberLabel.Size = new System.Drawing.Size(99, 13);
             this.memberLabel.TabIndex = 0;
             this.memberLabel.Text = "Not a Member Yet?";
-            this.memberLabel.Visible = false;
             // 
             // userNameLabel
             // 
@@ -103,6 +101,7 @@
             this.passwordBox.PasswordChar = '?';
             this.passwordBox.Size = new System.Drawing.Size(100, 20);
             this.passwordBox.TabIndex = 3;
+            this.passwordBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordBox_KeyDown);
             // 
             // pictureBox1
             // 

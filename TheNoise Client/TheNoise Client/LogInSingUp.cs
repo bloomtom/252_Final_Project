@@ -40,7 +40,7 @@ namespace Lab_7_Finial_Project
 
         }
 
-        // verify log in information
+        // verify log in information when button clicked
         private void logInButton_Click(object sender, EventArgs e)
         {
             username = userNameBox.Text;
@@ -62,7 +62,7 @@ namespace Lab_7_Finial_Project
             {
                 MessageBox.Show("There was a problem connecting to the server.");
             }
-
+           
             switch (result)
             {
                 case UserAuthenticationResult.UnknownResult:
@@ -101,6 +101,58 @@ namespace Lab_7_Finial_Project
                 username = signup.Username;
                 password = signup.Password;
                 this.Close();
+            }
+        }
+
+        private void passwordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                username = userNameBox.Text;
+                password = passwordBox.Text;
+
+                //connect to server
+                UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
+                try
+                {
+                    // Open connection to server and attempt to validate the user.
+                    using (ServerConnection serverConnection = new ServerConnection(ip, port))
+                    {
+                        //valadate log in information
+                        serverConnection.OpenConnection();
+                        result = serverConnection.Authenticate(username, password);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("There was a problem connecting to the server.");
+                }
+
+                switch (result)
+                {
+                    case UserAuthenticationResult.UnknownResult:
+                        MessageBox.Show("I'm not sure what happened.");
+                        break;
+                    case UserAuthenticationResult.Success://if log in info is valadated go to program
+
+                        this.DialogResult = DialogResult.OK;
+                        break;
+                    case UserAuthenticationResult.InvalidUser://if username info not valadated
+
+                        MessageBox.Show("User Name not Accepted");
+                        userNameBox.Clear();
+                        passwordBox.Clear();
+                        break;
+                    case UserAuthenticationResult.InvalidPassword://if password info not valadated
+
+                        MessageBox.Show("Password not Accepted");
+                        userNameBox.Clear();
+                        passwordBox.Clear();
+                        break;
+                    default:
+                        break;
+                }  
+                
             }
         }
     }

@@ -95,8 +95,10 @@
             // 
             this.newCPWBox.Location = new System.Drawing.Point(112, 93);
             this.newCPWBox.Name = "newCPWBox";
+            this.newCPWBox.PasswordChar = '?';
             this.newCPWBox.Size = new System.Drawing.Size(100, 20);
             this.newCPWBox.TabIndex = 5;
+            this.newCPWBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.newCPWBox_KeyDown);
             // 
             // Register
             // 
