@@ -37,7 +37,6 @@ namespace Lab_7_Finial_Project
             this.ip = ip;//set sign ip to passed ip
             this.port = port;//set log in port to passed port
             InitializeComponent();
-
         }
 
         // verify log in information when button clicked
@@ -71,6 +70,7 @@ namespace Lab_7_Finial_Project
                 case UserAuthenticationResult.Success://if log in info is valadated go to program
                    
                     this.DialogResult = DialogResult.OK;
+                    this.Close();
                     break;
                 case UserAuthenticationResult.InvalidUser://if username info not valadated
 

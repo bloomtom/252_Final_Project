@@ -33,8 +33,8 @@ namespace Lab_7_Finial_Project
         {
             while (true)
             {
-                //load log in form
                 LogInSingUp login = new LogInSingUp(ip, port);
+                //load log in form
                 login.ShowDialog();
 
                 //closes the main form
@@ -74,6 +74,7 @@ namespace Lab_7_Finial_Project
                 else
                 {
                     this.Close();
+                    break;
                 }
             }
         }
