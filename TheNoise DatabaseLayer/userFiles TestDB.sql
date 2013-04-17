@@ -1,5 +1,12 @@
 USE master
 
+IF db_id('userFiles') IS NOT NULL
+	DROP DATABASE userFiles -- Because we are testing and want to create a new DB
+ELSE 
+	PRINT 'Creating new database'
+
+GO -- start a new batch
+
 CREATE DATABASE userFiles
 GO
 
@@ -22,6 +29,8 @@ CREATE TABLE userDirectories
 	PRIMARY KEY (username, d_id)
 )
 
+
+
 INSERT INTO users VALUES('Test1', 'Test1PW')
 INSERT INTO users VALUES('Test2', 'Test2PW')
 INSERT INTO users VALUES('Test3', 'Test3PW')
@@ -39,3 +48,10 @@ INSERT INTO userDirectories VALUES('Test3', '3')
 SELECT * FROM users
 SELECT * FROM directories
 SELECT * FROM userDirectories
+
+GO
+
+CREATE PROCEDURE addUser @uname varChar(50), @passw varchar(50)
+AS
+INSERT INTO users VALUES(@uname, @passw)
+GO
