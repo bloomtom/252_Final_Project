@@ -64,7 +64,7 @@ namespace TheNoise_DatabaseControl
             //If validateUser returns 1, user is not in database
             if (result == UserAuthenticationResult.InvalidUser)
             {
-                string SQLstring = "INSERT INTO users(username, password) VALUES(" + sentUser.username + ", " + sentUser.password + ")";
+                string SQLstring = "EXEC addUser @uname = " + sentUser.username + ", @passw = " + sentUser.password;
 
                 executeNonQuery(SQLstring);
 
