@@ -45,7 +45,7 @@
             this.logInButton.Location = new System.Drawing.Point(8, 89);
             this.logInButton.Name = "logInButton";
             this.logInButton.Size = new System.Drawing.Size(166, 23);
-            this.logInButton.TabIndex = 0;
+            this.logInButton.TabIndex = 4;
             this.logInButton.Text = "Log In";
             this.logInButton.UseVisualStyleBackColor = true;
             this.logInButton.Click += new System.EventHandler(this.logInButton_Click);
@@ -55,9 +55,10 @@
             this.registerButton.Location = new System.Drawing.Point(189, 89);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(166, 23);
-            this.registerButton.TabIndex = 1;
+            this.registerButton.TabIndex = 6;
             this.registerButton.Text = "Click Here to Register";
             this.registerButton.UseVisualStyleBackColor = true;
+            this.registerButton.Visible = false;
             this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
             // 
             // memberLabel
@@ -66,8 +67,9 @@
             this.memberLabel.Location = new System.Drawing.Point(225, 73);
             this.memberLabel.Name = "memberLabel";
             this.memberLabel.Size = new System.Drawing.Size(99, 13);
-            this.memberLabel.TabIndex = 3;
+            this.memberLabel.TabIndex = 0;
             this.memberLabel.Text = "Not a Member Yet?";
+            this.memberLabel.Visible = false;
             // 
             // userNameLabel
             // 
@@ -75,7 +77,7 @@
             this.userNameLabel.Location = new System.Drawing.Point(5, 15);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(63, 13);
-            this.userNameLabel.TabIndex = 4;
+            this.userNameLabel.TabIndex = 0;
             this.userNameLabel.Text = "User Name:";
             // 
             // PasswordLabel
@@ -84,7 +86,7 @@
             this.PasswordLabel.Location = new System.Drawing.Point(5, 49);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(56, 13);
-            this.PasswordLabel.TabIndex = 5;
+            this.PasswordLabel.TabIndex = 2;
             this.PasswordLabel.Text = "Password:";
             // 
             // userNameBox
@@ -92,7 +94,7 @@
             this.userNameBox.Location = new System.Drawing.Point(74, 12);
             this.userNameBox.Name = "userNameBox";
             this.userNameBox.Size = new System.Drawing.Size(100, 20);
-            this.userNameBox.TabIndex = 6;
+            this.userNameBox.TabIndex = 1;
             // 
             // passwordBox
             // 
@@ -100,7 +102,7 @@
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '?';
             this.passwordBox.Size = new System.Drawing.Size(100, 20);
-            this.passwordBox.TabIndex = 7;
+            this.passwordBox.TabIndex = 3;
             // 
             // pictureBox1
             // 

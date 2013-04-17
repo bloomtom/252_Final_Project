@@ -54,7 +54,7 @@
             this.newPasswordLabel.Location = new System.Drawing.Point(50, 66);
             this.newPasswordLabel.Name = "newPasswordLabel";
             this.newPasswordLabel.Size = new System.Drawing.Size(56, 13);
-            this.newPasswordLabel.TabIndex = 1;
+            this.newPasswordLabel.TabIndex = 2;
             this.newPasswordLabel.Text = "Password:";
             // 
             // newUserNameBox
@@ -62,7 +62,7 @@
             this.newUserNameBox.Location = new System.Drawing.Point(112, 33);
             this.newUserNameBox.Name = "newUserNameBox";
             this.newUserNameBox.Size = new System.Drawing.Size(100, 20);
-            this.newUserNameBox.TabIndex = 2;
+            this.newUserNameBox.TabIndex = 1;
             // 
             // NewPasswordBox
             // 
@@ -77,7 +77,7 @@
             this.registerButton.Location = new System.Drawing.Point(34, 128);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(160, 23);
-            this.registerButton.TabIndex = 4;
+            this.registerButton.TabIndex = 0;
             this.registerButton.Text = "Register";
             this.registerButton.UseVisualStyleBackColor = true;
             this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
@@ -88,7 +88,7 @@
             this.confrimPWordlabel.Location = new System.Drawing.Point(12, 96);
             this.confrimPWordlabel.Name = "confrimPWordlabel";
             this.confrimPWordlabel.Size = new System.Drawing.Size(94, 13);
-            this.confrimPWordlabel.TabIndex = 5;
+            this.confrimPWordlabel.TabIndex = 4;
             this.confrimPWordlabel.Text = "Confirm Password:";
             // 
             // newCPWBox
@@ -96,7 +96,7 @@
             this.newCPWBox.Location = new System.Drawing.Point(112, 93);
             this.newCPWBox.Name = "newCPWBox";
             this.newCPWBox.Size = new System.Drawing.Size(100, 20);
-            this.newCPWBox.TabIndex = 6;
+            this.newCPWBox.TabIndex = 5;
             // 
             // Register
             // 
