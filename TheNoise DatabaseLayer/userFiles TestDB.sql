@@ -10,7 +10,7 @@ GO -- start a new batch
 CREATE DATABASE userFiles
 GO
 
-CREATE TABLE users
+CREATE TABLE musicUsers
 (
 	username	varchar(50)	NOT NULL	PRIMARY KEY,
 	password	varchar(50) NOT NULL
@@ -51,7 +51,7 @@ SELECT * FROM userDirectories
 
 GO
 
-CREATE PROCEDURE addUser @uname varChar(50), @passw varchar(50)
+CREATE PROCEDURE addMusicUser @uname varChar(50), @passw varchar(50)
 AS
-INSERT INTO users VALUES(@uname, @passw)
+INSERT INTO musicUsers VALUES(@uname, @passw)
 GO

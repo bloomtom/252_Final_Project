@@ -38,7 +38,7 @@ namespace TheNoise_DatabaseControl
             using (DataSet dSetUsers = new DataSet())
             using (SqlConnection dataConnection = new SqlConnection())
             using (SqlCommand dataCommand = new SqlCommand())
-            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM users", sqlStrBldr.ConnectionString))
+            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM musicUsers", sqlStrBldr.ConnectionString))
             {
 
                 dataAdaptor.Fill(dSetUsers, TABLE);
@@ -64,7 +64,7 @@ namespace TheNoise_DatabaseControl
             //If validateUser returns 1, user is not in database
             if (result == UserAuthenticationResult.InvalidUser)
             {
-                string SQLstring = "EXEC addUser @uname = " + sentUser.username + ", @passw = " + sentUser.password;
+                string SQLstring = "EXEC addMusicUser @uname = " + sentUser.username + ", @passw = " + sentUser.password;
 
                 executeNonQuery(SQLstring);
 
