@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TheNoiseAPI;
-using TheNoise_SharedObjects.GlobalEnumerations;
+using TheNoiseHLC;
 using System.Net;
+using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 
 namespace Lab_7_Finial_Project
 {

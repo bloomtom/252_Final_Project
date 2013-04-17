@@ -99,9 +99,9 @@
       <Project>{7A980F60-56E0-4741-9D15-D27ECAE568DB}</Project>
       <Name>TheNoise ServerAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise_SharedObjects.csproj">
+    <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise CommunicationObjects.csproj">
       <Project>{408B1450-A1E7-4EDF-87E6-D3DF53C8D071}</Project>
-      <Name>TheNoise_SharedObjects</Name>
+      <Name>TheNoise CommunicationObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
