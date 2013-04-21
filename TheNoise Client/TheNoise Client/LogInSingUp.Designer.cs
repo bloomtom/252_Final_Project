@@ -1,4 +1,4 @@
-﻿namespace Lab_7_Finial_Project
+﻿namespace TheNoiseClient
 {
     partial class LogInSingUp
     {

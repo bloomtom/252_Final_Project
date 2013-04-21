@@ -24,10 +24,6 @@ C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Cli
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.exe
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.pdb
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\Lab 7 Finial Project.exe
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\Lab 7 Finial Project.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise ServerAPI.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.dll
@@ -35,10 +31,6 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Clien
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoise Client.csprojResolveAssemblyReference.cache
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Listen.resources
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.LogInSingUp.resources
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Properties.Resources.resources
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab_7_Finial_Project.Register.resources
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoise Client.csproj.GenerateResource.Cache
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.exe
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\Lab 7 Finial Project.pdb
@@ -57,3 +49,11 @@ C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise ServerAPI.pdb
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.pdb
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoiseClient.exe
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoiseClient.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Properties.Resources.resources
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.exe
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.pdb
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Listen.resources
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.LogInSingUp.resources
+C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Register.resources

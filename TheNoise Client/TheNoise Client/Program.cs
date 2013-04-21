@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Lab_7_Finial_Project
+namespace TheNoiseClient
 {
     static class Program
     {

@@ -12,7 +12,7 @@ using System.Net;
 using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 using TheNoiseHLC.CommunicationObjects.AudioTrack;
 
-namespace Lab_7_Finial_Project
+namespace TheNoiseClient
 {
     public partial class Listen : Form
     {
