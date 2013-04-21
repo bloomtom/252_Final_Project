@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listen));
-            this.noiseBox = new System.Windows.Forms.ListBox();
+            this.musicFilesListBox = new System.Windows.Forms.ListBox();
             this.noiseBoxlabel = new System.Windows.Forms.Label();
-            this.NoiseInfoBox = new System.Windows.Forms.TextBox();
+            this.audioInfoBox = new System.Windows.Forms.TextBox();
             this.noiseInformationLabel = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
             this.Stopbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // noiseBox
+            // musicFilesListBox
             // 
-            this.noiseBox.FormattingEnabled = true;
-            this.noiseBox.Location = new System.Drawing.Point(239, 48);
-            this.noiseBox.Name = "noiseBox";
-            this.noiseBox.Size = new System.Drawing.Size(159, 264);
-            this.noiseBox.TabIndex = 0;
+            this.musicFilesListBox.FormattingEnabled = true;
+            this.musicFilesListBox.Location = new System.Drawing.Point(239, 48);
+            this.musicFilesListBox.Name = "musicFilesListBox";
+            this.musicFilesListBox.Size = new System.Drawing.Size(159, 264);
+            this.musicFilesListBox.TabIndex = 0;
             // 
             // noiseBoxlabel
             // 
@@ -56,13 +56,13 @@
             this.noiseBoxlabel.TabIndex = 1;
             this.noiseBoxlabel.Text = "Music Files Avaiable";
             // 
-            // NoiseInfoBox
+            // audioInfoBox
             // 
-            this.NoiseInfoBox.Location = new System.Drawing.Point(12, 48);
-            this.NoiseInfoBox.Multiline = true;
-            this.NoiseInfoBox.Name = "NoiseInfoBox";
-            this.NoiseInfoBox.Size = new System.Drawing.Size(196, 152);
-            this.NoiseInfoBox.TabIndex = 2;
+            this.audioInfoBox.Location = new System.Drawing.Point(12, 48);
+            this.audioInfoBox.Multiline = true;
+            this.audioInfoBox.Name = "audioInfoBox";
+            this.audioInfoBox.Size = new System.Drawing.Size(196, 152);
+            this.audioInfoBox.TabIndex = 2;
             // 
             // noiseInformationLabel
             // 
@@ -102,9 +102,9 @@
             this.Controls.Add(this.Stopbutton);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.noiseInformationLabel);
-            this.Controls.Add(this.NoiseInfoBox);
+            this.Controls.Add(this.audioInfoBox);
             this.Controls.Add(this.noiseBoxlabel);
-            this.Controls.Add(this.noiseBox);
+            this.Controls.Add(this.musicFilesListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Listen";
@@ -117,9 +117,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox noiseBox;
+        private System.Windows.Forms.ListBox musicFilesListBox;
         private System.Windows.Forms.Label noiseBoxlabel;
-        private System.Windows.Forms.TextBox NoiseInfoBox;
+        private System.Windows.Forms.TextBox audioInfoBox;
         private System.Windows.Forms.Label noiseInformationLabel;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button Stopbutton;

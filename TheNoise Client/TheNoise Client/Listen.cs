@@ -86,7 +86,11 @@ namespace TheNoiseClient
 
         private void serverConnection_AudioListReceived(object sender, TrackList e)
         {
-
+            musicFilesListBox.Items.Clear();
+            for (int i = 0; i < e.Tracks.Length; i++)
+            {
+                musicFilesListBox.Items.Add(e.Tracks[0].ToString());
+            }
         }
     }
 }
