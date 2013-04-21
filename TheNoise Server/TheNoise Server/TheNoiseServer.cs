@@ -4,18 +4,39 @@ using System.Linq;
 using System.Text;
 using TheNoiseHLC;
 using TheNoiseHLC.CommunicationObjects;
+using TheNoiseHLC.CommunicationObjects.AudioTrack;
 using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 using TcpTransmission;
 using TcpTransmission.Client;
 using System.Net;
 
+
 namespace TheNoise_Server
 {
+    internal class AudioPacketEventArgs : EventArgs
+    {
+        public byte[] data;
+
+        public AudioPacketEventArgs(byte[] data)
+        {
+            this.data = data;
+        }
+        public AudioPacketEventArgs()
+        {
+        }
+    }
+
     /// <summary>
     /// Handles TheNoise server specific client serving capability.
     /// </summary>
     internal sealed class TheNoiseClientHandler
     {
+        public delegate void AudioPacketEventHandler(IPEndPoint sender, AudioPacketEventArgs e);
+        public event AudioPacketEventHandler audioPacketReady = delegate { };
+
+        public delegate void TrackListUpdatedEventHandler(IPEndPoint sender, TrackList e);
+        public event TrackListUpdatedEventHandler trackListUpdated = delegate { };
+
         private string username; // The username this client authenticated with.
         public string Username
         {
@@ -23,9 +44,57 @@ namespace TheNoise_Server
             set { }
         }
 
-        public TheNoiseClientHandler(string username)
+        private string audioPath;
+        public string AudioPath
+        {
+            get { return audioPath; }
+            set { }
+        }
+
+        private IPEndPoint instanceEndPoint;
+
+        private long lastUpdatedMusicList;
+
+        public TheNoiseClientHandler(string username, string audioPath, IPEndPoint ipe)
         {
             this.username = username;
+            this.audioPath = audioPath;
+            instanceEndPoint = ipe;
+
+            if (!System.IO.Directory.Exists(audioPath))
+            {
+                System.IO.Directory.CreateDirectory(audioPath);
+            }
+        }
+
+        public void ContinueStream()
+        {
+        }
+
+        public void BeginStreaming()
+        {
+        }
+
+        public void EndStreaming()
+        {
+        }
+
+        public void RequestUpdateList()
+        {
+            // Hack to prevent firing of this event too quickly.
+            if (DateTime.UtcNow.Ticks > (lastUpdatedMusicList + 50000000)) // 5 seconds
+            {
+                lastUpdatedMusicList = DateTime.UtcNow.Ticks;
+
+                string[] files = System.IO.Directory.GetFiles(audioPath);
+                Track[] tracks = new Track[files.Length];
+                for (int i = 0; i < files.Length; i++)
+                {
+                    tracks[i] = new Track(System.IO.Path.GetFileNameWithoutExtension(files[i]), 180, TrackType.Unspecified);
+                }
+
+                trackListUpdated.Invoke(instanceEndPoint, new TrackList(tracks));
+            }
         }
     }
 
@@ -59,45 +128,99 @@ namespace TheNoise_Server
         // Contains a list of active authenticated connections. TheNoiseClientHandler processes authenticated client requests.
         Dictionary<IPEndPoint, TheNoiseClientHandler> authenticatedConnections = new Dictionary<IPEndPoint, TheNoiseClientHandler>();
 
+        // Extends authenticatedConnections so that usernames can be paired with their connection.
+        Dictionary<string, IPEndPoint> usernameLookup = new Dictionary<string, IPEndPoint>();
+
+        // Watches the file system for changes. Clients are updated accordingly.
+        private System.IO.FileSystemWatcher watcher;
+
+        // Base path to store/retreive user files.
+        private readonly string audioPath;
+
+        // Database connection details.
         private readonly string databaseAddress;
         private readonly string databaseName;
 
-        public TheNoiseServer(IPAddress bindIP, int port, string usersDatabaseAddress, string usersDatabaseName)
+        public TheNoiseServer(IPAddress bindIP, int port, string audioPath, string usersDatabaseAddress, string usersDatabaseName)
             : base(bindIP, port)
         {
             databaseAddress = usersDatabaseAddress;
             databaseName = usersDatabaseName;
+            this.audioPath = audioPath;
+
+            if (!System.IO.Directory.Exists(audioPath))
+            {
+                System.IO.Directory.CreateDirectory(audioPath);
+            }
+
+            watcher = new System.IO.FileSystemWatcher(audioPath);
+            watcher.NotifyFilter = System.IO.NotifyFilters.DirectoryName;
+            watcher.Changed +=watcher_Changed;
+        }
+
+        private void watcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            if (usernameLookup.ContainsKey(e.Name))
+            {
+                authenticatedConnections[usernameLookup[e.Name]].RequestUpdateList();
+            }
         }
 
         // Wrap the client events so the server owner can catch them.
         protected override void DataReceivedHandle(ClientConnection sender, IncomingMessageEventArgs e)
         {
+            // If client already authenticated.
             if (authenticatedConnections.ContainsKey(sender.RemoteEndPoint))
             {
-                // Don't continue if the user has already been authenticated.
-                return;
+                switch ((PacketType)e.PacketType)
+                {
+                    case PacketType.AudioSegment:
+                        authenticatedConnections[sender.RemoteEndPoint].ContinueStream();
+                        break;
+                    case PacketType.RequestList:
+                        authenticatedConnections[sender.RemoteEndPoint].RequestUpdateList();
+                        break;
+                    case PacketType.StartAudioStream:
+                        break;
+                    case PacketType.StopAudioStream:
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            // See if the client is trying to authenticate or register.
-            byte[] send = null;
-            switch ((PacketType)e.PacketType)
+            else
             {
-                case PacketType.Authenticate:
-                    // Authenticate this client.
-                    AuthenticateClient(sender.RemoteEndPoint, e.Message, out send);
-                    SendData(sender.RemoteEndPoint, send, (byte)PacketType.Authenticate);
-                    break;
-                case PacketType.Register:
-                    // Register new credentials.
-                    RegisterNewUser(e.Message, out send);
-                    SendData(sender.RemoteEndPoint, send, (byte)PacketType.Register);
-                    break;
-                default:
-                    break;
+                // See if the client is trying to authenticate or register.
+                byte[] send = null;
+                switch ((PacketType)e.PacketType)
+                {
+                    case PacketType.Authenticate:
+                        // Authenticate this client.
+                        AuthenticateClient(sender.RemoteEndPoint, e.Message, out send);
+                        SendData(sender.RemoteEndPoint, send, (byte)PacketType.Authenticate);
+                        break;
+                    case PacketType.Register:
+                        // Register new credentials.
+                        RegisterNewUser(e.Message, out send);
+                        SendData(sender.RemoteEndPoint, send, (byte)PacketType.Register);
+                        break;
+                    default:
+                        break;
+                }
+                if (send != null) { sender.SendDataPacket(ref send, e.PacketType); } // Reply with the same header and some data.
             }
-            if (send != null) { sender.SendDataPacket(ref send, e.PacketType); } // Reply with the same header and some data.
-            
-            //OnDataReceived(e);
+        }
+
+        private void TheNoiseServer_trackListUpdated(IPEndPoint sender, TrackList e)
+        {
+            byte[] send;
+            ObjectSerialization.Serialize(e, out send);
+            clientList[sender].SendDataPacket(ref send, (byte)PacketType.RequestList);
+        }
+
+        private void TheNoiseServer_audioPacketReady(IPEndPoint sender, AudioPacketEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void AuthenticateClient(IPEndPoint clientIPE, byte[] message, out byte[] send)
@@ -112,8 +235,13 @@ namespace TheNoise_Server
                 if (result == UserAuthenticationResult.Success)
                 {
                     // Add the user to the authenticated list.
-                    authenticatedConnections.Add(clientIPE, new TheNoiseClientHandler(credentials.username));
-                    // 
+                    authenticatedConnections.Add(clientIPE, new TheNoiseClientHandler(credentials.username, audioPath + credentials.username + "\\", clientIPE));
+                    usernameLookup.Add(credentials.username, clientIPE);
+
+                    authenticatedConnections[clientIPE].audioPacketReady += TheNoiseServer_audioPacketReady;
+                    authenticatedConnections[clientIPE].trackListUpdated += TheNoiseServer_trackListUpdated;
+
+                    // Fire event that a user is authenticated.
                     clientAuthenticated.Invoke(this, new ClientAuthEventArgs(clientIPE, credentials.username));
                 }
 
@@ -134,15 +262,31 @@ namespace TheNoise_Server
             }
         }
 
+        protected override void ClientRemove(IPEndPoint clientIPE)
+        {
+            base.ClientRemove(clientIPE);
+
+            if (authenticatedConnections.ContainsKey(clientIPE))
+            {
+                usernameLookup.Remove(authenticatedConnections[clientIPE].Username);
+                authenticatedConnections.Remove(clientIPE);
+            }
+        }
+
         /// <summary>
         /// Closes the specified client connection and releases any open streaming handles.
         /// </summary>
-        /// <param name="clientIP">The client IP to drop.</param>
-        public override void DropClient(IPEndPoint clientIP)
+        /// <param name="clientIPE">The client IP to drop.</param>
+        public override void DropClient(IPEndPoint clientIPE)
         {
-            base.DropClient(clientIP); // Drop the client from the clientlist.
+            base.DropClient(clientIPE); // Drop the client from the clientlist.
 
             // Also take care of additional client resources.
+            if (authenticatedConnections.ContainsKey(clientIPE))
+            {
+                usernameLookup.Remove(authenticatedConnections[clientIPE].Username);
+                authenticatedConnections.Remove(clientIPE);
+            }
         }
     }
 }

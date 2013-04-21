@@ -57,6 +57,7 @@ namespace TheNoiseClient
 
                         if (result == UserAuthenticationResult.Success)
                         {
+                            serverConnection.RequestAudioList();
                             return;
                         }
                     }
@@ -86,10 +87,17 @@ namespace TheNoiseClient
 
         private void serverConnection_AudioListReceived(object sender, TrackList e)
         {
-            musicFilesListBox.Items.Clear();
-            for (int i = 0; i < e.Tracks.Length; i++)
+            if (musicFilesListBox.InvokeRequired)
             {
-                musicFilesListBox.Items.Add(e.Tracks[0].ToString());
+                Invoke(new MethodInvoker(delegate // Invoke a generic delegate using MethodInvoker
+                {
+                    musicFilesListBox.Items.Clear();
+                    for (int i = 0; i < e.Tracks.Length; i++)
+                    {
+                        musicFilesListBox.Items.Add(e.Tracks[0].ToString());
+                    }
+                }));
+                return;
             }
         }
     }

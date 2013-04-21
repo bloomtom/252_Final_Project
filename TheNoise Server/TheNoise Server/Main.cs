@@ -24,11 +24,13 @@ namespace TheNoise_Server
         private string databaseIP = "";
         private string databaseName = "";
 
+        private string audioPath = AppDomain.CurrentDomain.BaseDirectory + "audio\\";
+
         public Main()
         {
             InitializeComponent();
 
-            server = new TheNoiseServer(serverIP, serverPort, databaseIP, databaseName);
+            server = new TheNoiseServer(serverIP, serverPort, audioPath, databaseIP, databaseName);
 
             RefreshToolstrip();
         }
@@ -49,7 +51,7 @@ namespace TheNoise_Server
         private void StartServer()
         {
             // Create a new server
-            server = new TheNoiseServer(serverIP, serverPort, databaseIP, databaseName);
+            server = new TheNoiseServer(serverIP, serverPort, audioPath, databaseIP, databaseName);
             // Set the events
             server.dataReceived += server_dataReceived;
             server.clientConnected += server_clientConnected;

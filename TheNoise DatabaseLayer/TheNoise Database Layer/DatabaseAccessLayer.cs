@@ -38,7 +38,7 @@ namespace TheNoise_DatabaseControl
             using (DataSet dSetUsers = new DataSet())
             using (SqlConnection dataConnection = new SqlConnection())
             using (SqlCommand dataCommand = new SqlCommand())
-            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM musicUsers", sqlStrBldr.ConnectionString))
+            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM users", sqlStrBldr.ConnectionString))
             {
 
                 dataAdaptor.Fill(dSetUsers, TABLE);

@@ -95,13 +95,18 @@ namespace TcpTransmission
                     // The client has disconnected.
                     // Fire the disconnect event and remove it from the client list.
                     clientDisconnected.Invoke(sender, client.RemoteEndPoint);
-                    lock (clientList) { clientList.Remove(client.RemoteEndPoint); }
+                    lock (clientList) { ClientRemove(client.RemoteEndPoint); }
 
                     if (e == null) { return; } // Don't give listeners of dataReceived a null IncomingMessageEventArgs.
                 }
 
                 //Testing(sender, e);
                 DataReceivedHandle(client, e);
+            }
+
+            protected virtual void ClientRemove(IPEndPoint clientIPE)
+            {
+                clientList.Remove(clientIPE);
             }
 
             protected virtual void DataReceivedHandle(ClientConnection sender, IncomingMessageEventArgs e)
@@ -179,7 +184,7 @@ namespace TcpTransmission
                             if (clientList.ContainsKey(clientEndPoint))
                             {
                                 // First remove if necessary.
-                                clientList.Remove(clientEndPoint);
+                                ClientRemove(clientEndPoint);
                             }
                             clientList.Add(clientEndPoint, new ClientConnection(client));
                         } // Release here or risk deadlock
@@ -202,14 +207,14 @@ namespace TcpTransmission
             /// <summary>
             /// Closes the specified client connection.
             /// </summary>
-            /// <param name="clientIP">The client IP to drop.</param>
-            public virtual void DropClient(IPEndPoint clientIP)
+            /// <param name="clientIPE">The client IP to drop.</param>
+            public virtual void DropClient(IPEndPoint clientIPE)
             {
                 lock (clientList)
                 {
-                    if (clientList.ContainsKey(clientIP))
+                    if (clientList.ContainsKey(clientIPE))
                     {
-                        clientList[clientIP].Close();
+                        clientList[clientIPE].Close();
                     }
                 }
             }
