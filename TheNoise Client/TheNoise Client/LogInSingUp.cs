@@ -45,6 +45,12 @@ namespace TheNoiseClient
             username = userNameBox.Text;
             password = passwordBox.Text;
 
+            if (password == "" || username == "")// make sure textboxes are not empty
+            {
+                MessageBox.Show("Please enter information in the User Name and Password fields");
+            }
+            else//when information is correct
+            {
             //connect to server
             UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
             try
@@ -61,14 +67,14 @@ namespace TheNoiseClient
             {
                 MessageBox.Show("There was a problem connecting to the server.");
             }
-           
+
             switch (result)
             {
                 case UserAuthenticationResult.UnknownResult:
                     MessageBox.Show("I'm not sure what happened.");
-                    break;            
+                    break;
                 case UserAuthenticationResult.Success://if log in info is valadated go to program
-                   
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                     break;
@@ -76,7 +82,7 @@ namespace TheNoiseClient
 
                     MessageBox.Show("User Name not Accepted");
                     userNameBox.Clear();
-                    passwordBox.Clear();                  
+                    passwordBox.Clear();
                     break;
                 case UserAuthenticationResult.InvalidPassword://if password info not valadated
 
@@ -86,6 +92,7 @@ namespace TheNoiseClient
                     break;
                 default:
                     break;
+                }
             }                   
         }
 
@@ -108,51 +115,15 @@ namespace TheNoiseClient
         {
             if (e.KeyValue == 13)
             {
-                username = userNameBox.Text;
-                password = passwordBox.Text;
+                logInButton_Click(sender, e);
+            }
+        }
 
-                //connect to server
-                UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
-                try
-                {
-                    // Open connection to server and attempt to validate the user.
-                    using (ServerConnection serverConnection = new ServerConnection(ip, port))
-                    {
-                        //valadate log in information
-                        serverConnection.OpenConnection();
-                        result = serverConnection.Authenticate(username, password);
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("There was a problem connecting to the server.");
-                }
-
-                switch (result)
-                {
-                    case UserAuthenticationResult.UnknownResult:
-                        MessageBox.Show("I'm not sure what happened.");
-                        break;
-                    case UserAuthenticationResult.Success://if log in info is valadated go to program
-
-                        this.DialogResult = DialogResult.OK;
-                        break;
-                    case UserAuthenticationResult.InvalidUser://if username info not valadated
-
-                        MessageBox.Show("User Name not Accepted");
-                        userNameBox.Clear();
-                        passwordBox.Clear();
-                        break;
-                    case UserAuthenticationResult.InvalidPassword://if password info not valadated
-
-                        MessageBox.Show("Password not Accepted");
-                        userNameBox.Clear();
-                        passwordBox.Clear();
-                        break;
-                    default:
-                        break;
-                }  
-                
+        private void userNameBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                logInButton_Click(sender, e);
             }
         }
     }

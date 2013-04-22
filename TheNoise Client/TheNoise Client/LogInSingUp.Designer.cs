@@ -42,7 +42,7 @@
             // 
             // logInButton
             // 
-            this.logInButton.Location = new System.Drawing.Point(8, 89);
+            this.logInButton.Location = new System.Drawing.Point(8, 106);
             this.logInButton.Name = "logInButton";
             this.logInButton.Size = new System.Drawing.Size(166, 23);
             this.logInButton.TabIndex = 4;
@@ -52,7 +52,7 @@
             // 
             // registerButton
             // 
-            this.registerButton.Location = new System.Drawing.Point(189, 89);
+            this.registerButton.Location = new System.Drawing.Point(184, 106);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(166, 23);
             this.registerButton.TabIndex = 6;
@@ -63,7 +63,7 @@
             // memberLabel
             // 
             this.memberLabel.AutoSize = true;
-            this.memberLabel.Location = new System.Drawing.Point(225, 73);
+            this.memberLabel.Location = new System.Drawing.Point(219, 90);
             this.memberLabel.Name = "memberLabel";
             this.memberLabel.Size = new System.Drawing.Size(99, 13);
             this.memberLabel.TabIndex = 0;
@@ -72,7 +72,7 @@
             // userNameLabel
             // 
             this.userNameLabel.AutoSize = true;
-            this.userNameLabel.Location = new System.Drawing.Point(5, 15);
+            this.userNameLabel.Location = new System.Drawing.Point(5, 31);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(63, 13);
             this.userNameLabel.TabIndex = 0;
@@ -81,7 +81,7 @@
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(5, 49);
+            this.PasswordLabel.Location = new System.Drawing.Point(5, 68);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(56, 13);
             this.PasswordLabel.TabIndex = 2;
@@ -89,14 +89,15 @@
             // 
             // userNameBox
             // 
-            this.userNameBox.Location = new System.Drawing.Point(74, 12);
+            this.userNameBox.Location = new System.Drawing.Point(78, 28);
             this.userNameBox.Name = "userNameBox";
             this.userNameBox.Size = new System.Drawing.Size(100, 20);
             this.userNameBox.TabIndex = 1;
+            this.userNameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userNameBox_KeyDown);
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(74, 49);
+            this.passwordBox.Location = new System.Drawing.Point(78, 65);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '?';
             this.passwordBox.Size = new System.Drawing.Size(100, 20);
@@ -105,10 +106,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(251, 12);
+            this.pictureBox1.BackgroundImage = global::TheNoiseClient.Properties.Resources.secLogin;
+            this.pictureBox1.Location = new System.Drawing.Point(222, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 47);
+            this.pictureBox1.Size = new System.Drawing.Size(90, 83);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
@@ -117,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ClientSize = new System.Drawing.Size(368, 139);
+            this.ClientSize = new System.Drawing.Size(356, 140);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.userNameBox);

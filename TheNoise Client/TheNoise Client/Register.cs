@@ -45,7 +45,24 @@ namespace TheNoiseClient
             password = NewPasswordBox.Text;
             username = newUserNameBox.Text;
 
-            if (password == newCPWBox.Text)
+
+            if (username == "" || password == "" || newCPWBox.Text == "")//checks for text in feilds
+            {
+                MessageBox.Show("Please enter information in the User Name, Password and Confirm Password Fields");
+            }
+            else if (password.Length < 7)//checks if pass word is longer then seven
+            {
+                MessageBox.Show("Password needs to be longer then 7 characters");
+                NewPasswordBox.Clear();
+                newCPWBox.Clear();
+            }
+            else if (password != newCPWBox.Text)//makes sure password is enter correct
+            {
+                MessageBox.Show("The Password Field and Confirm Password Field do not Match.\nPlease Try Again");
+                NewPasswordBox.Clear();
+                newCPWBox.Clear();
+            }
+            else
             {
                 UserAddResult result = UserAddResult.UnknownResult;
                 try
@@ -96,78 +113,29 @@ namespace TheNoiseClient
                         break;
                 }
             }
-            else
-            {
-                MessageBox.Show("The Password Field and Confirm Password Field do not Match.\nPlease Try Again");
-                NewPasswordBox.Clear();
-                newCPWBox.Clear();
-            }
         }
 
         private void newCPWBox_KeyDown(object sender, KeyEventArgs e)//varify the information with a enter hit
         {
             if (e.KeyValue == 13)
             {
-                password = NewPasswordBox.Text;
-                username = newUserNameBox.Text;
+                registerButton_Click(sender, e);
+            }
+        }
 
-                if (password == newCPWBox.Text)
-                {
-                    UserAddResult result = UserAddResult.UnknownResult;
-                    try
-                    {
-                        using (ServerConnection serverConnection = new ServerConnection(ip, port))
-                        {
-                            serverConnection.OpenConnection();
-                            result = serverConnection.Register(username, password);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("There was a problem connecting to the server.");
-                    }
+        private void NewPasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                registerButton_Click(sender, e);
+            }
+        }
 
-                    switch (result)// get a resuslt from server that username and password can be created
-                    {
-                        case UserAddResult.UnknownResult:
-
-                            break;
-                        case UserAddResult.Success://if vailadated
-
-                            MessageBox.Show(" Congraulations! You Are Now Registered.");
-                            this.DialogResult = DialogResult.OK;
-
-                            break;
-                        case UserAddResult.AlreadyExists://if user name is alredy in use
-                            MessageBox.Show("Username not Avaiable. ");
-                            newCPWBox.Clear();
-                            newUserNameBox.Clear();
-                            NewPasswordBox.Clear();
-
-                            break;
-                        case UserAddResult.InvalidPassword://if password is invalid password
-                            MessageBox.Show("Invalied Password. ");
-                            newCPWBox.Clear();
-                            newUserNameBox.Clear();
-                            NewPasswordBox.Clear();
-
-                            break;
-                        case UserAddResult.UsernameTooLong:// username to long
-                            MessageBox.Show("User Name Too Long. ");
-                            newCPWBox.Clear();
-                            newUserNameBox.Clear();
-                            NewPasswordBox.Clear();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The Password Field and Confirm Password Field do not Match./nPlease Try Again");
-                    NewPasswordBox.Clear();
-                    newCPWBox.Clear();
-                }
+        private void newUserNameBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                registerButton_Click(sender, e);
             }
         }
     }
