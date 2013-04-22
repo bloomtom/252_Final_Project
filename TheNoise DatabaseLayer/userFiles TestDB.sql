@@ -1,7 +1,14 @@
 USE master
 
 IF db_id('userFiles') IS NOT NULL
-	DROP DATABASE userFiles -- Because we are testing and want to create a new DB
+	BEGIN
+		DROP DATABASE userFiles -- Because we are testing and want to create a new DB
+		DROP TABLE userDirectories
+		DROP TABLE musicUsers
+		DROP TABLE directories
+		DROP PROCEDURE checkMusicUser
+		DROP procedure addMusicUser
+	END
 ELSE 
 	PRINT 'Creating new database'
 
@@ -24,16 +31,16 @@ CREATE TABLE directories
 
 CREATE TABLE userDirectories
 (
-	username	varchar(50) NOT NULL FOREIGN KEY REFERENCES users(username), 
+	username	varchar(50) NOT NULL FOREIGN KEY REFERENCES musicUsers(username), 
 	d_id	int NOT NULL	FOREIGN KEY REFERENCES directories(d_id),
 	PRIMARY KEY (username, d_id)
 )
 
 
 
-INSERT INTO users VALUES('Test1', 'Test1PW')
-INSERT INTO users VALUES('Test2', 'Test2PW')
-INSERT INTO users VALUES('Test3', 'Test3PW')
+INSERT INTO musicUsers VALUES('Test1', 'Test1PW')
+INSERT INTO musicUsers VALUES('Test2', 'Test2PW')
+INSERT INTO musicUsers VALUES('Test3', 'Test3PW')
 
 INSERT INTO directories VALUES (0, 'C:\Test\0')
 INSERT INTO directories VALUES (1, 'C:\Test\1')
@@ -45,13 +52,45 @@ INSERT INTO userDirectories VALUES('Test1', '1')
 INSERT INTO userDirectories VALUES('Test2', '2')
 INSERT INTO userDirectories VALUES('Test3', '3')
 
-SELECT * FROM users
+SELECT * FROM musicUsers
 SELECT * FROM directories
 SELECT * FROM userDirectories
 
 GO
 
+CREATE PROCEDURE checkMusicUser @uname varchar(50), @passw varchar(50), @retval int output
+AS
+BEGIN
+	--DECLARE @retval int
+	IF (SELECT username FROM musicUsers WHERE username = @uname) = @uname
+		IF (SELECT password FROM musicUsers WHERE password = @passw) = @passw
+			BEGIN
+				SELECT @retval = 1
+				PRINT @retval
+				RETURN @retval
+			END
+		ELSE
+			BEGIN
+				SELECT @retval = 0
+				PRINT @retval
+				RETURN @retval
+			END
+	ELSE
+		BEGIN
+			SELECT @retval = 2
+			PRINT @retval
+			RETURN @retval
+		END
+END
+GO
+
 CREATE PROCEDURE addMusicUser @uname varChar(50), @passw varchar(50)
 AS
 INSERT INTO musicUsers VALUES(@uname, @passw)
+GO
+
+EXEC addMusicUser 'Test6', 'Test6PW'
+GO
+
+SELECT * FROM musicUsers
 GO
