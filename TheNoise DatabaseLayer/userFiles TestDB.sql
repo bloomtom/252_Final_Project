@@ -1,5 +1,3 @@
-USE master
-
 IF db_id('userFiles') IS NOT NULL
 	BEGIN
 		DROP DATABASE userFiles -- Because we are testing and want to create a new DB
@@ -16,6 +14,8 @@ GO -- start a new batch
 
 CREATE DATABASE userFiles
 GO
+
+USE userFiles
 
 CREATE TABLE musicUsers
 (
