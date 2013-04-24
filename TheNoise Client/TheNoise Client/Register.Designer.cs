@@ -44,7 +44,7 @@
             this.newUserNameLabel.BackColor = System.Drawing.Color.Honeydew;
             this.newUserNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newUserNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.newUserNameLabel.Location = new System.Drawing.Point(4, 15);
+            this.newUserNameLabel.Location = new System.Drawing.Point(23, 79);
             this.newUserNameLabel.Name = "newUserNameLabel";
             this.newUserNameLabel.Size = new System.Drawing.Size(73, 13);
             this.newUserNameLabel.TabIndex = 0;
@@ -55,7 +55,7 @@
             this.newPasswordLabel.AutoSize = true;
             this.newPasswordLabel.BackColor = System.Drawing.Color.Honeydew;
             this.newPasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newPasswordLabel.Location = new System.Drawing.Point(4, 64);
+            this.newPasswordLabel.Location = new System.Drawing.Point(23, 111);
             this.newPasswordLabel.Name = "newPasswordLabel";
             this.newPasswordLabel.Size = new System.Drawing.Size(65, 13);
             this.newPasswordLabel.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             // newUserNameBox
             // 
-            this.newUserNameBox.Location = new System.Drawing.Point(121, 12);
+            this.newUserNameBox.Location = new System.Drawing.Point(176, 76);
             this.newUserNameBox.Name = "newUserNameBox";
             this.newUserNameBox.Size = new System.Drawing.Size(100, 20);
             this.newUserNameBox.TabIndex = 1;
@@ -71,7 +71,7 @@
             // 
             // NewPasswordBox
             // 
-            this.NewPasswordBox.Location = new System.Drawing.Point(121, 58);
+            this.NewPasswordBox.Location = new System.Drawing.Point(176, 104);
             this.NewPasswordBox.Name = "NewPasswordBox";
             this.NewPasswordBox.PasswordChar = '?';
             this.NewPasswordBox.Size = new System.Drawing.Size(100, 20);
@@ -80,7 +80,7 @@
             // 
             // registerButton
             // 
-            this.registerButton.Location = new System.Drawing.Point(34, 128);
+            this.registerButton.Location = new System.Drawing.Point(79, 168);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(160, 23);
             this.registerButton.TabIndex = 0;
@@ -93,7 +93,7 @@
             this.confrimPWordlabel.AutoSize = true;
             this.confrimPWordlabel.BackColor = System.Drawing.Color.Honeydew;
             this.confrimPWordlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confrimPWordlabel.Location = new System.Drawing.Point(4, 87);
+            this.confrimPWordlabel.Location = new System.Drawing.Point(23, 137);
             this.confrimPWordlabel.Name = "confrimPWordlabel";
             this.confrimPWordlabel.Size = new System.Drawing.Size(111, 13);
             this.confrimPWordlabel.TabIndex = 4;
@@ -101,7 +101,7 @@
             // 
             // newCPWBox
             // 
-            this.newCPWBox.Location = new System.Drawing.Point(121, 84);
+            this.newCPWBox.Location = new System.Drawing.Point(176, 134);
             this.newCPWBox.Name = "newCPWBox";
             this.newCPWBox.PasswordChar = '?';
             this.newCPWBox.Size = new System.Drawing.Size(100, 20);
@@ -114,8 +114,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkOrange;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.Regpic;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(234, 155);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(322, 218);
             this.Controls.Add(this.newCPWBox);
             this.Controls.Add(this.confrimPWordlabel);
             this.Controls.Add(this.registerButton);

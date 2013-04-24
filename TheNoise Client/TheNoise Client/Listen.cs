@@ -18,6 +18,7 @@ namespace TheNoiseClient
     {
         private IPAddress ip = IPAddress.Parse("127.0.0.1");//set ip address
         private int port = 9734;//set port number
+        private TrackList tracks;// copy of TrackList
 
         private string username;
         private string password;
@@ -89,6 +90,8 @@ namespace TheNoiseClient
         {
             if (musicFilesListBox.InvokeRequired)
             {
+                tracks = e;
+
                 Invoke(new MethodInvoker(delegate // Invoke a generic delegate using MethodInvoker
                 {
                     musicFilesListBox.Items.Clear();
@@ -98,6 +101,25 @@ namespace TheNoiseClient
                     }
                 }));
                 return;
+            }
+        }
+
+        private void musicFilesListBox_DoubleClick(object sender, EventArgs e)
+        {
+                   
+        }
+
+        private void musicFilesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (musicFilesListBox.SelectedIndex == -1)
+            {
+                audioInfoBox.Clear();
+            }
+            else
+            {
+                audioInfoBox.AppendText("");
+                audioInfoBox.AppendText(tracks.Tracks[musicFilesListBox.SelectedIndex].TrackName + "\n");
+                audioInfoBox.AppendText(tracks.Tracks[musicFilesListBox.SelectedIndex].TrackLength + "\n");
             }
         }
     }

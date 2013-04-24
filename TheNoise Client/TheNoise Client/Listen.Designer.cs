@@ -33,8 +33,6 @@
             this.noiseBoxlabel = new System.Windows.Forms.Label();
             this.audioInfoBox = new System.Windows.Forms.TextBox();
             this.noiseInformationLabel = new System.Windows.Forms.Label();
-            this.playButton = new System.Windows.Forms.Button();
-            this.Stopbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // musicFilesListBox
@@ -44,13 +42,15 @@
             this.musicFilesListBox.Name = "musicFilesListBox";
             this.musicFilesListBox.Size = new System.Drawing.Size(159, 264);
             this.musicFilesListBox.TabIndex = 0;
+            this.musicFilesListBox.SelectedIndexChanged += new System.EventHandler(this.musicFilesListBox_SelectedIndexChanged);
+            this.musicFilesListBox.DoubleClick += new System.EventHandler(this.musicFilesListBox_DoubleClick);
             // 
             // noiseBoxlabel
             // 
             this.noiseBoxlabel.AutoSize = true;
             this.noiseBoxlabel.BackColor = System.Drawing.Color.Transparent;
             this.noiseBoxlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noiseBoxlabel.ForeColor = System.Drawing.Color.White;
+            this.noiseBoxlabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.noiseBoxlabel.Location = new System.Drawing.Point(227, 25);
             this.noiseBoxlabel.Name = "noiseBoxlabel";
             this.noiseBoxlabel.Size = new System.Drawing.Size(171, 20);
@@ -70,30 +70,12 @@
             this.noiseInformationLabel.AutoSize = true;
             this.noiseInformationLabel.BackColor = System.Drawing.Color.Transparent;
             this.noiseInformationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noiseInformationLabel.ForeColor = System.Drawing.Color.White;
+            this.noiseInformationLabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.noiseInformationLabel.Location = new System.Drawing.Point(36, 70);
             this.noiseInformationLabel.Name = "noiseInformationLabel";
             this.noiseInformationLabel.Size = new System.Drawing.Size(152, 20);
             this.noiseInformationLabel.TabIndex = 3;
             this.noiseInformationLabel.Text = "Music Information";
-            // 
-            // playButton
-            // 
-            this.playButton.Location = new System.Drawing.Point(12, 301);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(75, 23);
-            this.playButton.TabIndex = 4;
-            this.playButton.Text = "Play";
-            this.playButton.UseVisualStyleBackColor = true;
-            // 
-            // Stopbutton
-            // 
-            this.Stopbutton.Location = new System.Drawing.Point(133, 301);
-            this.Stopbutton.Name = "Stopbutton";
-            this.Stopbutton.Size = new System.Drawing.Size(75, 23);
-            this.Stopbutton.TabIndex = 5;
-            this.Stopbutton.Text = "Stop";
-            this.Stopbutton.UseVisualStyleBackColor = true;
             // 
             // Listen
             // 
@@ -102,8 +84,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.listenPic;
             this.ClientSize = new System.Drawing.Size(410, 346);
-            this.Controls.Add(this.Stopbutton);
-            this.Controls.Add(this.playButton);
             this.Controls.Add(this.noiseInformationLabel);
             this.Controls.Add(this.audioInfoBox);
             this.Controls.Add(this.noiseBoxlabel);
@@ -124,8 +104,6 @@
         private System.Windows.Forms.Label noiseBoxlabel;
         private System.Windows.Forms.TextBox audioInfoBox;
         private System.Windows.Forms.Label noiseInformationLabel;
-        private System.Windows.Forms.Button playButton;
-        private System.Windows.Forms.Button Stopbutton;
     }
 }
 

@@ -44,6 +44,20 @@ namespace TheNoiseClient
         {
             password = NewPasswordBox.Text;
             username = newUserNameBox.Text;
+            int Num = 0;
+            int Lett = 0;
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (char.IsNumber(password[i]))
+                {
+                    Num++;
+                }
+                else if (char.IsLetter(password[i]))
+                {
+                    Lett++;
+                }
+
+            }
 
 
             if (username == "" || password == "" || newCPWBox.Text == "")//checks for text in feilds
@@ -55,6 +69,20 @@ namespace TheNoiseClient
                 MessageBox.Show("Password needs to be longer then 7 characters");
                 NewPasswordBox.Clear();
                 newCPWBox.Clear();
+            }
+            else if (Num < 3)
+            { 
+                MessageBox.Show("Need at least 3 numbers in password");
+                NewPasswordBox.Clear();
+                newCPWBox.Clear();
+            
+            }
+            else if (Lett < 4)
+            { 
+                MessageBox.Show("Need at least 4 letters in password");
+                NewPasswordBox.Clear();
+                newCPWBox.Clear();
+            
             }
             else if (password != newCPWBox.Text)//makes sure password is enter correct
             {
