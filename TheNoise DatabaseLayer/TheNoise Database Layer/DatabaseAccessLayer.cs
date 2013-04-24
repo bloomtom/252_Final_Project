@@ -22,6 +22,7 @@ namespace TheNoise_DatabaseControl
             sqlStrBldr.DataSource = databaseAddress;
             sqlStrBldr.InitialCatalog = databaseName;
             sqlStrBldr.IntegratedSecurity = useIntegratedSecurity;
+            sqlStrBldr.InitialCatalog = "userFiles";
         }
         public DataAccessLayer(string databaseAddress, string databaseName) : this(databaseAddress, databaseName, true) { }
         public DataAccessLayer(string databaseAddress, string databaseName, string username, string password)
@@ -79,92 +80,39 @@ namespace TheNoise_DatabaseControl
 
         public UserAuthenticationResult validateUser(LoginData sentUser)
         {
-            //0: User is valid.
-            //1: Username isn't in the database
-            //2: Username is in the database, but the password is incorrect.
-            /*
-            ObservableCollection<LoginData> checkList;
-
-            checkList = new ObservableCollection<LoginData>();
-
-            readUsers(checkList);
-
-            foreach (LoginData u in checkList)
+            try
             {
-                if (u.username == sentUser.username)
+                using (SqlConnection connection = new SqlConnection(sqlStrBldr.ConnectionString))
                 {
-                    if (u.password == sentUser.password)
-                    {
-                        //The validation has succeeded, the username and password are valid
-                        return UserAuthenticationResult.Success;
-                    }
-                    else
-                    {
-                        //The username and is valid, but the password is wrong.
-                        return UserAuthenticationResult.InvalidPassword;
-                    }
+                    SqlCommand command = new SqlCommand("checkMusicUser", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter userName = new SqlParameter("@uname", SqlDbType.VarChar);
+                    userName.Direction = ParameterDirection.Input;
+                    userName.Value = sentUser.username;
+                    userName.Size = 50;
+                    command.Parameters.Add(userName);
+
+                    SqlParameter password = new SqlParameter("@passw", SqlDbType.VarChar);
+                    password.Direction = ParameterDirection.Input;
+                    password.Value = sentUser.password;
+                    password.Size = 50;
+                    command.Parameters.Add(password);
+
+                    SqlParameter returnValue = new SqlParameter("@retval", SqlDbType.Int);
+                    returnValue.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(returnValue);
+
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+
+                    return (UserAuthenticationResult)(int)command.Parameters["@retval"].Value;
                 }
-
             }
-
-            //The validation has failed, the user is not in the database
-            return UserAuthenticationResult.InvalidUser;
-             * */
-
-            /*
-             * DECLARE @return_status int;
-                EXEC @return_status = checkstate '2';
-                SELECT 'Return Status' = @return_status;
-                GO
-             */
-
-            /*
-             * SqlParameter returnValue = sqlcomm.Parameters.Add("@b", SqlDbType.VarChar);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                sqlcomm.ExecuteNonQuery(); // MISSING
-                string retunvalue = (string)sqlcomm.Parameters["@b"].Value;
-             */
-
-
-            //string SQLString = "DECLARE @return_status int;\n" +
-            //"EXEC @return_status = checkMusicUser '" + sentUser.username + "', '" +  sentUser.password + "\n" +
-            //"SELECT 'Return Status' = @return_status;\n" +
-            //"GO";
-
-            SqlConnection connection = new SqlConnection(sqlStrBldr.ConnectionString);
-            SqlCommand command = new SqlCommand("checkUser", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter userName = new SqlParameter("@uname", SqlDbType.VarChar);
-            userName.Direction = ParameterDirection.Input;
-            userName.Value = sentUser.username;
-            userName.Size = 50;
-            command.Parameters.Add(userName);
-
-            SqlParameter password = new SqlParameter("@passw", SqlDbType.VarChar);
-            password.Direction = ParameterDirection.Input;
-            password.Value = sentUser.password;
-            password.Size = 50;
-            command.Parameters.Add(password);
-
-            SqlParameter returnValue = new SqlParameter("@retval", SqlDbType.Int);
-            returnValue.Direction = ParameterDirection.Output;
-            command.Parameters.Add(returnValue);
-
-            command.Connection.Open();
-
-            return (UserAuthenticationResult)command.Parameters["@retval"].Value;
-
-
-
-            //string retunvalue = (string)sqlcomm.Parameters["@b"].Value;
-            //string SQLstring = "EXEC checkMusicUser @uname = " + sentUser.username + ", @passw = " + sentUser.password;
-
-            //executeNonQuery(SQLString);
-
-            //SqlParameter returnValue = command.Parameters.Add
-
-            //return (UserAuthenticationResult)(command.Connection.Open());
+            catch
+            {
+                return UserAuthenticationResult.UnknownResult;
+            }
         }
 
         private bool executeNonQuery(string sql)

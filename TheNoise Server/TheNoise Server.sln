@@ -1,7 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNoise Server", "TheNoise Server\TheNoise Server.csproj", "{A4E13522-6931-41E5-B1D8-008C2269EF90}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A980F60-56E0-4741-9D15-D27ECAE568DB} = {7A980F60-56E0-4741-9D15-D27ECAE568DB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNoise ServerAPI", "TheNoise ServerAPI\TheNoise ServerAPI.csproj", "{7A980F60-56E0-4741-9D15-D27ECAE568DB}"
 EndProject

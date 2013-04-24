@@ -5,3 +5,10 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNois
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\obj\Debug\TheNoise Database Layer.pdb
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\bin\Debug\TheNoise_SharedObjects.dll
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\bin\Debug\TheNoise_SharedObjects.pdb
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\bin\Debug\TheNoise Database Layer.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\bin\Debug\TheNoise Database Layer.pdb
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\bin\Debug\TheNoise_SharedObjects.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\bin\Debug\TheNoise_SharedObjects.pdb
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\obj\Debug\TheNoise Database Layer.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise DatabaseLayer\TheNoise Database Layer\obj\Debug\TheNoise Database Layer.pdb
