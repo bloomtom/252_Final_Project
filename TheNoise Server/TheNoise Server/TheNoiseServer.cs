@@ -37,6 +37,9 @@ namespace TheNoise_Server
         public delegate void TrackListUpdatedEventHandler(IPEndPoint sender, TrackList e);
         public event TrackListUpdatedEventHandler trackListUpdated = delegate { };
 
+        public delegate void ClientSendBackHandler(IPEndPoint sender, IncomingMessageEventArgs e);
+        public event ClientSendBackHandler ClientSendBack = delegate { };
+
         private string username; // The username this client authenticated with.
         public string Username
         {
@@ -51,7 +54,8 @@ namespace TheNoise_Server
             set { }
         }
 
-        private IPEndPoint instanceEndPoint;
+        private IPEndPoint tcpEndPoint;
+        private IPEndPoint udpEndPoint;
 
         private long lastUpdatedMusicList;
 
@@ -59,7 +63,7 @@ namespace TheNoise_Server
         {
             this.username = username;
             this.audioPath = audioPath;
-            instanceEndPoint = ipe;
+            tcpEndPoint = ipe;
 
             if (!System.IO.Directory.Exists(audioPath))
             {
@@ -71,12 +75,14 @@ namespace TheNoise_Server
         {
         }
 
-        public void BeginStreaming()
+        public void BeginStreaming(TrackStreamRequest audioTrack)
         {
+
         }
 
         public void EndStreaming()
         {
+
         }
 
         public void RequestUpdateList()
@@ -93,7 +99,7 @@ namespace TheNoise_Server
                     tracks[i] = new Track(System.IO.Path.GetFileNameWithoutExtension(files[i]), 180, TrackType.Unspecified);
                 }
 
-                trackListUpdated.Invoke(instanceEndPoint, new TrackList(tracks));
+                trackListUpdated.Invoke(tcpEndPoint, new TrackList(tracks));
             }
         }
     }
@@ -104,14 +110,14 @@ namespace TheNoise_Server
         public IPEndPoint ClientIPE
         {
             get { return clientIPE; }
-            set {  }
+            set { }
         }
 
         private string username;
         public string Username
         {
             get { return username; }
-            set {  }
+            set { }
         }
 
         public ClientAuthEventArgs(IPEndPoint clientIPE, string clientUsername)
@@ -155,7 +161,7 @@ namespace TheNoise_Server
 
             watcher = new System.IO.FileSystemWatcher(audioPath);
             watcher.NotifyFilter = System.IO.NotifyFilters.DirectoryName;
-            watcher.Changed +=watcher_Changed;
+            watcher.Changed += watcher_Changed;
         }
 
         private void watcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -181,6 +187,9 @@ namespace TheNoise_Server
                         authenticatedConnections[sender.RemoteEndPoint].RequestUpdateList();
                         break;
                     case PacketType.StartAudioStream:
+                        byte[] requestReply = null;
+                        BeginStreamingAudio(sender.RemoteEndPoint, e.Message, out requestReply);
+                        SendData(sender.RemoteEndPoint, requestReply, (byte)PacketType.StartAudioStream);
                         break;
                     case PacketType.StopAudioStream:
                         break;
@@ -248,6 +257,35 @@ namespace TheNoise_Server
                 // Generate response for client.
                 ObjectSerialization.Serialize(result, out send);
             }
+        }
+
+        private void BeginStreamingAudio(IPEndPoint sender, byte[] message, out byte[] send)
+        {
+            TheNoiseHLC.CommunicationObjects.GlobalEnumerations.TrackStreamRequestResult result;
+
+            try
+            {
+                // Deserialize the message.
+                TrackStreamRequest request = (TrackStreamRequest)ObjectSerialization.Deserialize(message, typeof(TrackStreamRequest));
+                // Check to see if the requested file exists on the server.
+                if (System.IO.File.Exists(audioPath + request.Track.TrackName))
+                {
+                    // Ask the client to being streaming.
+                    authenticatedConnections[sender].BeginStreaming(request);
+                    result = TrackStreamRequestResult.Success;
+                }
+                else
+                {
+                    result = TrackStreamRequestResult.InvalidFileName;
+                }
+            }
+            catch
+            {
+                result = TrackStreamRequestResult.UnknownResult;
+            }
+
+            // Give back the reply to the client.
+            ObjectSerialization.Serialize(result, out send);
         }
 
         private void RegisterNewUser(byte[] message, out byte[] send)

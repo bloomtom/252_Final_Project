@@ -38,6 +38,19 @@ namespace TheNoiseHLC
                 InvalidPassword = 3
             }
 
+            [DataContract]
+            public enum TrackStreamRequestResult : byte
+            {
+                [EnumMember]
+                UnknownResult = 0,
+                [EnumMember]
+                Success = 1,
+                [EnumMember]
+                InvalidFileName = 2,
+                [EnumMember]
+                InvalidConnection = 3
+            }
+
             public enum PacketType : byte
             {
                 // Login types

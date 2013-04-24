@@ -93,7 +93,7 @@
       <Name>TheNoise Database Layer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TheNoise SharedObjects\TheNoise_SharedObjects\TheNoise CommunicationObjects.csproj">
-      <Project>{408b1450-a1e7-4edf-87e6-d3df53c8d071}</Project>
+      <Project>{408B1450-A1E7-4EDF-87E6-D3DF53C8D071}</Project>
       <Name>TheNoise CommunicationObjects</Name>
     </ProjectReference>
   </ItemGroup>

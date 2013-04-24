@@ -73,10 +73,10 @@ namespace TheNoiseHLC
             public class TrackStreamRequest
             {
                 [DataMember]
-                private string trackName;
-                public string TrackName
+                private Track track;
+                public Track Track
                 {
-                    get { return trackName; }
+                    get { return track; }
                     set { }
                 }
 
@@ -88,10 +88,19 @@ namespace TheNoiseHLC
                     set { }
                 }
 
-                public TrackStreamRequest(string trackName, long startPos)
+                [DataMember]
+                private System.Net.IPEndPoint connection;
+                public System.Net.IPEndPoint Connection
                 {
-                    this.trackName = trackName;
+                    get { return connection; }
+                    set { }
+                }
+
+                public TrackStreamRequest(Track trackName, long startPos, System.Net.IPEndPoint connection)
+                {
+                    this.track = trackName;
                     this.startPos = startPos;
+                    this.connection = connection;
                 }
             }
 
