@@ -28,8 +28,14 @@ namespace Example_4
 
             SqlConnection connection = new SqlConnection(sqlStrBldr.ConnectionString); //  new SqlConnection(connectionString);
 
-            SqlCommand testCommand = new SqlCommand("INSERT VALUES 'Test4', 'Test4PW' INTO musicUsers");
+            SqlCommand testCommand = new SqlCommand("INSERT INTO musicUsers VALUES('Test5', 'Test5PW')");
+
+            testCommand.Connection = connection;
+            testCommand.Connection.Open();
+
             testCommand.ExecuteNonQuery();
+
+            testCommand.Connection.Close();
 
             Console.WriteLine(testCommand.ToString());
 
@@ -61,6 +67,7 @@ namespace Example_4
 
             Console.WriteLine("TEST");
             Console.WriteLine("Return result: " + command.Parameters["@retval"].Value.ToString());
+            Console.ReadKey();
         }
 
         private bool executeNonQuery(string sql, SqlConnectionStringBuilder sqlStrBldr)
