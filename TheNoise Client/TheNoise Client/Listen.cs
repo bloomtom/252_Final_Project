@@ -113,13 +113,15 @@ namespace TheNoiseClient
         {
             if (musicFilesListBox.SelectedIndex == -1)
             {
-                audioInfoBox.Clear();
+                
             }
             else
             {
-                audioInfoBox.AppendText("");
-                audioInfoBox.AppendText(tracks.Tracks[musicFilesListBox.SelectedIndex].TrackName + "\n");
-                audioInfoBox.AppendText(tracks.Tracks[musicFilesListBox.SelectedIndex].TrackLength + "\n");
+                
+                Namelabel.Text = tracks.Tracks[musicFilesListBox.SelectedIndex].TrackName;
+                TimeLabel.Text = tracks.Tracks[musicFilesListBox.SelectedIndex].TrackLength.ToString();
+
+                
             }
         }
     }
