@@ -97,7 +97,7 @@ namespace TheNoiseClient
                     musicFilesListBox.Items.Clear();
                     for (int i = 0; i < e.Tracks.Length; i++)
                     {
-                        musicFilesListBox.Items.Add(e.Tracks[0].ToString());
+                        musicFilesListBox.Items.Add(e.Tracks[i].ToString());
                     }
                 }));
                 return;
@@ -106,22 +106,39 @@ namespace TheNoiseClient
 
         private void musicFilesListBox_DoubleClick(object sender, EventArgs e)
         {
-                   
+            TrackStreamRequestResult result = serverConnection.StartAudioStream(tracks.Tracks[musicFilesListBox.SelectedIndex], new IPEndPoint(ip, 9001));
+            switch (result)
+            {
+                case TrackStreamRequestResult.Success:
+                    MessageBox.Show("Success");
+                    break;
+                case TrackStreamRequestResult.InvalidFileName:
+                    MessageBox.Show("Invalid Track");
+                    break;
+                case TrackStreamRequestResult.InvalidConnection:
+                    MessageBox.Show("Invalid Connection");
+                    break;
+                case TrackStreamRequestResult.UnknownResult:
+                    MessageBox.Show("Failure");
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void musicFilesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (musicFilesListBox.SelectedIndex == -1)
             {
-                
+
             }
             else
             {
-                
+
                 Namelabel.Text = tracks.Tracks[musicFilesListBox.SelectedIndex].TrackName;
                 TimeLabel.Text = tracks.Tracks[musicFilesListBox.SelectedIndex].TrackLength.ToString();
 
-                
+
             }
         }
     }

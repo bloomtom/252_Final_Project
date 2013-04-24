@@ -92,11 +92,14 @@ namespace TheNoise_Server
             {
                 lastUpdatedMusicList = DateTime.UtcNow.Ticks;
 
+                // Get every file in the user's directory and list them.
                 string[] files = System.IO.Directory.GetFiles(audioPath);
                 Track[] tracks = new Track[files.Length];
                 for (int i = 0; i < files.Length; i++)
                 {
-                    tracks[i] = new Track(System.IO.Path.GetFileNameWithoutExtension(files[i]), 180, TrackType.Unspecified);
+                    string trackName = System.IO.Path.GetFileNameWithoutExtension(files[i]);
+                    string trackExt = System.IO.Path.GetExtension(files[i]);
+                    tracks[i] = new Track(trackName, trackExt, 180, TrackType.Unspecified);
                 }
 
                 trackListUpdated.Invoke(tcpEndPoint, new TrackList(tracks));
@@ -268,7 +271,9 @@ namespace TheNoise_Server
                 // Deserialize the message.
                 TrackStreamRequest request = (TrackStreamRequest)ObjectSerialization.Deserialize(message, typeof(TrackStreamRequest));
                 // Check to see if the requested file exists on the server.
-                if (System.IO.File.Exists(audioPath + request.Track.TrackName))
+                string username = authenticatedConnections[sender].Username;
+                string trackPath = audioPath + username + "\\" + request.Track.TrackName + request.Track.TrackExtension;
+                if (System.IO.File.Exists(trackPath))
                 {
                     // Ask the client to being streaming.
                     authenticatedConnections[sender].BeginStreaming(request);

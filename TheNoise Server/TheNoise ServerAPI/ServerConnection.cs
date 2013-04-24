@@ -168,14 +168,23 @@ namespace TheNoiseAPI
         /// Requests that the server being streaming the specified track.
         /// </summary>
         /// <param name="track">The track to stream</param>
-        public void StartAudioStream(TrackStreamRequest track)
+        public TrackStreamRequestResult StartAudioStream(Track track, IPEndPoint address)
         {
+            TrackStreamRequest request = new TrackStreamRequest(track, 0, address);
             if (Connected())
             {
                 byte[] send;
-                ObjectSerialization.Serialize(track, out send);
-                client.SendDataPacket(ref send, (byte)PacketType.StopAudioStream);
+                ObjectSerialization.Serialize(request, out send);
+
+                // Make a request to the server to register the user. 
+                if (MakeBlockingRequest(ref send, PacketType.StartAudioStream, PacketType.StartAudioStream))
+                {
+                    // Deserialize the response.
+                    TrackStreamRequestResult result = new TrackStreamRequestResult();
+                    return (TrackStreamRequestResult)ObjectSerialization.Deserialize(response, result.GetType());
+                }
             }
+            return TrackStreamRequestResult.UnknownResult; // Who knows what happened.
         }
 
         /// <summary>

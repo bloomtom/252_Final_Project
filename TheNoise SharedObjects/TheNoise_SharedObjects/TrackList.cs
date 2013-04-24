@@ -34,6 +34,14 @@ namespace TheNoiseHLC
                 }
 
                 [DataMember]
+                private string trackExtension;
+                public string TrackExtension
+                {
+                    get { return trackExtension; }
+                    set {  }
+                }
+
+                [DataMember]
                 private long trackLength;
                 public long TrackLength
                 {
@@ -49,9 +57,10 @@ namespace TheNoiseHLC
                     set { }
                 }
 
-                public Track(string trackName, long trackLength, TrackType type)
+                public Track(string trackName, string trackExtension, long trackLength, TrackType type)
                 {
                     this.trackName = trackName;
+                    this.trackExtension = trackExtension;
                     this.trackLength = trackLength;
                     this.type = type;
                 }
