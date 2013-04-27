@@ -33,9 +33,9 @@
             this.noiseBoxlabel = new System.Windows.Forms.Label();
             this.TimeofSong = new System.Windows.Forms.Label();
             this.TrackName = new System.Windows.Forms.Label();
-            this.trackInfo = new System.Windows.Forms.GroupBox();
             this.Namelabel = new System.Windows.Forms.Label();
             this.TimeLabel = new System.Windows.Forms.Label();
+            this.trackInfo = new System.Windows.Forms.GroupBox();
             this.trackInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,22 +81,6 @@
             this.TrackName.TabIndex = 6;
             this.TrackName.Text = "Name of Track:";
             // 
-            // trackInfo
-            // 
-            this.trackInfo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.trackInfo.Controls.Add(this.TimeLabel);
-            this.trackInfo.Controls.Add(this.Namelabel);
-            this.trackInfo.Controls.Add(this.TrackName);
-            this.trackInfo.Controls.Add(this.TimeofSong);
-            this.trackInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackInfo.ForeColor = System.Drawing.Color.White;
-            this.trackInfo.Location = new System.Drawing.Point(12, 48);
-            this.trackInfo.Name = "trackInfo";
-            this.trackInfo.Size = new System.Drawing.Size(365, 114);
-            this.trackInfo.TabIndex = 8;
-            this.trackInfo.TabStop = false;
-            this.trackInfo.Text = "Track Information";
-            // 
             // Namelabel
             // 
             this.Namelabel.AutoSize = true;
@@ -115,6 +99,23 @@
             this.TimeLabel.Size = new System.Drawing.Size(0, 16);
             this.TimeLabel.TabIndex = 8;
             // 
+            // trackInfo
+            // 
+            this.trackInfo.BackColor = System.Drawing.Color.Transparent;
+            this.trackInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("trackInfo.BackgroundImage")));
+            this.trackInfo.Controls.Add(this.TimeLabel);
+            this.trackInfo.Controls.Add(this.Namelabel);
+            this.trackInfo.Controls.Add(this.TrackName);
+            this.trackInfo.Controls.Add(this.TimeofSong);
+            this.trackInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackInfo.ForeColor = System.Drawing.Color.Wheat;
+            this.trackInfo.Location = new System.Drawing.Point(12, 48);
+            this.trackInfo.Name = "trackInfo";
+            this.trackInfo.Size = new System.Drawing.Size(365, 114);
+            this.trackInfo.TabIndex = 8;
+            this.trackInfo.TabStop = false;
+            this.trackInfo.Text = "Track Information";
+            // 
             // Listen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,6 +129,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Listen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Noise";
             this.Load += new System.EventHandler(this.Listen_Load);
             this.trackInfo.ResumeLayout(false);
@@ -143,9 +145,9 @@
         private System.Windows.Forms.Label noiseBoxlabel;
         private System.Windows.Forms.Label TimeofSong;
         private System.Windows.Forms.Label TrackName;
-        private System.Windows.Forms.GroupBox trackInfo;
-        private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.Label Namelabel;
+        private System.Windows.Forms.Label TimeLabel;
+        private System.Windows.Forms.GroupBox trackInfo;
     }
 }
 

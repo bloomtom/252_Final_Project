@@ -67,6 +67,13 @@ namespace TheNoiseClient.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap RegistrationPic {
+            get {
+                object obj = ResourceManager.GetObject("RegistrationPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Regpic {
             get {
                 object obj = ResourceManager.GetObject("Regpic", resourceCulture);
