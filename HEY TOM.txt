@@ -1,0 +1,5 @@
+Since you are difficult to consistantly get in touch with, consider this my way of 
+establishing consistant contact.
+
+Do we need the Database to support a directory when a client is created? How exactly are 
+we handling this?
