@@ -102,7 +102,7 @@
             // trackInfo
             // 
             this.trackInfo.BackColor = System.Drawing.Color.Transparent;
-            this.trackInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("trackInfo.BackgroundImage")));
+            this.trackInfo.BackgroundImage = global::TheNoiseClient.Properties.Resources.trackinfo_back;
             this.trackInfo.Controls.Add(this.TimeLabel);
             this.trackInfo.Controls.Add(this.Namelabel);
             this.trackInfo.Controls.Add(this.TrackName);
@@ -122,12 +122,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.listenPic;
-            this.ClientSize = new System.Drawing.Size(724, 346);
+            this.ClientSize = new System.Drawing.Size(728, 354);
             this.Controls.Add(this.trackInfo);
             this.Controls.Add(this.noiseBoxlabel);
             this.Controls.Add(this.musicFilesListBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(734, 378);
+            this.MinimumSize = new System.Drawing.Size(734, 378);
             this.Name = "Listen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Noise";

@@ -112,10 +112,10 @@
     <None Include="Resources\secLogin.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Regpic.jpg" />
+    <None Include="Resources\RegistrationPic.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\RegistrationPic.png" />
+    <None Include="Resources\trackinfo back.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

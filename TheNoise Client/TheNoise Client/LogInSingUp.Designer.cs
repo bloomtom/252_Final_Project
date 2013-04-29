@@ -127,8 +127,10 @@
             this.Controls.Add(this.memberLabel);
             this.Controls.Add(this.registerButton);
             this.Controls.Add(this.logInButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(362, 168);
+            this.MinimumSize = new System.Drawing.Size(362, 168);
             this.Name = "LogInSingUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome To The Noise";

@@ -74,16 +74,16 @@ namespace TheNoiseClient.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Regpic {
+        internal static System.Drawing.Bitmap secLogin {
             get {
-                object obj = ResourceManager.GetObject("Regpic", resourceCulture);
+                object obj = ResourceManager.GetObject("secLogin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap secLogin {
+        internal static System.Drawing.Bitmap trackinfo_back {
             get {
-                object obj = ResourceManager.GetObject("secLogin", resourceCulture);
+                object obj = ResourceManager.GetObject("trackinfo back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
