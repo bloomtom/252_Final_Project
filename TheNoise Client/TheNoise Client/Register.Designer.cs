@@ -118,8 +118,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(205, 52);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Pelase enter a user name and  \r\npassword that is seven characters \r\nlong and cont" +
-    "ains aleast three \r\nnumbers and four letters.";
+            this.label1.Text = "Please enter a user name and  \r\npassword that is seven characters \r\nlong and cont" +
+    "ains at least three \r\nnumbers and four letters.";
             // 
             // Register
             // 

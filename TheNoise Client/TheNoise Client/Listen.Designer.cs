@@ -30,36 +30,30 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listen));
             this.musicFilesListBox = new System.Windows.Forms.ListBox();
-            this.noiseBoxlabel = new System.Windows.Forms.Label();
             this.TimeofSong = new System.Windows.Forms.Label();
             this.TrackName = new System.Windows.Forms.Label();
             this.Namelabel = new System.Windows.Forms.Label();
             this.TimeLabel = new System.Windows.Forms.Label();
             this.trackInfo = new System.Windows.Forms.GroupBox();
+            this.musicfilebox = new System.Windows.Forms.GroupBox();
             this.trackInfo.SuspendLayout();
+            this.musicfilebox.SuspendLayout();
             this.SuspendLayout();
             // 
             // musicFilesListBox
             // 
+            this.musicFilesListBox.BackColor = System.Drawing.Color.Wheat;
+            this.musicFilesListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.musicFilesListBox.ForeColor = System.Drawing.Color.Black;
             this.musicFilesListBox.FormattingEnabled = true;
-            this.musicFilesListBox.Location = new System.Drawing.Point(407, 48);
+            this.musicFilesListBox.HorizontalScrollbar = true;
+            this.musicFilesListBox.ItemHeight = 16;
+            this.musicFilesListBox.Location = new System.Drawing.Point(6, 18);
             this.musicFilesListBox.Name = "musicFilesListBox";
-            this.musicFilesListBox.Size = new System.Drawing.Size(279, 264);
+            this.musicFilesListBox.Size = new System.Drawing.Size(300, 292);
             this.musicFilesListBox.TabIndex = 0;
             this.musicFilesListBox.SelectedIndexChanged += new System.EventHandler(this.musicFilesListBox_SelectedIndexChanged);
             this.musicFilesListBox.DoubleClick += new System.EventHandler(this.musicFilesListBox_DoubleClick);
-            // 
-            // noiseBoxlabel
-            // 
-            this.noiseBoxlabel.AutoSize = true;
-            this.noiseBoxlabel.BackColor = System.Drawing.Color.Transparent;
-            this.noiseBoxlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noiseBoxlabel.ForeColor = System.Drawing.Color.GhostWhite;
-            this.noiseBoxlabel.Location = new System.Drawing.Point(446, 25);
-            this.noiseBoxlabel.Name = "noiseBoxlabel";
-            this.noiseBoxlabel.Size = new System.Drawing.Size(171, 20);
-            this.noiseBoxlabel.TabIndex = 1;
-            this.noiseBoxlabel.Text = "Music Files Avaiable";
             // 
             // TimeofSong
             // 
@@ -116,6 +110,19 @@
             this.trackInfo.TabStop = false;
             this.trackInfo.Text = "Track Information";
             // 
+            // musicfilebox
+            // 
+            this.musicfilebox.BackColor = System.Drawing.Color.SeaGreen;
+            this.musicfilebox.Controls.Add(this.musicFilesListBox);
+            this.musicfilebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.musicfilebox.ForeColor = System.Drawing.Color.Wheat;
+            this.musicfilebox.Location = new System.Drawing.Point(404, 25);
+            this.musicfilebox.Name = "musicfilebox";
+            this.musicfilebox.Size = new System.Drawing.Size(312, 317);
+            this.musicfilebox.TabIndex = 9;
+            this.musicfilebox.TabStop = false;
+            this.musicfilebox.Text = "Music Files Avaiable";
+            // 
             // Listen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,9 +130,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.listenPic;
             this.ClientSize = new System.Drawing.Size(728, 354);
+            this.Controls.Add(this.musicfilebox);
             this.Controls.Add(this.trackInfo);
-            this.Controls.Add(this.noiseBoxlabel);
-            this.Controls.Add(this.musicFilesListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(734, 378);
@@ -136,20 +142,20 @@
             this.Load += new System.EventHandler(this.Listen_Load);
             this.trackInfo.ResumeLayout(false);
             this.trackInfo.PerformLayout();
+            this.musicfilebox.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ListBox musicFilesListBox;
-        private System.Windows.Forms.Label noiseBoxlabel;
         private System.Windows.Forms.Label TimeofSong;
         private System.Windows.Forms.Label TrackName;
         private System.Windows.Forms.Label Namelabel;
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.GroupBox trackInfo;
+        private System.Windows.Forms.GroupBox musicfilebox;
     }
 }
 
