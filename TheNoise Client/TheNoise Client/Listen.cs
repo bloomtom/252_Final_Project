@@ -11,6 +11,8 @@ using TheNoiseHLC;
 using System.Net;
 using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
 using TheNoiseHLC.CommunicationObjects.AudioTrack;
+using AwesomeAudio;
+using NAudio;
 
 namespace TheNoiseClient
 {
@@ -110,7 +112,16 @@ namespace TheNoiseClient
             switch (result)
             {
                 case TrackStreamRequestResult.Success:
-                    MessageBox.Show("Success");
+                    try
+                    {
+                        AudioPlayer noiseMaker = new AudioPlayer();
+                        noiseMaker.StartPosition = FormStartPosition.CenterScreen;
+                        noiseMaker.Show();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Dun Dun Dun!!!!!\nI am the Socket Troll and I hate your music");
+                    }
                     break;
                 case TrackStreamRequestResult.InvalidFileName:
                     MessageBox.Show("Invalid Track");
