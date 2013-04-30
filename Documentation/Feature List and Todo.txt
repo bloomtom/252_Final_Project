@@ -1,10 +1,11 @@
 Database:
-	Support registration of new users
-	Improve performance in API. Currently all users are read from the database on every auth.
+	Documentation
 
 Server:
 	Stream audio to client.
 	Support viewing authenticated users in server management frontend.
+	Documentation
 
 Client:
 	Play streaming audio
+	Documentation

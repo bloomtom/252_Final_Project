@@ -25,3 +25,12 @@ C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\obj\Debug\TheNoise ServerAPI.dll
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\obj\Debug\TheNoise ServerAPI.pdb
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\bin\Debug\TheNoise ServerAPI.dll
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\bin\Debug\TheNoise ServerAPI.pdb
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\bin\Debug\TcpTransmission.dll
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\bin\Debug\TheNoise_SharedObjects.dll
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\bin\Debug\TcpTransmission.pdb
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\bin\Debug\TheNoise_SharedObjects.pdb
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\obj\Debug\TheNoise ServerAPI.dll
+C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise ServerAPI\obj\Debug\TheNoise ServerAPI.pdb

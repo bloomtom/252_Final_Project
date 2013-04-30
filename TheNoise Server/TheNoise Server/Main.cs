@@ -17,6 +17,9 @@ namespace TheNoise_Server
 {
     public partial class Main : Form
     {
+        // List of users by IP+Port and index in the user listbox.
+        private Dictionary<IPEndPoint, int> userList = new Dictionary<IPEndPoint,int>();
+
         private TheNoiseServer server;
         private IPAddress serverIP = IPAddress.Parse("0.0.0.0"); // Default IP is loopback.
         private int serverPort = 9734;
@@ -56,6 +59,7 @@ namespace TheNoise_Server
             server.dataReceived += server_dataReceived;
             server.clientConnected += server_clientConnected;
             server.clientDisconnected += server_clientDisconnected;
+            server.clientAuthenticated += new EventHandler<ClientAuthEventArgs>(server_clientAuthenticated);
             // Start the server
             server.Start();
         }
@@ -90,7 +94,6 @@ namespace TheNoise_Server
 
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 string leaveMessage = clientEndPoint.ToString() + " Left";
-                server.Broadcast(encoder.GetBytes(leaveMessage));
                 messagesRichTextBox.AppendText(leaveMessage + "\n");
             }
         }
@@ -107,12 +110,27 @@ namespace TheNoise_Server
                 return;
             }
 
+            userList.Add(clientEndPoint, 0);
             clientsListBox.Items.Add(clientEndPoint.ToString());
 
             ASCIIEncoding encoder = new ASCIIEncoding();
             string joinMessage = clientEndPoint.ToString() + " Joined";
-            server.Broadcast(encoder.GetBytes(joinMessage));
             messagesRichTextBox.AppendText(joinMessage + "\n");
+        }
+
+        private void server_clientAuthenticated(object sender, ClientAuthEventArgs e)
+        {
+            // Invoke on the listbox thread if needed (yes).
+            if (clientsListBox.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate // Invoke a generic delegate using MethodInvoker
+                {
+                    server_clientAuthenticated(sender, e);
+                }));
+                return;
+            }
+
+            messagesRichTextBox.AppendText(e.ClientIPE + " was authenticated as " + e.Username + '\n');
         }
 
         private void server_dataReceived(object sender, IncomingMessageEventArgs e)
