@@ -44,7 +44,7 @@ namespace TheNoiseClient
         {
             username = userNameBox.Text;
             password = passwordBox.Text;
-
+         
             if (password == "" || username == "")// make sure textboxes are not empty
             {
                 MessageBox.Show("Please enter information in the User Name and Password fields");
@@ -124,6 +124,17 @@ namespace TheNoiseClient
             if (e.KeyValue == 13)
             {
                 logInButton_Click(sender, e);
+            }
+        }
+
+        private void settings_Click(object sender, EventArgs e)
+        {
+            Settings ipinfo = new Settings();
+            ipinfo.ShowDialog();
+
+            if (ipinfo.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                ip = ipinfo.IPAddressBox.Text;
             }
         }
     }

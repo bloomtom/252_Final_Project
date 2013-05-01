@@ -37,14 +37,15 @@
             this.userNameBox = new System.Windows.Forms.TextBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.settings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // logInButton
             // 
-            this.logInButton.Location = new System.Drawing.Point(8, 106);
+            this.logInButton.Location = new System.Drawing.Point(8, 116);
             this.logInButton.Name = "logInButton";
-            this.logInButton.Size = new System.Drawing.Size(166, 23);
+            this.logInButton.Size = new System.Drawing.Size(87, 23);
             this.logInButton.TabIndex = 4;
             this.logInButton.Text = "Log In";
             this.logInButton.UseVisualStyleBackColor = true;
@@ -52,9 +53,9 @@
             // 
             // registerButton
             // 
-            this.registerButton.Location = new System.Drawing.Point(184, 106);
+            this.registerButton.Location = new System.Drawing.Point(221, 116);
             this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(166, 23);
+            this.registerButton.Size = new System.Drawing.Size(122, 23);
             this.registerButton.TabIndex = 6;
             this.registerButton.Text = "Click Here to Register";
             this.registerButton.UseVisualStyleBackColor = true;
@@ -63,7 +64,7 @@
             // memberLabel
             // 
             this.memberLabel.AutoSize = true;
-            this.memberLabel.Location = new System.Drawing.Point(219, 90);
+            this.memberLabel.Location = new System.Drawing.Point(230, 95);
             this.memberLabel.Name = "memberLabel";
             this.memberLabel.Size = new System.Drawing.Size(99, 13);
             this.memberLabel.TabIndex = 0;
@@ -107,18 +108,29 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::TheNoiseClient.Properties.Resources.secLogin;
-            this.pictureBox1.Location = new System.Drawing.Point(222, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(233, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(90, 83);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
+            // 
+            // settings
+            // 
+            this.settings.Location = new System.Drawing.Point(112, 116);
+            this.settings.Name = "settings";
+            this.settings.Size = new System.Drawing.Size(87, 23);
+            this.settings.TabIndex = 9;
+            this.settings.Text = "Settings";
+            this.settings.UseVisualStyleBackColor = true;
+            this.settings.Click += new System.EventHandler(this.settings_Click);
             // 
             // LogInSingUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ClientSize = new System.Drawing.Size(356, 140);
+            this.ClientSize = new System.Drawing.Size(356, 144);
+            this.Controls.Add(this.settings);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.userNameBox);
@@ -150,5 +162,6 @@
         private System.Windows.Forms.TextBox userNameBox;
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button settings;
     }
 }

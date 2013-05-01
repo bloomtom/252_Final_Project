@@ -60,3 +60,7 @@ C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\AwesomeAudio.dll
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.dll
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.WindowsMediaFormat.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\AwesomeAudio.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.WindowsMediaFormat.dll
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Settings.resources

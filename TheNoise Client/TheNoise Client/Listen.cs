@@ -45,6 +45,7 @@ namespace TheNoiseClient
                 {
                     username = login.Username;
                     password = login.Password;
+        
 
                     UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
                     try
