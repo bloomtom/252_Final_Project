@@ -114,7 +114,7 @@ namespace TheNoiseClient
                 case TrackStreamRequestResult.Success:
                     try
                     {
-                        AudioPlayer noiseMaker = new AudioPlayer();
+                        AudioPlayer noiseMaker = new AudioPlayer(9007);
                         noiseMaker.StartPosition = FormStartPosition.CenterScreen;
                         noiseMaker.Show();
                     }

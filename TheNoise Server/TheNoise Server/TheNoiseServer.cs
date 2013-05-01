@@ -91,7 +91,7 @@ namespace TheNoise_Server
             this.udpEndPoint = audioTrack.Connection;
             string trackLocation = audioPath + audioTrack.Track.TrackName + audioTrack.Track.TrackExtension;
 
-            audioSender = new AwesomeAudio.UDPSender(udpEndPoint.ToString(), trackLocation);
+            audioSender = new AwesomeAudio.UDPSender(udpEndPoint.Address.ToString(), udpEndPoint.Port, trackLocation);
             audioSender.StartFileSend();
         }
 
