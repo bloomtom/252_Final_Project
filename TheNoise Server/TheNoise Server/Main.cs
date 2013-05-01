@@ -24,6 +24,9 @@ namespace TheNoise_Server
         private IPAddress serverIP = IPAddress.Parse("0.0.0.0"); // Default IP is loopback.
         private int serverPort = 9734;
 
+        private IPAddress sqlIP = IPAddress.Parse("127.0.0.1");
+        private int sqlPort = 1234;
+
         private string databaseIP = "";
         private string databaseName = "";
 
@@ -186,7 +189,7 @@ namespace TheNoise_Server
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Show a config form and retrieve user settings from it.
-            ConfigForm config = new ConfigForm(serverIP, serverPort);
+            ConfigForm config = new ConfigForm(serverIP, serverPort, sqlIP, sqlPort);
             config.ShowDialog();
 
             // Only get results if the user pressed OK.
