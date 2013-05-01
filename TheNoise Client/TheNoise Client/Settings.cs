@@ -41,5 +41,10 @@ namespace TheNoiseClient
                 MessageBox.Show("Incorrect IP Address");
             }
         }
+
+        private void Settings_KeyDown(object sender, KeyEventArgs e)
+        {
+            okbutton_Click(sender, e);
+        }
     }
 }

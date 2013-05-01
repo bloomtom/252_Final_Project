@@ -18,7 +18,7 @@ namespace TheNoiseClient
 {
     public partial class Listen : Form
     {
-        private IPAddress ip = IPAddress.Parse("127.0.0.1");//set ip address
+        private IPAddress ip = IPAddress.Parse("172.0.0.1");//set ip address
         private int port = 9734;//set port number
         private TrackList tracks;// copy of TrackList
 
