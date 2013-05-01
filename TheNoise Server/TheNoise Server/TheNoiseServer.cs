@@ -57,6 +57,8 @@ namespace TheNoise_Server
         private IPEndPoint tcpEndPoint;
         private IPEndPoint udpEndPoint;
 
+        private AwesomeAudio.UDPSender audioSender;
+
         private long lastUpdatedMusicList;
 
         public TheNoiseClientHandler(string username, string audioPath, IPEndPoint ipe)
@@ -71,18 +73,36 @@ namespace TheNoise_Server
             }
         }
 
+
+        /// <summary>
+        /// Deprecated. Use BeginStreaming.
+        /// </summary>
         public void ContinueStream()
         {
+
         }
 
+        /// <summary>
+        /// Begins the streaming.
+        /// </summary>
+        /// <param name="audioTrack">The audio track.</param>
         public void BeginStreaming(TrackStreamRequest audioTrack)
         {
+            this.udpEndPoint = audioTrack.Connection;
+            string trackLocation = audioPath + audioTrack.Track.TrackName + audioTrack.Track.TrackExtension;
 
+            audioSender = new AwesomeAudio.UDPSender(udpEndPoint.ToString(), trackLocation);
+            audioSender.StartFileSend();
         }
 
         public void EndStreaming()
         {
+            if (audioSender != null)
+            {
+                audioSender.StopFileSend();
+            }
 
+            audioSender = null;
         }
 
         public void RequestUpdateList()
