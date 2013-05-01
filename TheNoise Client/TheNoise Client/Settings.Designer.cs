@@ -68,7 +68,9 @@
             this.Controls.Add(this.IpAddressBox);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.okbutton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.ResumeLayout(false);
             this.PerformLayout();

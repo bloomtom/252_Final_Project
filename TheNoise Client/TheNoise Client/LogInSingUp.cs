@@ -17,7 +17,17 @@ namespace TheNoiseClient
     public partial class LogInSingUp : Form
     {
         private IPAddress ip;//declare signin ip
+        public IPAddress IP
+        {
+            get { return ip; }
+            set {  }
+        }
         private int port;//declare signin port
+        public int Port
+        {
+            get { return port; }
+            set { }
+        }
 
         private string username;
         public string Username
@@ -129,12 +139,12 @@ namespace TheNoiseClient
 
         private void settings_Click(object sender, EventArgs e)
         {
-            Settings ipinfo = new Settings();
+            Settings ipinfo = new Settings(ip);
             ipinfo.ShowDialog();
 
             if (ipinfo.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                TheNoiseClient.Properties.Settings.Default.serverIP = ipinfo.IP.ToString();
+                ip = ipinfo.IP;
             }
         }
     }

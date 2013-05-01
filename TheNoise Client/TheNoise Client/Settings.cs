@@ -20,9 +20,12 @@ namespace TheNoiseClient
             set { ip = value; }
         }
 
-        public Settings()
+        public Settings(IPAddress defaultIP)
         {
             InitializeComponent();
+
+            ip = defaultIP;
+            IpAddressBox.Text = ip.ToString();
         }
 
         private void okbutton_Click(object sender, EventArgs e)
@@ -30,6 +33,8 @@ namespace TheNoiseClient
             try
             {
                 ip = IPAddress.Parse(IpAddressBox.Text);
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
             }
             catch
             {
