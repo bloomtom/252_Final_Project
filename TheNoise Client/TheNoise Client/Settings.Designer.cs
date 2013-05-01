@@ -41,6 +41,7 @@
             this.okbutton.TabIndex = 0;
             this.okbutton.Text = "OK";
             this.okbutton.UseVisualStyleBackColor = true;
+            this.okbutton.Click += new System.EventHandler(this.okbutton_Click);
             // 
             // ipLabel
             // 

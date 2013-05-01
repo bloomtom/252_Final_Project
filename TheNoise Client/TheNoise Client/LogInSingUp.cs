@@ -134,7 +134,7 @@ namespace TheNoiseClient
 
             if (ipinfo.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                ip = ipinfo.IPAddressBox.Text;
+                TheNoiseClient.Properties.Settings.Default.serverIP = ipinfo.IP.ToString();
             }
         }
     }
