@@ -17,7 +17,7 @@ namespace TheNoise_DatabaseControl
 
         private SqlConnectionStringBuilder sqlStrBldr = new SqlConnectionStringBuilder();
 
-        private DataAccessLayer(string databaseAddress, string databaseName, bool useIntegratedSecurity)
+        public DataAccessLayer(string databaseAddress, string databaseName, bool useIntegratedSecurity)
         {
             sqlStrBldr.DataSource = databaseAddress;
             sqlStrBldr.InitialCatalog = databaseName;
