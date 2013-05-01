@@ -65,3 +65,4 @@ C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Cli
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.WindowsMediaFormat.dll
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Settings.resources
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\TheNoiseClient.exe.config
+C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\AwesomeAudio.xml
