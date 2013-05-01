@@ -50,3 +50,5 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Serve
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Debug\AwesomeAudio.dll
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Debug\NAudio.dll
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Debug\NAudio.WindowsMediaFormat.dll
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\bin\Debug\AwesomeAudio.xml
+C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise Server\TheNoise Server\obj\x86\Debug\TheNoise_Server.ConfigForm.resources

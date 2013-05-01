@@ -31,15 +31,33 @@ namespace TheNoise_Server
             set {  }
         }
 
-        public ConfigForm(System.Net.IPAddress defaultIP, int defaultPort)
+        private System.Net.IPAddress ipAddressSQL;
+        public System.Net.IPAddress IpAddressSQL
+        {
+            get { return ipAddressSQL; }
+            set { }
+        }
+
+        private int portSQL = 9734;
+        public int PortSQL
+        {
+            get { return portSQL; }
+            set { }
+        }
+
+        public ConfigForm(System.Net.IPAddress defaultIPLocal, int defaultPortLocal, System.Net.IPAddress defaultIPSQL, int defaultPortSQL)
         {
             InitializeComponent();
 
             // Set the internal default and text boxes.
-            ipAddress = defaultIP;
-            port = defaultPort;
-            ipTextBox.Text = ipAddress.ToString();
-            portTextBox.Text = port.ToString();
+            ipAddress = defaultIPLocal;
+            port = defaultPortLocal;
+            localIpTextBox.Text = ipAddress.ToString();
+            localPortTextBox.Text = port.ToString();
+
+            ipAddressSQL = defaultIPSQL;
+            portSQL = defaultPortSQL;
+            
 
             DialogResult = System.Windows.Forms.DialogResult.Cancel; // Assume cancel until ok button is pressed.
         }
@@ -55,13 +73,13 @@ namespace TheNoise_Server
             // Check the IP textbox for validity and set it into ipAddress.
             try
             {
-                if (ipTextBox.Text.Length < 7)
+                if (localIpTextBox.Text.Length < 7)
                 {
                     MessageBox.Show(this, "The entered IP address is invalid", this.ProductName,
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                ipAddress = System.Net.IPAddress.Parse(ipTextBox.Text);
+                ipAddress = System.Net.IPAddress.Parse(localIpTextBox.Text);
             }
             catch (Exception)
             {
@@ -71,7 +89,7 @@ namespace TheNoise_Server
             }
 
             // Check port textbox for validity.
-            int.TryParse(portTextBox.Text, out port);
+            int.TryParse(localPortTextBox.Text, out port);
             if ((port < 1023) || (port > 49151)) // Detect invalid range.
             {
                 MessageBox.Show(this, "The entered port is invalid. The valid port range is 1024-49151", 
@@ -81,6 +99,11 @@ namespace TheNoise_Server
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
+        }
+
+        private void userAuthRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            sqlCredentialPanel.Enabled = userAuthRadioButton.Checked;
         }
     }
 }

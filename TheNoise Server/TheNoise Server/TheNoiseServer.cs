@@ -91,7 +91,7 @@ namespace TheNoise_Server
             this.udpEndPoint = audioTrack.Connection;
             string trackLocation = audioPath + audioTrack.Track.TrackName + audioTrack.Track.TrackExtension;
 
-            audioSender = new AwesomeAudio.UDPSender(udpEndPoint.Address.ToString(), udpEndPoint.Port, trackLocation);
+            audioSender = new AwesomeAudio.UDPSender(udpEndPoint.Address.ToString(), trackLocation);
             audioSender.StartFileSend();
         }
 
@@ -113,13 +113,16 @@ namespace TheNoise_Server
                 lastUpdatedMusicList = DateTime.UtcNow.Ticks;
 
                 // Get every file in the user's directory and list them.
+                AwesomeAudio.WaveFileManager audioInfo = new AwesomeAudio.WaveFileManager();
                 string[] files = System.IO.Directory.GetFiles(audioPath);
                 Track[] tracks = new Track[files.Length];
                 for (int i = 0; i < files.Length; i++)
                 {
+                    audioInfo.ReadWaveFile(files[i]);
+                    int secondsLong = audioInfo.NumTenthOfSeconds / 100;
                     string trackName = System.IO.Path.GetFileNameWithoutExtension(files[i]);
                     string trackExt = System.IO.Path.GetExtension(files[i]);
-                    tracks[i] = new Track(trackName, trackExt, 180, TrackType.Unspecified);
+                    tracks[i] = new Track(trackName, trackExt, secondsLong, TrackType.Unspecified);
                 }
 
                 trackListUpdated.Invoke(tcpEndPoint, new TrackList(tracks));

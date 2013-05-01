@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AwesomeAudio</name>
+    </assembly>
+    <members>
+        <member name="T:AwesomeAudio.WaveFileManager">
+            <summary>
+            Class to read from a wave file and break the sound data into chunks. Then puts the chunks into a queue
+            and returns the queue to the caller. It also supports creating new wave files.
+            </summary>
+        </member>
+        <member name="M:AwesomeAudio.WaveFileManager.#ctor">
+            <summary>
+            Creates a new instance of the SoundFileReader class
+            </summary>
+        </member>
+        <member name="M:AwesomeAudio.WaveFileManager.ReadWaveFile(System.String,System.UInt16,System.Boolean)">
+            <summary>
+            Reads the data from a wave file and separates the audio data from the header. Then breaks the data
+            into chunks and loads them into a queue.
+            </summary>
+            <param name="filePathIn">Name of the file to open</param>
+            <param name="startPosition">Position, in tenths of seconds, in the file to start from. </param>
+            <param name="isCompression">Is the file being compressed.</param>
+            <returns>A queue of chunks of audio data in bytes</returns>
+        </member>
+        <member name="M:AwesomeAudio.WaveFileManager.GetAudioChunk">
+            <summary>
+            Returns a chunk of audio from the queue
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AwesomeAudio.WaveFileManager.CreateWaveFile(System.String,System.Int32,System.Byte[])">
+            <summary>
+            Creates a new wave file from a given position.
+            </summary>
+            <param name="fileName">Name of the file to create</param>
+            <param name="startPosition">Position in the original file to read from</param>
+            <param name="data">The bytes to write to the file</param>
+        </member>
+        <member name="M:AwesomeAudio.WaveFileManager.WriteToTextFile(System.String,System.Int32,System.Byte[])">
+            <summary>
+            Writes the sound data to a text file in hex format
+            </summary>
+            <param name="fileName">Name of the file to create</param>
+            <param name="startPosition">Position in the file to start reading from</param>
+            <param name="data">The array of bytes to write to the file</param>
+        </member>
+        <member name="M:AwesomeAudio.WaveFileManager.CreateHeader">
+            <summary>
+            Creates a header for the file that has been opened
+            </summary>
+            <returns>An array of bytes containing header information</returns>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.NumTenthOfSeconds">
+            <summary>
+            Returns the number of tenths of seconds of the file
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.Channels">
+            <summary>
+            Returns how many channels the file uses (1 = mono, 2 = stereo)
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.AudioFormat">
+            <summary>
+            Returns the format of the audio file (1 = PCM, Values other than 1 indicate some form of compression)
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.SampleRate">
+            <summary>
+            Returns the sample rate of the audio file. For us this should be 8000hz
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.SoundLength">
+            <summary>
+            Returns the length of the audio in bytes
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.FileLength">
+            <summary>
+            Returns the length of the file in bytes
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.NumChunks">
+            <summary>
+            Returns the total number of packets that will be sent.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.HeaderSize">
+            <summary>
+            Returns the size of the header in bytes
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.WaveFileManager.FileName">
+            <summary>
+            Returns the name of the file being played
+            </summary>
+        </member>
+        <member name="T:AwesomeAudio.UDPSender">
+            <summary>
+            Class to send audio data over the network as a series of UDP packets.  Can accept audio from a live (microphone) 
+            or pre-existing (WAV file) source.
+            </summary>
+        </member>
+        <member name="M:AwesomeAudio.UDPSender.#ctor(System.String,System.Int32)">
+            <summary>
+            Creates a new instance of the UDPSender class for use with a Microphone Source
+            </summary>
+            <param name="destination">The Hostname or IP Address to send audio to</param>
+            <param name="portNum">The port number that the UDPSender will send and receive on</param>
+        </member>
+        <member name="M:AwesomeAudio.UDPSender.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Creates a new instance of the UDPSender class for use with a WAV File Source
+            </summary>
+            <param name="destination">The Hostname or IP Address to send audio to</param>
+            <param name="portNum">The port number that the UDPSender will send and receive on</param>
+            <param name="file">The relative path to the WAV File</param>
+        </member>
+        <member name="M:AwesomeAudio.UDPSender.GetIP(System.String)">
+            <summary>
+            Used to resolve hostname to IP address
+            </summary>
+            <param name="serverName">The hostname to resolve</param>
+            <returns>The IP Address resolved from the supplied hostname</returns>
+        </member>
+        <member name="M:AwesomeAudio.UDPSender.StartFileSend(System.UInt16)">
+            <summary>
+            Starts transmitting the file from the specified position.  If no position is specified, begins transmitting from the 
+            beginning of the file.
+            </summary>
+            <param name="position">Position in file represented as number of tenths of seconds from the start of file</param>
+        </member>
+        <member name="M:AwesomeAudio.UDPSender.StopFileSend">
+            <summary>
+            Stop a file transmission that is currently in progress.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.UDPSender.MicrophoneSend">
+            <summary>
+            Value of true enables and starts sending of microphone audio.  Value of false disables and stops sending of microphone audio.
+            </summary>
+        </member>
+        <member name="T:AwesomeAudio.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ButtonPause">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ButtonPauseClick">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ButtonPlay">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ButtonPlayClick">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ButtonStop">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.ButtonStopClick">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AwesomeAudio.Properties.Resources.Sound_wave">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:AwesomeAudio.CompressionManager">
+            <summary>
+            A static helper class that handles compressing and decompressing of audio
+            </summary>
+        </member>
+        <member name="M:AwesomeAudio.CompressionManager.CompressAudio(System.Byte[])">
+            <summary>
+            Compresses a byte array of audio data
+            </summary>
+            <param name="data">Byte array of audio data to compress</param>
+            <returns>A Byte array of compressed audio data</returns>
+        </member>
+        <member name="M:AwesomeAudio.CompressionManager.DecompressAudio(System.Byte[],System.Int32)">
+            <summary>
+            Decompresses a byte array of compressed audio data
+            </summary>
+            <param name="data">Byte array of compressed audio data</param>
+            <param name="chunkSize">Size of the chunks that are being decompressed. For the microphone this is 1600, and for a file it's 8000</param>
+            <returns>A byte array of uncompressed audio</returns>
+        </member>
+        <member name="M:AwesomeAudio.MicroManager.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Micro Manager records audio from a 
+            </summary>
+            <param name="Rate"> e.g 8000hz </param>
+            <param name="SamepleRate"> The number of bits to sample per second </param>
+            <param name="channels">  1 = Mono, 2 Stereo  </param>
+        </member>
+        <member name="M:AwesomeAudio.MicroManager.StartRecording">
+            <summary>
+            Start Recording Audio
+            </summary>
+        </member>
+        <member name="M:AwesomeAudio.MicroManager.StopRecording">
+            <summary>
+            Stop Recording Audio
+            </summary>
+        </member>
+        <member name="F:AwesomeAudio.AudioPlayer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AwesomeAudio.AudioPlayer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AwesomeAudio.AudioPlayer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>
