@@ -13,24 +13,28 @@ namespace TheNoise_DatabaseControl
 {
     public class DataAccessLayer : IDisposable
     {
-        const string TABLE = "userFiles";
-
+        private readonly string dbNameAndTable = "userFiles";
         private SqlConnectionStringBuilder sqlStrBldr = new SqlConnectionStringBuilder();
 
+        /// <summary>
+        /// Generic initialization of the <see cref="DataAccessLayer"/> class. Don't expect this to work with no connection details!
+        /// </summary>
         public DataAccessLayer()
         {
-            sqlStrBldr.InitialCatalog = TABLE;
+            sqlStrBldr.InitialCatalog = dbNameAndTable;
             sqlStrBldr.IntegratedSecurity = true;
-            sqlStrBldr.InitialCatalog = TABLE;
+            sqlStrBldr.InitialCatalog = dbNameAndTable;
         }
         public DataAccessLayer(string databaseAddress, string databaseName, string username, string password, bool useIntegratedSecurity)
         {
+            dbNameAndTable = databaseName;
+
             sqlStrBldr.DataSource = databaseAddress;
             sqlStrBldr.InitialCatalog = databaseName;
             sqlStrBldr.UserID = username;
             sqlStrBldr.Password = password;
             sqlStrBldr.IntegratedSecurity = useIntegratedSecurity;
-            sqlStrBldr.InitialCatalog = TABLE;
+            sqlStrBldr.InitialCatalog = dbNameAndTable;
         }
         public DataAccessLayer(string databaseAddress, string databaseName) : this(databaseAddress, databaseName, string.Empty, string.Empty, true) { }
         public DataAccessLayer(string databaseAddress, string databaseName, string username, string password)
@@ -38,44 +42,61 @@ namespace TheNoise_DatabaseControl
         {
         }
 
-        public void readUsers(ObservableCollection<LoginData> userList)
-        {
-            // Create database objects.
-            using (DataSet dSetUsers = new DataSet())
-            using (SqlConnection dataConnection = new SqlConnection())
-            using (SqlCommand dataCommand = new SqlCommand())
-            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter("Select * FROM musicUsers", sqlStrBldr.ConnectionString))
-            {
-
-                dataAdaptor.Fill(dSetUsers, TABLE);
-
-                dataAdaptor.FillSchema(dSetUsers, SchemaType.Source);
-
-                DataTable dtUsers = dSetUsers.Tables[TABLE]; // Retreive the users table.
-
-                foreach (DataRow row in dtUsers.Rows)
-                {
-                    // Cycle through and get every user
-                    userList.Add(new LoginData(row[0].ToString(), row[1].ToString()));
-                }
-            }
-        }
-
+        /// <summary>
+        /// Adds a user to the users table if the requested username doesn't exist.
+        /// </summary>
+        /// <param name="sentUser">The user to register in the database.</param>
+        /// <returns>UserAddResult giving feedback on the process.</returns>
         public UserAddResult addUser(LoginData sentUser)
         {
             //GlobalEnumerations.UserValidationResult result;
-            UserAuthenticationResult result;
-            result = validateUser(sentUser);
+            UserAuthenticationResult preCheck;
+            preCheck = validateUser(sentUser);
 
             //If validateUser returns 1, user is not in database
-            if (result == UserAuthenticationResult.InvalidUser)
+            if (preCheck == UserAuthenticationResult.InvalidUser)
             {
-                string SQLstring = "EXEC addMusicUser @uname = " + sentUser.username + ", @passw = " + sentUser.password;
+                using (SqlConnection connection = new SqlConnection(sqlStrBldr.ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("addMusicUser", connection);
+                    command.CommandType = CommandType.StoredProcedure;
 
-                executeNonQuery(SQLstring);
+                    SqlParameter userName = new SqlParameter("@uname", SqlDbType.VarChar);
+                    userName.Direction = ParameterDirection.Input;
+                    userName.Value = sentUser.username;
+                    userName.Size = 50;
+                    command.Parameters.Add(userName);
 
-                //succeeded. User was added.
-                return UserAddResult.Success;
+                    SqlParameter password = new SqlParameter("@passw", SqlDbType.VarChar);
+                    password.Direction = ParameterDirection.Input;
+                    password.Value = sentUser.password;
+                    password.Size = 80;
+                    command.Parameters.Add(password);
+
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+                // Check user again  to make sure things went well.
+                // This is a hack because the database doesn't give you feedback on addMusicUser...
+                UserAddResult result = UserAddResult.UnknownResult;
+                UserAuthenticationResult postCheck;
+                postCheck = validateUser(sentUser);
+                switch (postCheck)
+                {
+                    case UserAuthenticationResult.UnknownResult:
+                        break;
+                    case UserAuthenticationResult.Success:
+                        result = UserAddResult.Success;
+                        break;
+                    case UserAuthenticationResult.InvalidUser:
+                        break;
+                    case UserAuthenticationResult.InvalidPassword:
+                        break;
+                    default:
+                        break;
+                }
+                return result;
             }
             else
             {
@@ -83,6 +104,11 @@ namespace TheNoise_DatabaseControl
             }
         }
 
+        /// <summary>
+        /// Validates the passed username and password against the database.
+        /// </summary>
+        /// <param name="sentUser">The user to validate</param>
+        /// <returns>Result of authentication request indicating success or failure mode.</returns>
         public UserAuthenticationResult validateUser(LoginData sentUser)
         {
             try
@@ -101,7 +127,7 @@ namespace TheNoise_DatabaseControl
                     SqlParameter password = new SqlParameter("@passw", SqlDbType.VarChar);
                     password.Direction = ParameterDirection.Input;
                     password.Value = sentUser.password;
-                    password.Size = 50;
+                    password.Size = 80;
                     command.Parameters.Add(password);
 
                     SqlParameter returnValue = new SqlParameter("@retval", SqlDbType.Int);

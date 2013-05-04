@@ -64,22 +64,22 @@ namespace TheNoiseClient
             {
                 MessageBox.Show("Please enter information in the User Name, Password and Confirm Password Fields");
             }
-            else if (password.Length < 7)//checks if pass word is longer then seven
+            else if (password.Length < 6)//checks if pass word is longer then seven
             {
-                MessageBox.Show("Password needs to be longer then 7 characters");
+                MessageBox.Show("Password needs to be longer then 6 characters");
                 NewPasswordBox.Clear();
                 newCPWBox.Clear();
             }
-            else if (Num < 3)
+            else if (Num < 2)
             { 
-                MessageBox.Show("Need at least 3 numbers in password");
+                MessageBox.Show("Need at least 2 numbers in password");
                 NewPasswordBox.Clear();
                 newCPWBox.Clear();
             
             }
-            else if (Lett < 4)
+            else if (Lett < 3)
             { 
-                MessageBox.Show("Need at least 4 letters in password");
+                MessageBox.Show("Need at least 3 letters in password");
                 NewPasswordBox.Clear();
                 newCPWBox.Clear();
             

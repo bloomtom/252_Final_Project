@@ -428,6 +428,11 @@ namespace TheNoise_Server
                         // Fire event that a user is authenticated.
                         ClientAuthenticated.Invoke(this, new ClientAuthEventArgs(sender, credentials.username));
                     }
+                    else
+                    {
+                        GeneralEvent.Invoke(this, new GeneralEventArgs(null, sender,
+                            "Tried to authenticate, but the database gave us: " + result.ToString()));
+                    }
                 }
 
                 // Generate response for client.
@@ -489,6 +494,8 @@ namespace TheNoise_Server
                     UserAddResult result = databaseAccess.addUser(credentials);
                     ObjectSerialization.Serialize(result, out send);
 
+                    GeneralEvent.Invoke(this, new GeneralEventArgs(null, sender,
+                        "Issued a request for registration and the result was: " + result.ToString()));
                 }
             }
             catch (Exception ex)

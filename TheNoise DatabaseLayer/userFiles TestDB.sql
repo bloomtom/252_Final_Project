@@ -20,7 +20,7 @@ USE userFiles
 CREATE TABLE musicUsers
 (
 	username	varchar(50)	NOT NULL	PRIMARY KEY,
-	password	varchar(50) NOT NULL
+	password	varchar(80) NOT NULL
 )
 
 CREATE TABLE directories
@@ -38,9 +38,9 @@ CREATE TABLE userDirectories
 
 
 
-INSERT INTO musicUsers VALUES('Test1', 'Test1PW')
-INSERT INTO musicUsers VALUES('Test2', 'Test2PW')
-INSERT INTO musicUsers VALUES('Test3', 'Test3PW')
+INSERT INTO musicUsers VALUES('Test1', '23d7d2c7b948c6474295a2385b6c35636f51d58e87af29dc59a154e85f3a99c1')
+INSERT INTO musicUsers VALUES('Test2', '85dd870a1d91c42bcd3fd878529144a0318a542defccc8250ec6bf56de3edc87')
+INSERT INTO musicUsers VALUES('Test3', '94834c730388380185219ea32f1e266f75b6c7736ed7d0ffffeedcb7f8475a4a')
 
 INSERT INTO directories VALUES (0, 'C:\Test\0')
 INSERT INTO directories VALUES (1, 'C:\Test\1')
@@ -58,7 +58,7 @@ SELECT * FROM userDirectories
 
 GO
 
-CREATE PROCEDURE checkMusicUser @uname varchar(50), @passw varchar(50), @retval int output
+CREATE PROCEDURE checkMusicUser @uname varchar(50), @passw varchar(80), @retval int output
 AS
 BEGIN
 	--DECLARE @retval int
@@ -84,12 +84,9 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE addMusicUser @uname varChar(50), @passw varchar(50)
+CREATE PROCEDURE addMusicUser @uname varChar(50), @passw varchar(80)
 AS
 INSERT INTO musicUsers VALUES(@uname, @passw)
-GO
-
-EXEC addMusicUser 'Test6', 'Test6PW'
 GO
 
 SELECT * FROM musicUsers

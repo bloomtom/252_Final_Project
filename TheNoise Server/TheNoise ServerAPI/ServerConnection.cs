@@ -144,7 +144,8 @@ namespace TheNoiseAPI
             if (Connected)
             {
                 byte[] send;
-                ObjectSerialization.Serialize(new LoginData(username, password), out send);
+                string hashedPass = Cryptography.GenerateUserHashedPassword(hashKey + username, password);
+                ObjectSerialization.Serialize(new LoginData(username, hashedPass), out send);
 
                 // Make a request to the server to register the user. 
                 if (MakeBlockingRequest(ref send, PacketType.Register, PacketType.Register))
@@ -169,7 +170,7 @@ namespace TheNoiseAPI
             {
                 byte[] send;
                 string hashedPass = Cryptography.GenerateUserHashedPassword(hashKey + username, password);
-                ObjectSerialization.Serialize(new LoginData(username, password), out send);
+                ObjectSerialization.Serialize(new LoginData(username, hashedPass), out send);
 
                 // Make a request to the server to register the user. 
                 if (MakeBlockingRequest(ref send, PacketType.Authenticate, PacketType.Authenticate))
