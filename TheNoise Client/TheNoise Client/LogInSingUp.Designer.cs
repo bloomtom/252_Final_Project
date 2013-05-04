@@ -129,7 +129,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ClientSize = new System.Drawing.Size(356, 144);
+            this.ClientSize = new System.Drawing.Size(350, 148);
             this.Controls.Add(this.settings);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.passwordBox);
@@ -141,8 +141,6 @@
             this.Controls.Add(this.logInButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(362, 168);
-            this.MinimumSize = new System.Drawing.Size(362, 168);
             this.Name = "LogInSingUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome To The Noise";

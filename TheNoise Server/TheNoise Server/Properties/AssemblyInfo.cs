@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TheNoise Server")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Under N Productions")]
 [assembly: AssemblyProduct("TheNoise Server")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © bloomtom 2013 Under the X11 License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

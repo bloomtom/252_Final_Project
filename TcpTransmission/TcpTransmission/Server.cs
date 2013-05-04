@@ -29,24 +29,24 @@ namespace TcpTransmission
         public class ServerManager : IDisposable
         {
             public delegate void DataReceivedEventHandler(object sender, IncomingMessageEventArgs e);
-            public event DataReceivedEventHandler dataReceived = delegate { }; // Fired when data is received from a client.
+            public event DataReceivedEventHandler DataReceived = delegate { }; // Fired when data is received from a client.
             protected virtual void OnDataReceived(IncomingMessageEventArgs e)
             {
-                if (dataReceived != null) dataReceived(this, e);
+                if (DataReceived != null) DataReceived(this, e);
             }
 
             public delegate void ClientConnectEventHandler(object sender, IPEndPoint clientIP);
-            public event ClientConnectEventHandler clientConnected = delegate { }; // Fired when a client connects.
+            public event ClientConnectEventHandler ClientConnected = delegate { }; // Fired when a client connects.
             protected virtual void OnClientConnect(IPEndPoint e)
             {
-                if (clientConnected != null) clientConnected(this, e);
+                if (ClientConnected != null) ClientConnected(this, e);
             }
 
             public delegate void ClientDisconnectEventHandler(object sender, IPEndPoint clientIP);
-            public event ClientDisconnectEventHandler clientDisconnected = delegate { }; // Fired when a client disconnects.
+            public event ClientDisconnectEventHandler ClientDisconnected = delegate { }; // Fired when a client disconnects.
             protected virtual void OnClientDisconnect(IPEndPoint e)
             {
-                if (clientDisconnected != null) clientDisconnected(this, e);
+                if (ClientDisconnected != null) ClientDisconnected(this, e);
             }
 
             private volatile bool runServer = false; // When set to false, the server listen loop ends.
@@ -94,7 +94,7 @@ namespace TcpTransmission
                 {
                     // The client has disconnected.
                     // Fire the disconnect event and remove it from the client list.
-                    clientDisconnected.Invoke(sender, client.RemoteEndPoint);
+                    ClientDisconnected.Invoke(sender, client.RemoteEndPoint);
                     lock (clientList) { ClientRemove(client.RemoteEndPoint); }
 
                     if (e == null) { return; } // Don't give listeners of dataReceived a null IncomingMessageEventArgs.
@@ -111,7 +111,7 @@ namespace TcpTransmission
 
             protected virtual void DataReceivedHandle(ClientConnection sender, IncomingMessageEventArgs e)
             {
-                dataReceived.Invoke(sender, e);
+                DataReceived.Invoke(sender, e);
             }
 
             /// <summary>
@@ -191,7 +191,7 @@ namespace TcpTransmission
 
                         clientList[clientEndPoint].dataReceived += client_dataReceived; // Attach to the client data event.
                         clientList[clientEndPoint].Connect(); // Start receiving data.
-                        clientConnected.Invoke(this, clientEndPoint); // Fire the client connected event.
+                        ClientConnected.Invoke(this, clientEndPoint); // Fire the client connected event.
 
                         // Begin listening again.
                         ConnectionListen();
@@ -199,7 +199,7 @@ namespace TcpTransmission
                 }
                 catch (Exception ex)
                 {
-                    dataReceived.Invoke(this, new IncomingMessageEventArgs(ex));
+                    DataReceived.Invoke(this, new IncomingMessageEventArgs(ex));
                 }
 
             }

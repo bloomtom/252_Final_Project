@@ -58,6 +58,7 @@ namespace TheNoiseClient
             if (password == "" || username == "")// make sure textboxes are not empty
             {
                 MessageBox.Show("Please enter information in the User Name and Password fields");
+                return;
             }
             else//when information is correct
             {
@@ -76,6 +77,7 @@ namespace TheNoiseClient
             catch (Exception)
             {
                 MessageBox.Show("There was a problem connecting to the server.");
+                return;
             }
 
             switch (result)

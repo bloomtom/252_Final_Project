@@ -53,7 +53,7 @@
             this.clientsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(316, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(461, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -99,6 +99,7 @@
             // 
             this.clientsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dropClientToolStripMenuItem});
+            this.clientsToolStripMenuItem.Enabled = false;
             this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
             this.clientsToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.clientsToolStripMenuItem.Text = "&Clients";
@@ -117,7 +118,7 @@
             this.connectedGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.connectedGroupBox.Location = new System.Drawing.Point(0, 24);
             this.connectedGroupBox.Name = "connectedGroupBox";
-            this.connectedGroupBox.Size = new System.Drawing.Size(316, 110);
+            this.connectedGroupBox.Size = new System.Drawing.Size(461, 110);
             this.connectedGroupBox.TabIndex = 3;
             this.connectedGroupBox.TabStop = false;
             this.connectedGroupBox.Text = "Connected Clients";
@@ -131,8 +132,9 @@
             this.clientsListBox.Location = new System.Drawing.Point(3, 16);
             this.clientsListBox.MultiColumn = true;
             this.clientsListBox.Name = "clientsListBox";
-            this.clientsListBox.Size = new System.Drawing.Size(310, 91);
+            this.clientsListBox.Size = new System.Drawing.Size(455, 91);
             this.clientsListBox.TabIndex = 1;
+            this.clientsListBox.SelectedIndexChanged += new System.EventHandler(this.clientsListBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -141,7 +143,7 @@
             this.label1.Location = new System.Drawing.Point(0, 134);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(316, 16);
+            this.label1.Size = new System.Drawing.Size(461, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Messages";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -154,7 +156,7 @@
             this.messagePanel.Margin = new System.Windows.Forms.Padding(0);
             this.messagePanel.Name = "messagePanel";
             this.messagePanel.Padding = new System.Windows.Forms.Padding(5);
-            this.messagePanel.Size = new System.Drawing.Size(316, 144);
+            this.messagePanel.Size = new System.Drawing.Size(461, 183);
             this.messagePanel.TabIndex = 5;
             // 
             // messagesRichTextBox
@@ -167,7 +169,7 @@
             this.messagesRichTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.messagesRichTextBox.Name = "messagesRichTextBox";
             this.messagesRichTextBox.ReadOnly = true;
-            this.messagesRichTextBox.Size = new System.Drawing.Size(306, 134);
+            this.messagesRichTextBox.Size = new System.Drawing.Size(451, 173);
             this.messagesRichTextBox.TabIndex = 0;
             this.messagesRichTextBox.Text = "";
             this.messagesRichTextBox.TextChanged += new System.EventHandler(this.messagesRichTextBox_TextChanged);
@@ -176,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 294);
+            this.ClientSize = new System.Drawing.Size(461, 333);
             this.Controls.Add(this.messagePanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connectedGroupBox);

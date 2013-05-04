@@ -17,14 +17,14 @@ namespace TheNoise_Server
 {
     public partial class ConfigForm : Form
     {
-        private System.Net.IPAddress ipAddress;
-        public System.Net.IPAddress IpAddress
+        private System.Net.IPAddress ipAddressServer;
+        public System.Net.IPAddress IpAddressServer
         {
-            get { return ipAddress; }
+            get { return ipAddressServer; }
             set {  }
         }
 
-        private int port = 9734;
+        private int port;
         public int Port
         {
             get { return port; }
@@ -38,7 +38,7 @@ namespace TheNoise_Server
             set { }
         }
 
-        private int portSQL = 9734;
+        private int portSQL;
         public int PortSQL
         {
             get { return portSQL; }
@@ -50,9 +50,9 @@ namespace TheNoise_Server
             InitializeComponent();
 
             // Set the internal default and text boxes.
-            ipAddress = defaultIPLocal;
+            ipAddressServer = defaultIPLocal;
             port = defaultPortLocal;
-            localIpTextBox.Text = ipAddress.ToString();
+            localIpTextBox.Text = ipAddressServer.ToString();
             localPortTextBox.Text = port.ToString();
 
             ipAddressSQL = defaultIPSQL;
@@ -79,7 +79,7 @@ namespace TheNoise_Server
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                ipAddress = System.Net.IPAddress.Parse(localIpTextBox.Text);
+                ipAddressServer = System.Net.IPAddress.Parse(localIpTextBox.Text);
             }
             catch (Exception)
             {

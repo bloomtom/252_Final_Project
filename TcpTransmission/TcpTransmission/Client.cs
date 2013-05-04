@@ -99,7 +99,7 @@ namespace TcpTransmission
                 this.client = new TcpClient();
                 client.ReceiveTimeout = 1500;
                 client.SendTimeout = 1500;
-                client.Connect(ip, port);
+                InternalConnect(3000);
             }
 
             /// <summary>
@@ -116,13 +116,29 @@ namespace TcpTransmission
                     readBuffer = new byte[readSize];
 
                     // If the client is not connected, connect it.
-                    if (!client.Connected) { client.Connect(remoteEndPoint); }
+                    if (!client.Connected)
+                    {
+                        InternalConnect(3000);
+                    }
                     // Then get the client's network stream.
                     tcpStream = client.GetStream();
 
                     // Start the callback listen loop.
                     ClientListen();
                 }
+            }
+
+            private void InternalConnect(int timeout)
+            {
+                // Attempt to connect with a 3 second timeout.
+                IAsyncResult result = client.BeginConnect(remoteEndPoint.Address, remoteEndPoint.Port, null, null);
+                bool success = result.AsyncWaitHandle.WaitOne(timeout, true);
+                if (!success)
+                {
+                    client.Close();
+                    throw new TimeoutException("Connection to the remote endpoint timed out.");
+                }
+                //client.Connect(remoteEndPoint);
             }
 
             /// <summary>

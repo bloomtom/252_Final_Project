@@ -36,6 +36,8 @@
             this.TimeLabel = new System.Windows.Forms.Label();
             this.trackInfo = new System.Windows.Forms.GroupBox();
             this.musicfilebox = new System.Windows.Forms.GroupBox();
+            this.refreshTracksButton = new System.Windows.Forms.Button();
+            this.trackCountLabel = new System.Windows.Forms.Label();
             this.trackInfo.SuspendLayout();
             this.musicfilebox.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +52,7 @@
             this.musicFilesListBox.ItemHeight = 16;
             this.musicFilesListBox.Location = new System.Drawing.Point(6, 18);
             this.musicFilesListBox.Name = "musicFilesListBox";
-            this.musicFilesListBox.Size = new System.Drawing.Size(300, 292);
+            this.musicFilesListBox.Size = new System.Drawing.Size(300, 260);
             this.musicFilesListBox.TabIndex = 0;
             this.musicFilesListBox.SelectedIndexChanged += new System.EventHandler(this.musicFilesListBox_SelectedIndexChanged);
             this.musicFilesListBox.DoubleClick += new System.EventHandler(this.musicFilesListBox_DoubleClick);
@@ -113,6 +115,8 @@
             // musicfilebox
             // 
             this.musicfilebox.BackColor = System.Drawing.Color.SeaGreen;
+            this.musicfilebox.Controls.Add(this.trackCountLabel);
+            this.musicfilebox.Controls.Add(this.refreshTracksButton);
             this.musicfilebox.Controls.Add(this.musicFilesListBox);
             this.musicfilebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.musicfilebox.ForeColor = System.Drawing.Color.Wheat;
@@ -123,13 +127,34 @@
             this.musicfilebox.TabStop = false;
             this.musicfilebox.Text = "Music Files Avaiable";
             // 
+            // refreshTracksButton
+            // 
+            this.refreshTracksButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshTracksButton.ForeColor = System.Drawing.Color.Black;
+            this.refreshTracksButton.Location = new System.Drawing.Point(207, 284);
+            this.refreshTracksButton.Name = "refreshTracksButton";
+            this.refreshTracksButton.Size = new System.Drawing.Size(95, 23);
+            this.refreshTracksButton.TabIndex = 10;
+            this.refreshTracksButton.Text = "Refresh Tracks";
+            this.refreshTracksButton.UseVisualStyleBackColor = true;
+            this.refreshTracksButton.Click += new System.EventHandler(this.refreshTracksButton_Click);
+            // 
+            // trackCountLabel
+            // 
+            this.trackCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackCountLabel.Location = new System.Drawing.Point(8, 287);
+            this.trackCountLabel.Name = "trackCountLabel";
+            this.trackCountLabel.Size = new System.Drawing.Size(193, 19);
+            this.trackCountLabel.TabIndex = 11;
+            this.trackCountLabel.Text = "Tracks: ";
+            // 
             // Listen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.listenPic;
-            this.ClientSize = new System.Drawing.Size(728, 354);
+            this.ClientSize = new System.Drawing.Size(718, 339);
             this.Controls.Add(this.musicfilebox);
             this.Controls.Add(this.trackInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -156,6 +181,8 @@
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.GroupBox trackInfo;
         private System.Windows.Forms.GroupBox musicfilebox;
+        private System.Windows.Forms.Button refreshTracksButton;
+        private System.Windows.Forms.Label trackCountLabel;
     }
 }
 

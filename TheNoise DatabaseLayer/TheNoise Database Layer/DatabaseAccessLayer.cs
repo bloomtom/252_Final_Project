@@ -17,20 +17,25 @@ namespace TheNoise_DatabaseControl
 
         private SqlConnectionStringBuilder sqlStrBldr = new SqlConnectionStringBuilder();
 
-        public DataAccessLayer(string databaseAddress, string databaseName, bool useIntegratedSecurity)
+        public DataAccessLayer()
+        {
+            sqlStrBldr.InitialCatalog = TABLE;
+            sqlStrBldr.IntegratedSecurity = true;
+            sqlStrBldr.InitialCatalog = TABLE;
+        }
+        public DataAccessLayer(string databaseAddress, string databaseName, string username, string password, bool useIntegratedSecurity)
         {
             sqlStrBldr.DataSource = databaseAddress;
             sqlStrBldr.InitialCatalog = databaseName;
-            sqlStrBldr.IntegratedSecurity = useIntegratedSecurity;
-            sqlStrBldr.InitialCatalog = "userFiles";
-        }
-        public DataAccessLayer(string databaseAddress, string databaseName) : this(databaseAddress, databaseName, true) { }
-        public DataAccessLayer(string databaseAddress, string databaseName, string username, string password)
-            : this(databaseAddress, databaseName, false)
-        {
             sqlStrBldr.UserID = username;
             sqlStrBldr.Password = password;
-            sqlStrBldr.IntegratedSecurity = false;
+            sqlStrBldr.IntegratedSecurity = useIntegratedSecurity;
+            sqlStrBldr.InitialCatalog = TABLE;
+        }
+        public DataAccessLayer(string databaseAddress, string databaseName) : this(databaseAddress, databaseName, string.Empty, string.Empty, true) { }
+        public DataAccessLayer(string databaseAddress, string databaseName, string username, string password)
+            : this(databaseAddress, databaseName, username, password, false)
+        {
         }
 
         public void readUsers(ObservableCollection<LoginData> userList)

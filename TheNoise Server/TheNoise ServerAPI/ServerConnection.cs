@@ -9,14 +9,44 @@ using TheNoiseHLC;
 using TheNoiseHLC.CommunicationObjects;
 using TheNoiseHLC.CommunicationObjects.AudioTrack;
 using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
+using System.Security.Cryptography;
 
 namespace TheNoiseAPI
 {
+    internal static class Cryptography
+    {
+        public static string GenerateUserHashedPassword(string key, string password)
+        {
+            return ByteToString(HashHMAC(StringToByte(key), StringToByte(password)));
+        }
+
+        private static byte[] HashHMAC(byte[] key, byte[] hashMessage)
+        {
+            var hash = new HMACSHA256(key);
+            return hash.ComputeHash(hashMessage);
+        }
+
+        // Converts a UTF8 string to an array of bytes.
+        private static byte[] StringToByte(string inputString)
+        {
+            var encoding = new UTF8Encoding();
+            return encoding.GetBytes(inputString);
+        }
+
+        // Converts a byte array to a hex string.
+        private static string ByteToString(byte[] hash)
+        {
+            return BitConverter.ToString(hash).Replace("-", "").ToLower();
+        }
+    }
+
     /// <summary>
     /// Provides a simple API to the 
     /// </summary>
     public class ServerConnection : IDisposable
     {
+        private const string hashKey = "G1E5G/w>z[U*Ee?X{_uj";
+
         IPAddress ip;
         int port;
 
@@ -37,10 +67,11 @@ namespace TheNoiseAPI
         volatile bool startedRequest = false;
         byte expectedResponse = 90;
         byte[] response;
+
         private void client_dataReceived(object sender, IncomingMessageEventArgs e)
         {
             // Check to see if the client is still connected.
-            if (!Connected())
+            if (!Connected)
             {
                 // The client has disconnected.
 
@@ -75,9 +106,9 @@ namespace TheNoiseAPI
         /// Tests the connection to the server. Returns true if connected.
         /// </summary>
         /// <returns>True if connected, else false.</returns>
-        public bool Connected()
+        public bool Connected
         {
-            return (client.Connected);
+            get { return (client != null && client.Connected); }
         }
 
         // Makes a blocking request to the server. This returns a serialized object or null (timeout/disconnect).
@@ -110,7 +141,7 @@ namespace TheNoiseAPI
         /// <returns>The returned status code from the server in form of a UserAddResult</returns>
         public UserAddResult Register(string username, string password)
         {
-            if (Connected())
+            if (Connected)
             {
                 byte[] send;
                 ObjectSerialization.Serialize(new LoginData(username, password), out send);
@@ -134,9 +165,10 @@ namespace TheNoiseAPI
         /// <returns>The returned status code from the server in form of a UserAuthenticationResult</returns>
         public UserAuthenticationResult Authenticate(string username, string password)
         {
-            if (Connected())
+            if (Connected)
             {
                 byte[] send;
+                string hashedPass = Cryptography.GenerateUserHashedPassword(hashKey + username, password);
                 ObjectSerialization.Serialize(new LoginData(username, password), out send);
 
                 // Make a request to the server to register the user. 
@@ -157,7 +189,7 @@ namespace TheNoiseAPI
         /// </summary>
         public void RequestAudioList()
         {
-            if (Connected())
+            if (Connected)
             {
                 byte[] send = { 0 };
                 client.SendDataPacket(ref send, (byte)PacketType.RequestList);
@@ -171,7 +203,7 @@ namespace TheNoiseAPI
         public TrackStreamRequestResult StartAudioStream(Track track, IPEndPoint address)
         {
             TrackStreamRequest request = new TrackStreamRequest(track, 0, address);
-            if (Connected())
+            if (Connected)
             {
                 byte[] send;
                 ObjectSerialization.Serialize(request, out send);
@@ -192,7 +224,7 @@ namespace TheNoiseAPI
         /// </summary>
         public void StopAudioStream()
         {
-            if (Connected())
+            if (Connected)
             {
                 byte[] send = { 0 };
                 client.SendDataPacket(ref send, (byte)PacketType.StopAudioStream);

@@ -103,6 +103,7 @@ namespace TheNoiseClient
                     {
                         musicFilesListBox.Items.Add(e.Tracks[i].ToString());
                     }
+                    trackCountLabel.Text = "Tracks: " + musicFilesListBox.Items.Count;
                 }));
                 return;
             }
@@ -110,49 +111,81 @@ namespace TheNoiseClient
 
         private void musicFilesListBox_DoubleClick(object sender, EventArgs e)
         {
-            TrackStreamRequestResult result = serverConnection.StartAudioStream(tracks.Tracks[musicFilesListBox.SelectedIndex], new IPEndPoint(ip, 9001));
-            switch (result)
+            if (TryCheckConnection())
             {
-                case TrackStreamRequestResult.Success:
-                    try
-                    {
-                        AudioPlayer noiseMaker = new AudioPlayer();
-                        noiseMaker.StartPosition = FormStartPosition.CenterScreen;
-                        noiseMaker.Show();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Dun Dun Dun!!!!!\nI am the Socket Troll and I hate your music");
-                    }
-                    break;
-                case TrackStreamRequestResult.InvalidFileName:
-                    MessageBox.Show("Invalid Track");
-                    break;
-                case TrackStreamRequestResult.InvalidConnection:
-                    MessageBox.Show("Invalid Connection");
-                    break;
-                case TrackStreamRequestResult.UnknownResult:
-                    MessageBox.Show("Failure");
-                    break;
-                default:
-                    break;
+                TrackStreamRequestResult result = serverConnection.StartAudioStream(tracks.Tracks[musicFilesListBox.SelectedIndex], new IPEndPoint(ip, 9001));
+                switch (result)
+                {
+                    case TrackStreamRequestResult.Success:
+                        try
+                        {
+                            AudioPlayer noiseMaker = new AudioPlayer();
+                            noiseMaker.StartPosition = FormStartPosition.CenterScreen;
+                            noiseMaker.Show();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Dun Dun Dun!!!!!\nI am the Socket Troll and I hate your music.");
+                        }
+                        break;
+                    case TrackStreamRequestResult.InvalidFileName:
+                        MessageBox.Show("Invalid Track");
+                        break;
+                    case TrackStreamRequestResult.InvalidConnection:
+                        MessageBox.Show("Invalid Connection");
+                        break;
+                    case TrackStreamRequestResult.UnknownResult:
+                        MessageBox.Show("Failure");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
         private void musicFilesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (musicFilesListBox.SelectedIndex == -1)
+            if (musicFilesListBox.SelectedIndex > -1)
             {
-
-            }
-            else
-            {
-
                 Namelabel.Text = tracks.Tracks[musicFilesListBox.SelectedIndex].TrackName;
                 TimeLabel.Text = tracks.Tracks[musicFilesListBox.SelectedIndex].TrackLength.ToString();
-
-
             }
+        }
+
+        private void refreshTracksButton_Click(object sender, EventArgs e)
+        {
+            if (TryCheckConnection())
+            {
+                serverConnection.RequestAudioList();
+            }
+        }
+
+        private bool TryCheckConnection()
+        {
+            if (serverConnection.Connected)
+            {
+                return true;
+            }
+
+            try
+            {
+                serverConnection = new ServerConnection(ip, port);
+                serverConnection.AudioListReceived += new ServerConnection.TrackListEventHandler(serverConnection_AudioListReceived);
+                serverConnection.AudioPacketReceived += new ServerConnection.DataReceivedEventHandler(serverConnection_AudioPacketReceived);
+                serverConnection.OpenConnection();
+
+                if (serverConnection.Authenticate(username, password) == UserAuthenticationResult.Success)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was a problem with the connection to the audio server: \n" + ex.Message);
+            }
+
+
+            return false;
         }
     }
 }

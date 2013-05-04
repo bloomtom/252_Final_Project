@@ -12,6 +12,7 @@ using TcpTransmission.Server;
 using TheNoise_DatabaseControl;
 using TheNoiseHLC;
 using TheNoiseHLC.CommunicationObjects.GlobalEnumerations;
+using TheNoise_Server.Properties;
 
 namespace TheNoise_Server
 {
@@ -21,14 +22,16 @@ namespace TheNoise_Server
         private Dictionary<IPEndPoint, int> userList = new Dictionary<IPEndPoint,int>();
 
         private TheNoiseServer server;
-        private IPAddress serverIP = IPAddress.Parse("0.0.0.0"); // Default IP is loopback.
-        private int serverPort = 9734;
+        private IPAddress serverIP = IPAddress.Parse(Resources.defaultServerIP); // Default IP is loopback.
+        private int serverPort = int.Parse(Resources.defaultServerPort);
 
-        private IPAddress sqlIP = IPAddress.Parse("127.0.0.1");
-        private int sqlPort = 1234;
+        private IPAddress sqlIP = IPAddress.Parse(Resources.defaultSqlIP);
+        private int sqlPort = int.Parse(Resources.defaultSqlPort);
+        private string sqlUsername = string.Empty;
+        private string sqlPassword = string.Empty;
+        private bool sqlIntegratedSecurity = true;
 
-        private string databaseIP = "";
-        private string databaseName = "";
+        private string databaseName = Resources.sqlTable;
 
         private string audioPath = AppDomain.CurrentDomain.BaseDirectory + "audio\\";
 
@@ -36,12 +39,12 @@ namespace TheNoise_Server
         {
             InitializeComponent();
 
-            server = new TheNoiseServer(serverIP, serverPort, audioPath, databaseIP, databaseName);
+            server = new TheNoiseServer(serverIP, serverPort, audioPath);
 
-            RefreshToolstrip();
+            RefreshToolStrip();
         }
 
-        private void RefreshToolstrip()
+        private void RefreshToolStrip()
         {
             bool serverIsRunning = server.Running;
 
@@ -57,20 +60,43 @@ namespace TheNoise_Server
         private void StartServer()
         {
             // Create a new server
-            server = new TheNoiseServer(serverIP, serverPort, audioPath, databaseIP, databaseName);
+            server = new TheNoiseServer(serverIP, serverPort, audioPath);
+            server.DatabaseAddress = sqlIP;
+            server.DatabasePort = sqlPort;
+            server.DatabaseName = databaseName;
+            server.DatabaseUseIntegratedSecurity = sqlIntegratedSecurity;
+            server.DatabaseUsername = sqlUsername;
+            server.DatabasePassword = sqlPassword;
+
             // Set the events
-            server.dataReceived += server_dataReceived;
-            server.clientConnected += server_clientConnected;
-            server.clientDisconnected += server_clientDisconnected;
-            server.clientAuthenticated += new EventHandler<ClientAuthEventArgs>(server_clientAuthenticated);
+            server.DataReceived += server_dataReceived;
+            server.ClientConnected += server_clientConnected;
+            server.ClientDisconnected += server_clientDisconnected;
+            server.ClientAuthenticated += new EventHandler<ClientAuthEventArgs>(server_clientAuthenticated);
+            server.GeneralEvent += server_GeneralEvent;
             // Start the server
             server.Start();
+        }
+
+        private void server_GeneralEvent(object sender, GeneralEventArgs e)
+        {
+            if (messagesRichTextBox.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate // Invoke a generic delegate using MethodInvoker
+                {
+                    server_GeneralEvent(sender, e);
+                }));
+                return;
+            }
+
+            // The ToString() gives us a nice, friendly string to stick right on the UI.
+            messagesRichTextBox.AppendText(e.ToString() + '\n');
         }
 
         private void StopServer()
         {
             // Unhook the client disconnect event while we close potentially hundreds of connections.
-            server.clientDisconnected -= server_clientDisconnected;
+            server.ClientDisconnected -= server_clientDisconnected;
 
             // Send a message to all clients that the server is going down.
             ASCIIEncoding encoder = new ASCIIEncoding();
@@ -91,6 +117,7 @@ namespace TheNoise_Server
                 return;
             }
 
+            // Remove this client from the UI.
             if (clientsListBox.Items.Contains(clientEndPoint.ToString()))
             {
                 clientsListBox.Items.Remove(clientEndPoint.ToString());
@@ -113,6 +140,7 @@ namespace TheNoise_Server
                 return;
             }
 
+            // A client has connected, put the client in the UI for visualization.
             userList.Add(clientEndPoint, 0);
             clientsListBox.Items.Add(clientEndPoint.ToString());
 
@@ -173,16 +201,18 @@ namespace TheNoise_Server
 
         private void startServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Start the server and set UI components.
             StartServer();
-            RefreshToolstrip();
+            RefreshToolStrip();
             messagesRichTextBox.AppendText("Started server on " + server.IP.ToString() + ":" + server.Port.ToString() + "\n");
         }
 
         private void stopServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Stop the server and set UI components.
             StopServer();
             clientsListBox.Items.Clear();
-            RefreshToolstrip();
+            RefreshToolStrip();
             messagesRichTextBox.AppendText("Server is stopped.\n");
         }
 
@@ -195,8 +225,10 @@ namespace TheNoise_Server
             // Only get results if the user pressed OK.
             if (config.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                serverIP = config.IpAddress;
+                serverIP = config.IpAddressServer;
                 serverPort = config.Port;
+                sqlIP = config.IpAddressSQL;
+                sqlPort = config.PortSQL;
             }
         }
 
@@ -220,6 +252,14 @@ namespace TheNoise_Server
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (server != null) { server.Dispose(); }
+        }
+
+        private void clientsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (server.Running)
+            {
+                dropClientToolStripMenuItem.Enabled = (clientsListBox.SelectedIndex != -1);
+            }
         }
     }
 }

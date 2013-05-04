@@ -7,7 +7,6 @@ C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.dll
 C:\Users\l230\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise_SharedObjects.pdb
-C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\TheNoise CommunicationObjects.csprojResolveAssemblyReference.cache
 C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\bin\Debug\TheNoise_SharedObjects.dll
 C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\bin\Debug\TheNoise_SharedObjects.pdb
 C:\Users\L231\Documents\GitHub\252_Final_Project\TheNoise SharedObjects\TheNoise_SharedObjects\obj\Debug\ResolveAssemblyReference.cache
