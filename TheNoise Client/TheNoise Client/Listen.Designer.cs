@@ -125,7 +125,7 @@
             this.musicfilebox.Size = new System.Drawing.Size(312, 317);
             this.musicfilebox.TabIndex = 9;
             this.musicfilebox.TabStop = false;
-            this.musicfilebox.Text = "Music Files Avaiable";
+            this.musicfilebox.Text = "Music Files Available";
             // 
             // trackCountLabel
             // 
@@ -154,7 +154,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.listenPic;
-            this.ClientSize = new System.Drawing.Size(718, 339);
+            this.ClientSize = new System.Drawing.Size(728, 354);
             this.Controls.Add(this.musicfilebox);
             this.Controls.Add(this.trackInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

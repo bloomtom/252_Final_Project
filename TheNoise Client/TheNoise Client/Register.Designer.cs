@@ -116,10 +116,10 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(34, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 52);
+            this.label1.Size = new System.Drawing.Size(200, 52);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Please enter a user name and  \r\npassword that is seven characters \r\nlong and cont" +
-    "ains at least two \r\nnumbers and three letters.";
+            this.label1.Text = "Please enter a user name and  \r\npassword that is six characters \r\nor more and con" +
+    "tains at least two \r\nnumbers and three letters.";
             // 
             // Register
             // 
@@ -128,7 +128,7 @@
             this.BackColor = System.Drawing.Color.DarkOrange;
             this.BackgroundImage = global::TheNoiseClient.Properties.Resources.RegistrationPic;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(263, 309);
+            this.ClientSize = new System.Drawing.Size(273, 324);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.newCPWBox);
             this.Controls.Add(this.confrimPWordlabel);
