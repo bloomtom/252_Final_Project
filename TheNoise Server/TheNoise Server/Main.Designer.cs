@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.messagePanel = new System.Windows.Forms.Panel();
             this.messagesRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.connectedGroupBox.SuspendLayout();
             this.messagePanel.SuspendLayout();
@@ -63,7 +64,8 @@
             this.startServerToolStripMenuItem,
             this.stopServerToolStripMenuItem,
             this.toolStripSeparator1,
-            this.configureToolStripMenuItem});
+            this.configureToolStripMenuItem,
+            this.debugToolStripMenuItem});
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
             this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.serverToolStripMenuItem.Text = "&Server";
@@ -71,7 +73,7 @@
             // startServerToolStripMenuItem
             // 
             this.startServerToolStripMenuItem.Name = "startServerToolStripMenuItem";
-            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startServerToolStripMenuItem.Text = "S&tart Server";
             this.startServerToolStripMenuItem.Click += new System.EventHandler(this.startServerToolStripMenuItem_Click);
             // 
@@ -79,19 +81,19 @@
             // 
             this.stopServerToolStripMenuItem.Enabled = false;
             this.stopServerToolStripMenuItem.Name = "stopServerToolStripMenuItem";
-            this.stopServerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.stopServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stopServerToolStripMenuItem.Text = "Sto&p Server";
             this.stopServerToolStripMenuItem.Click += new System.EventHandler(this.stopServerToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(130, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.configureToolStripMenuItem.Text = "&Configure";
             this.configureToolStripMenuItem.Click += new System.EventHandler(this.configureToolStripMenuItem_Click);
             // 
@@ -174,6 +176,13 @@
             this.messagesRichTextBox.Text = "";
             this.messagesRichTextBox.TextChanged += new System.EventHandler(this.messagesRichTextBox_TextChanged);
             // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.debugToolStripMenuItem.Text = "Debug Mode";
+            this.debugToolStripMenuItem.Click += new System.EventHandler(this.debugToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +220,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel messagePanel;
         private System.Windows.Forms.RichTextBox messagesRichTextBox;
+        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
 
     }
 }

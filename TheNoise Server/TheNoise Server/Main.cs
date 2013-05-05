@@ -74,6 +74,10 @@ namespace TheNoise_Server
             server.ClientDisconnected += server_clientDisconnected;
             server.ClientAuthenticated += new EventHandler<ClientAuthEventArgs>(server_clientAuthenticated);
             server.GeneralEvent += server_GeneralEvent;
+
+            // Set special config options
+            server.Debugging = debugToolStripMenuItem.Checked;
+
             // Start the server
             server.Start();
         }
@@ -260,6 +264,12 @@ namespace TheNoise_Server
             {
                 dropClientToolStripMenuItem.Enabled = (clientsListBox.SelectedIndex != -1);
             }
+        }
+
+        private void debugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            debugToolStripMenuItem.Checked = !debugToolStripMenuItem.Checked;
+            server.Debugging = debugToolStripMenuItem.Checked;
         }
     }
 }

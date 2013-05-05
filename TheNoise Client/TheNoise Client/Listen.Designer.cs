@@ -36,8 +36,8 @@
             this.TimeLabel = new System.Windows.Forms.Label();
             this.trackInfo = new System.Windows.Forms.GroupBox();
             this.musicfilebox = new System.Windows.Forms.GroupBox();
-            this.refreshTracksButton = new System.Windows.Forms.Button();
             this.trackCountLabel = new System.Windows.Forms.Label();
+            this.refreshTracksButton = new System.Windows.Forms.Button();
             this.trackInfo.SuspendLayout();
             this.musicfilebox.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +127,15 @@
             this.musicfilebox.TabStop = false;
             this.musicfilebox.Text = "Music Files Avaiable";
             // 
+            // trackCountLabel
+            // 
+            this.trackCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackCountLabel.Location = new System.Drawing.Point(8, 287);
+            this.trackCountLabel.Name = "trackCountLabel";
+            this.trackCountLabel.Size = new System.Drawing.Size(193, 19);
+            this.trackCountLabel.TabIndex = 11;
+            this.trackCountLabel.Text = "Tracks: ";
+            // 
             // refreshTracksButton
             // 
             this.refreshTracksButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -138,15 +147,6 @@
             this.refreshTracksButton.Text = "Refresh Tracks";
             this.refreshTracksButton.UseVisualStyleBackColor = true;
             this.refreshTracksButton.Click += new System.EventHandler(this.refreshTracksButton_Click);
-            // 
-            // trackCountLabel
-            // 
-            this.trackCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackCountLabel.Location = new System.Drawing.Point(8, 287);
-            this.trackCountLabel.Name = "trackCountLabel";
-            this.trackCountLabel.Size = new System.Drawing.Size(193, 19);
-            this.trackCountLabel.TabIndex = 11;
-            this.trackCountLabel.Text = "Tracks: ";
             // 
             // Listen
             // 
@@ -164,6 +164,7 @@
             this.Name = "Listen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Noise";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Listen_FormClosing);
             this.Load += new System.EventHandler(this.Listen_Load);
             this.trackInfo.ResumeLayout(false);
             this.trackInfo.PerformLayout();

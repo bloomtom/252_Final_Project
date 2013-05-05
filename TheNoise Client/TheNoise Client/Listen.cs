@@ -18,7 +18,7 @@ namespace TheNoiseClient
 {
     public partial class Listen : Form
     {
-        private IPAddress ip = IPAddress.Parse("172.0.0.1");//set ip address
+        private IPAddress ip = IPAddress.Parse("127.0.0.1");//set ip address
         private int port = 9734;//set port number
         private TrackList tracks;// copy of TrackList
 
@@ -26,6 +26,7 @@ namespace TheNoiseClient
         private string password;
 
         ServerConnection serverConnection;
+        AudioPlayer noiseMaker;
 
         public Listen()
         {
@@ -119,13 +120,13 @@ namespace TheNoiseClient
                     case TrackStreamRequestResult.Success:
                         try
                         {
-                            AudioPlayer noiseMaker = new AudioPlayer();
+                            noiseMaker = new AudioPlayer();
                             noiseMaker.StartPosition = FormStartPosition.CenterScreen;
                             noiseMaker.Show();
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Dun Dun Dun!!!!!\nI am the Socket Troll and I hate your music.");
+                            MessageBox.Show("Dun Dun Dun!!!!!\nI am the Socket Troll and I hate your music.\n" + ex.ToString());
                         }
                         break;
                     case TrackStreamRequestResult.InvalidFileName:
@@ -186,6 +187,16 @@ namespace TheNoiseClient
 
 
             return false;
+        }
+
+        private void Listen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            serverConnection.CloseConnection();
+
+            if (noiseMaker != null && !(noiseMaker.Disposing || noiseMaker.IsDisposed))
+            {
+                noiseMaker.Dispose();
+            }
         }
     }
 }

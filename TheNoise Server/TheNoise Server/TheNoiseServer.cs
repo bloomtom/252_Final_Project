@@ -186,9 +186,13 @@ namespace TheNoise_Server
             {
                 return "General Event: " + EventMessage;
             }
-            else if (SubjectUsername != null)
+            else if (SubjectUsername != null && SubjectIPE != null)
             {
                 return String.Format("Client {0} at {1} {2}", SubjectUsername, SubjectIPE, EventMessage);
+            }
+            else if (SubjectUsername != null)
+            {
+                return String.Format("{0}: {1}", SubjectUsername, EventMessage);
             }
             else if (SubjectIPE != null)
             {
@@ -216,6 +220,25 @@ namespace TheNoise_Server
 
         // Watches the file system for changes. Clients are updated accordingly.
         private System.IO.FileSystemWatcher watcher;
+
+        // Sets debugging mode. If true the database will not be queried, requests will simply be accepted.
+        private bool debugging = false;
+        public bool Debugging
+        {
+            get { return debugging; }
+            set
+            {
+                if (value && value != debugging)
+                {
+                    GeneralEvent.Invoke(this, new GeneralEventArgs("Server", null, "Debug mode ON. All auth requests will be accepted."));
+                }
+                else if (!value && value != debugging)
+                {
+                    GeneralEvent.Invoke(this, new GeneralEventArgs("Server", null, "Debug mode OFF. The database will be queried for auth requests."));
+                }
+                debugging = value;
+            }
+        }
 
         // Base path to store/retreive user files.
         private readonly string audioPath;
@@ -414,7 +437,15 @@ namespace TheNoise_Server
                     // Deserialize the auth request.
                     LoginData credentials = (LoginData)ObjectSerialization.Deserialize(message, typeof(LoginData));
                     // Attempt to validate this user.
-                    result = databaseAccess.validateUser(credentials);
+                    if (!debugging)
+                    {
+                        result = databaseAccess.validateUser(credentials);
+                    }
+                    else
+                    {
+                        // Debug mode, simply accept the auth request.
+                        result = UserAuthenticationResult.Success;
+                    }
 
                     if (result == UserAuthenticationResult.Success)
                     {
@@ -491,7 +522,16 @@ namespace TheNoise_Server
                     LoginData credentials = (LoginData)ObjectSerialization.Deserialize(message, typeof(LoginData));
 
                     // Attempt to register with the database.
-                    UserAddResult result = databaseAccess.addUser(credentials);
+                    UserAddResult result;
+                    if (!debugging)
+                    {
+                        result = databaseAccess.addUser(credentials);
+                    }
+                    else
+                    {
+                        result = UserAddResult.Success;
+                    }
+
                     ObjectSerialization.Serialize(result, out send);
 
                     GeneralEvent.Invoke(this, new GeneralEventArgs(null, sender,
