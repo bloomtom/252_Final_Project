@@ -185,13 +185,15 @@ namespace TheNoiseClient
                 MessageBox.Show("There was a problem with the connection to the audio server: \n" + ex.Message);
             }
 
-
             return false;
         }
 
         private void Listen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            serverConnection.CloseConnection();
+            if (serverConnection != null)
+            {
+                serverConnection.CloseConnection();
+            }
 
             if (noiseMaker != null && !(noiseMaker.Disposing || noiseMaker.IsDisposed))
             {

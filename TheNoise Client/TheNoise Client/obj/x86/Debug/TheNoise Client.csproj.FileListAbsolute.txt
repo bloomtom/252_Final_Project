@@ -74,3 +74,26 @@ C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Clien
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Settings.resources
 C:\Users\SAMSA\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.pdb
 C:\Users\Walmart\Documents\GitHub\252_Final_Project\TheNoise Client\TheNoise Client\bin\Debug\NAudio.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoiseClient.exe.config
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.exe
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoiseClient.exe
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoiseClient.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\AwesomeAudio.dll
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\NAudio.dll
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\NAudio.WindowsMediaFormat.dll
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoise ServerAPI.dll
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.dll
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.dll
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoise ServerAPI.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TheNoise_SharedObjects.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\AwesomeAudio.xml
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\NAudio.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\bin\Debug\TcpTransmission.pdb
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoise Client.csprojResolveAssemblyReference.cache
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Settings.resources
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Listen.resources
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.LogInSingUp.resources
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Properties.Resources.resources
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoiseClient.Register.resources
+C:\Users\SAMSA\Documents\GitHub\TheNoise\TheNoise Client\TheNoise Client\obj\x86\Debug\TheNoise Client.csproj.GenerateResource.Cache
