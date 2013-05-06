@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TheNoise_Server.TheNoiseClientHandler" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="audioPath" Hidden="true" />
+      <Method Name="ContinueStream" Hidden="true" />
+      <Field Name="lastUpdatedMusicList" Hidden="true" />
+      <Method Name="TheNoiseClientHandler" Hidden="true" />
+      <Field Name="username" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Delegate Name="TheNoise_Server.TheNoiseClientHandler.AudioPacketEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TheNoiseClientHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="TheNoise_Server.TheNoiseClientHandler.TrackListUpdatedEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TheNoiseClientHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="TheNoise_Server.TheNoiseClientHandler.ClientSendBackHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TheNoiseClientHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAICABAAACAEAAAACQAAAAmAAAAAABBAAAAGAAAAAAA=</HashCode>
+      <FileName>TheNoiseClientHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheNoise_Server.TheNoiseServer" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="2.5" />
+    <Members>
+      <Method Name="ClientRemove" Hidden="true" />
+      <Field Name="databaseAddress" Hidden="true" />
+      <Property Name="DatabaseAddress" Hidden="true" />
+      <Field Name="databaseName" Hidden="true" />
+      <Property Name="DatabaseName" Hidden="true" />
+      <Field Name="databasePassword" Hidden="true" />
+      <Property Name="DatabasePassword" Hidden="true" />
+      <Field Name="databasePort" Hidden="true" />
+      <Property Name="DatabasePort" Hidden="true" />
+      <Field Name="databaseUseIntegratedSecurity" Hidden="true" />
+      <Property Name="DatabaseUseIntegratedSecurity" Hidden="true" />
+      <Field Name="databaseUsername" Hidden="true" />
+      <Property Name="DatabaseUsername" Hidden="true" />
+      <Field Name="debugging" Hidden="true" />
+      <Method Name="TheNoiseServer" Hidden="true" />
+      <Method Name="TheNoiseServer_audioPacketReady" Hidden="true" />
+      <Method Name="TheNoiseServer_trackListUpdated" Hidden="true" />
+      <Field Name="usernameLookup" Hidden="true" />
+      <Field Name="watcher" Hidden="true" />
+      <Method Name="watcher_Changed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AICQAEAAAAAAAEQQCgBIQACAQgAAgACEEkEABAEBIIA=</HashCode>
+      <FileName>TheNoiseServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TcpTransmission.Client.ClientConnection" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="2.75" />
+    <NestedTypes>
+      <Delegate Name="TcpTransmission.Client.ClientConnection.DataReceivedEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TcpTransmission.Server.ServerManager" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="2.5" />
+    <Members>
+      <Method Name="Finalize" Hidden="true" />
+      <Method Name="Broadcast" Hidden="true" />
+      <Method Name="ClientRemove" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="OnClientConnect" Hidden="true" />
+      <Method Name="OnClientDisconnect" Hidden="true" />
+      <Method Name="OnDataReceived" Hidden="true" />
+      <Method Name="ServerManager" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Delegate Name="TcpTransmission.Server.ServerManager.DataReceivedEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="TcpTransmission.Server.ServerManager.ClientConnectEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="TcpTransmission.Server.ServerManager.ClientDisconnectEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
