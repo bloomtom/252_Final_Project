@@ -1,11 +1,7 @@
-Database:
-	Documentation
+Project is feature complete at this time.
 
-Server:
-	Stream audio to client.
-	Support viewing authenticated users in server management frontend.
-	Documentation
-
-Client:
-	Play streaming audio
-	Documentation
+Bugs:
+	Server sometimes cannot connecto to local SQL server, this is an environment bug.
+	Transmission of audio list sometimes does not make it to the client.
+	Pause and stop button do not work on player.
+	Scrubbing on player doesn't work.
