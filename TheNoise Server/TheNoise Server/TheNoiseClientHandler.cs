@@ -16,13 +16,13 @@ namespace TheNoise_Server
     /// <summary>
     /// Handles TheNoise server specific client serving capability.
     /// </summary>
-    internal sealed class TheNoiseClientHandler
+    internal sealed class TheNoiseClientHandler : IDisposable
     {
         public delegate void AudioPacketEventHandler(IPEndPoint sender, AudioPacketEventArgs e);
-        public event AudioPacketEventHandler audioPacketReady = delegate { };
+        public event AudioPacketEventHandler AudioPacketReady = delegate { };
 
         public delegate void TrackListUpdatedEventHandler(IPEndPoint sender, TrackList e);
-        public event TrackListUpdatedEventHandler trackListUpdated = delegate { };
+        public event TrackListUpdatedEventHandler TrackListUpdated = delegate { };
 
         public delegate void ClientSendBackHandler(IPEndPoint sender, IncomingMessageEventArgs e);
         public event ClientSendBackHandler ClientSendBack = delegate { };
@@ -44,6 +44,7 @@ namespace TheNoise_Server
         private IPEndPoint tcpEndPoint;
         private IPEndPoint udpEndPoint;
 
+        private bool streamedAudio = false;
         private AwesomeAudio.UDPSender audioSender;
 
         private long lastUpdatedMusicList;
@@ -75,6 +76,7 @@ namespace TheNoise_Server
         /// <param name="audioTrack">The audio track.</param>
         public void BeginStreaming(TrackStreamRequest audioTrack)
         {
+            streamedAudio = true;
             this.udpEndPoint = audioTrack.Connection;
             string trackLocation = audioPath + audioTrack.Track.TrackName + audioTrack.Track.TrackExtension;
 
@@ -112,8 +114,24 @@ namespace TheNoise_Server
                     tracks[i] = new Track(trackName, trackExt, secondsLong, TrackType.Unspecified);
                 }
 
-                trackListUpdated.Invoke(tcpEndPoint, new TrackList(tracks));
+                TrackListUpdated.Invoke(tcpEndPoint, new TrackList(tracks));
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Close all managed resources.
+                if (streamedAudio) { EndStreaming(); }
+            }
+
+            // Dispose of unmanaged resources here if any.
         }
     }
 }

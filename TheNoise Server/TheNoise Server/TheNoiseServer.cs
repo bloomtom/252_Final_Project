@@ -78,6 +78,9 @@ namespace TheNoise_Server
             }
         }
 
+        /// <summary>
+        /// </summary>
+        /// <remarks></remarks>
         private bool databaseUseIntegratedSecurity;
         public bool DatabaseUseIntegratedSecurity
         {
@@ -260,8 +263,8 @@ namespace TheNoise_Server
                         authenticatedConnections.Add(sender, new TheNoiseClientHandler(credentials.username, audioPath + credentials.username + "\\", sender));
                         usernameLookup.Add(credentials.username, sender);
 
-                        authenticatedConnections[sender].audioPacketReady += TheNoiseServer_audioPacketReady;
-                        authenticatedConnections[sender].trackListUpdated += TheNoiseServer_trackListUpdated;
+                        authenticatedConnections[sender].AudioPacketReady += TheNoiseServer_audioPacketReady;
+                        authenticatedConnections[sender].TrackListUpdated += TheNoiseServer_trackListUpdated;
 
                         // Fire event that a user is authenticated.
                         ClientAuthenticated.Invoke(this, new ClientAuthEventArgs(sender, credentials.username));
@@ -358,6 +361,7 @@ namespace TheNoise_Server
 
             if (authenticatedConnections.ContainsKey(clientIPE))
             {
+                authenticatedConnections[clientIPE].Dispose();
                 usernameLookup.Remove(authenticatedConnections[clientIPE].Username);
                 authenticatedConnections.Remove(clientIPE);
             }
@@ -374,6 +378,7 @@ namespace TheNoise_Server
             // Also take care of additional client resources.
             if (authenticatedConnections.ContainsKey(clientIPE))
             {
+                authenticatedConnections[clientIPE].Dispose();
                 usernameLookup.Remove(authenticatedConnections[clientIPE].Username);
                 authenticatedConnections.Remove(clientIPE);
             }
