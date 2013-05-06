@@ -10,11 +10,10 @@
             or pre-existing (WAV file) source.
             </summary>
         </member>
-        <member name="M:AwesomeAudio.UDPSender.#ctor(System.String)">
+        <member name="M:AwesomeAudio.UDPSender.#ctor">
             <summary>
             Creates a new instance of the UDPSender class for use with a Microphone Source
             </summary>
-            <param name="destination">The Hostname or IP Address to send audio to</param>
         </member>
         <member name="M:AwesomeAudio.UDPSender.#ctor(System.String,System.String)">
             <summary>
@@ -30,6 +29,17 @@
             <param name="serverName">The hostname to resolve</param>
             <returns>The IP Address resolved from the supplied hostname</returns>
         </member>
+        <member name="M:AwesomeAudio.UDPSender.StartMicrophoneSend(System.String[])">
+            <summary>
+            Starts sending data from the microphone to the list of clients specified.
+            </summary>
+            <param name="clients">An array of hostnames or IP addresses to transmit to</param>
+        </member>
+        <member name="M:AwesomeAudio.UDPSender.StopMicrophoneSend">
+            <summary>
+            Stops a microphone transmission previously started by a call to StartMicrophoneSend
+            </summary>
+        </member>
         <member name="M:AwesomeAudio.UDPSender.StartFileSend(System.UInt16)">
             <summary>
             Starts transmitting the file from the specified position.  If no position is specified, begins transmitting from the 
@@ -40,11 +50,6 @@
         <member name="M:AwesomeAudio.UDPSender.StopFileSend">
             <summary>
             Stop a file transmission that is currently in progress.
-            </summary>
-        </member>
-        <member name="P:AwesomeAudio.UDPSender.MicrophoneSend">
-            <summary>
-            Value of true enables and starts sending of microphone audio.  Value of false disables and stops sending of microphone audio.
             </summary>
         </member>
         <member name="F:AwesomeAudio.AudioPlayer.components">
@@ -164,6 +169,12 @@
             Creates a new instance of the SoundFileReader class
             </summary>
         </member>
+        <member name="M:AwesomeAudio.WaveFileManager.ParseWaveFileHeader(System.String)">
+            <summary>
+            Parses the file for the header information and populates the variabes in the class
+            </summary>
+            <param name="filePathIn">Name of the file to parse</param>
+        </member>
         <member name="M:AwesomeAudio.WaveFileManager.ReadWaveFile(System.String,System.UInt16,System.Boolean)">
             <summary>
             Reads the data from a wave file and separates the audio data from the header. Then breaks the data
@@ -245,14 +256,6 @@
         <member name="P:AwesomeAudio.WaveFileManager.FileName">
             <summary>
             Returns the name of the file being played
-            </summary>
-        </member>
-    </members>
-</doc>
-        <member name="M:AwesomeAudio.AudioPlayer.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
             </summary>
         </member>
     </members>

@@ -47,7 +47,7 @@ namespace TheNoiseClient
                     username = login.Username;
                     password = login.Password;
                     ip = login.IP;
-        
+
 
                     UserAuthenticationResult result = UserAuthenticationResult.UnknownResult;
                     try
@@ -112,35 +112,42 @@ namespace TheNoiseClient
 
         private void musicFilesListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (TryCheckConnection())
+            try
             {
-                TrackStreamRequestResult result = serverConnection.StartAudioStream(tracks.Tracks[musicFilesListBox.SelectedIndex], new IPEndPoint(ip, 9001));
-                switch (result)
+                // Check to make sure the player no longer exists.
+                if (!(noiseMaker == null || noiseMaker.IsDisposed)) { return; }
+                // Check the server connection.
+                if (TryCheckConnection())
                 {
-                    case TrackStreamRequestResult.Success:
-                        try
-                        {
-                            noiseMaker = new AudioPlayer();
-                            noiseMaker.StartPosition = FormStartPosition.CenterScreen;
+                    // Make a new audio player.
+                    noiseMaker = new AudioPlayer();
+                    noiseMaker.StartPosition = FormStartPosition.CenterScreen;
+
+                    // Ask the server to begin streaming.
+                    TrackStreamRequestResult result = serverConnection.StartAudioStream(tracks.Tracks[musicFilesListBox.SelectedIndex], new IPEndPoint(ip, 9001));
+                    switch (result)
+                    {
+                        case TrackStreamRequestResult.Success:
+                            // Show the audioplayer.
                             noiseMaker.Show();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Dun Dun Dun!!!!!\nI am the Socket Troll and I hate your music.\n" + ex.ToString());
-                        }
-                        break;
-                    case TrackStreamRequestResult.InvalidFileName:
-                        MessageBox.Show("Invalid Track");
-                        break;
-                    case TrackStreamRequestResult.InvalidConnection:
-                        MessageBox.Show("Invalid Connection");
-                        break;
-                    case TrackStreamRequestResult.UnknownResult:
-                        MessageBox.Show("Failure");
-                        break;
-                    default:
-                        break;
+                            break;
+                        case TrackStreamRequestResult.InvalidFileName:
+                            MessageBox.Show("Invalid Track");
+                            break;
+                        case TrackStreamRequestResult.InvalidConnection:
+                            MessageBox.Show("Invalid Connection");
+                            break;
+                        case TrackStreamRequestResult.UnknownResult:
+                            MessageBox.Show("Failure");
+                            break;
+                        default:
+                            break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "I am the Socket Troll and I hate your music.\n" + ex.ToString(), "Dun Dun Dun!");
             }
         }
 
